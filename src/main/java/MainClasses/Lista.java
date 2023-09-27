@@ -13,6 +13,7 @@ public class Lista<T> {
     private Nodo<T> cabeza;
     private int tamano;
 
+
     private static class Nodo<T> {
         T dato;
         Nodo<T> siguiente;
