@@ -41,6 +41,7 @@ public class GameDeveloper extends Thread {
                 System.out.println("Error in developer thread.");
             }
         }
+        
     }
 
     private void configureDeveloperByComponent() {
@@ -107,9 +108,6 @@ public class GameDeveloper extends Thread {
         }
     }
     
-    public void addTodaysOutputToDrive() {
-
-    }
 
 
     public void produceGameComponent() {
