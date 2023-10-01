@@ -46,6 +46,7 @@ public class Configuration extends javax.swing.JFrame {
         daydurationSpinner = new javax.swing.JSpinner();
         deadlineSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
+        saveButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         barrasuperior = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
@@ -224,6 +225,10 @@ public class Configuration extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\Nuevo Logo Unimet Blanco.png")); // NOI18N
         SidePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+
+        saveButton.setFont(new java.awt.Font("Alien Encounters", 0, 18)); // NOI18N
+        saveButton.setText("SAVE");
+        SidePanel.add(saveButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 580, 140, 50));
 
         BG.add(SidePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 720));
 
@@ -680,5 +685,6 @@ public class Configuration extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel panelDerecho;
     private javax.swing.JPanel panelIzquierdo;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
