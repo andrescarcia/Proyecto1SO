@@ -34,9 +34,9 @@ public class Capcom extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        btn_SquareEnix1 = new javax.swing.JPanel();
+        btn_Capcom = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        btn_SquareEnix2 = new javax.swing.JPanel();
+        btn_Configuration = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -158,10 +158,10 @@ public class Capcom extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\SF.gif")); // NOI18N
         SidePanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 300, 400));
 
-        btn_SquareEnix1.setBackground(new java.awt.Color(22, 95, 190));
-        btn_SquareEnix1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_Capcom.setBackground(new java.awt.Color(22, 95, 190));
+        btn_Capcom.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_SquareEnix1MouseClicked(evt);
+                btn_CapcomMouseClicked(evt);
             }
         });
 
@@ -174,29 +174,29 @@ public class Capcom extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout btn_SquareEnix1Layout = new javax.swing.GroupLayout(btn_SquareEnix1);
-        btn_SquareEnix1.setLayout(btn_SquareEnix1Layout);
-        btn_SquareEnix1Layout.setHorizontalGroup(
-            btn_SquareEnix1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_SquareEnix1Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_CapcomLayout = new javax.swing.GroupLayout(btn_Capcom);
+        btn_Capcom.setLayout(btn_CapcomLayout);
+        btn_CapcomLayout.setHorizontalGroup(
+            btn_CapcomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_CapcomLayout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addComponent(jLabel12)
                 .addContainerGap(88, Short.MAX_VALUE))
         );
-        btn_SquareEnix1Layout.setVerticalGroup(
-            btn_SquareEnix1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_SquareEnix1Layout.createSequentialGroup()
+        btn_CapcomLayout.setVerticalGroup(
+            btn_CapcomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_CapcomLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        SidePanel.add(btn_SquareEnix1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, -1));
+        SidePanel.add(btn_Capcom, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, -1));
 
-        btn_SquareEnix2.setBackground(new java.awt.Color(22, 95, 190));
-        btn_SquareEnix2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_Configuration.setBackground(new java.awt.Color(22, 95, 190));
+        btn_Configuration.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_SquareEnix2MouseClicked(evt);
+                btn_ConfigurationMouseClicked(evt);
             }
         });
 
@@ -209,24 +209,24 @@ public class Capcom extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout btn_SquareEnix2Layout = new javax.swing.GroupLayout(btn_SquareEnix2);
-        btn_SquareEnix2.setLayout(btn_SquareEnix2Layout);
-        btn_SquareEnix2Layout.setHorizontalGroup(
-            btn_SquareEnix2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btn_SquareEnix2Layout.createSequentialGroup()
+        javax.swing.GroupLayout btn_ConfigurationLayout = new javax.swing.GroupLayout(btn_Configuration);
+        btn_Configuration.setLayout(btn_ConfigurationLayout);
+        btn_ConfigurationLayout.setHorizontalGroup(
+            btn_ConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btn_ConfigurationLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jLabel15)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
-        btn_SquareEnix2Layout.setVerticalGroup(
-            btn_SquareEnix2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_SquareEnix2Layout.createSequentialGroup()
+        btn_ConfigurationLayout.setVerticalGroup(
+            btn_ConfigurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btn_ConfigurationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        SidePanel.add(btn_SquareEnix2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
+        SidePanel.add(btn_Configuration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\Capcom_logo_color.png")); // NOI18N
         SidePanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 80));
@@ -695,10 +695,11 @@ public class Capcom extends javax.swing.JFrame {
                     .addComponent(narrativeqtyGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(narrativeMAXqtyGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(levelqtyGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(levelMAXqtyGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(levelMAXqtyGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(levelqtyGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -805,6 +806,9 @@ public class Capcom extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
+        SquareEnix v = new SquareEnix();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_SquareEnixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SquareEnixMouseClicked
@@ -815,17 +819,20 @@ public class Capcom extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel12MouseClicked
 
-    private void btn_SquareEnix1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SquareEnix1MouseClicked
+    private void btn_CapcomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CapcomMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_SquareEnix1MouseClicked
+    }//GEN-LAST:event_btn_CapcomMouseClicked
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel15MouseClicked
 
-    private void btn_SquareEnix2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SquareEnix2MouseClicked
+    private void btn_ConfigurationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfigurationMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_SquareEnix2MouseClicked
+        Configuration v = new Configuration();
+        v.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_ConfigurationMouseClicked
 
     private void exitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMousePressed
         // TODO add your handling code here:
@@ -890,9 +897,9 @@ public class Capcom extends javax.swing.JFrame {
     private javax.swing.JPanel SidePanel;
     private javax.swing.JSpinner SpriteSpinner;
     private javax.swing.JPanel barrasuperior;
+    private javax.swing.JPanel btn_Capcom;
+    private javax.swing.JPanel btn_Configuration;
     private javax.swing.JPanel btn_SquareEnix;
-    private javax.swing.JPanel btn_SquareEnix1;
-    private javax.swing.JPanel btn_SquareEnix2;
     private javax.swing.JLabel cantidadintegradoresGUI;
     private javax.swing.JLabel dayspassedGUI1;
     private javax.swing.JLabel directorstateGUI;
