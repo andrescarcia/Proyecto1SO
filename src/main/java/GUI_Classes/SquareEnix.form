@@ -465,7 +465,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel37" min="-2" pref="253" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="LogicSpinner1" max="32767" attributes="0"/>
+                                          <Component id="integratorSpinner" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -523,7 +523,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel37" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="LogicSpinner1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="integratorSpinner" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Component id="jLabel36" min="-2" pref="31" max="-2" attributes="0"/>
@@ -692,7 +692,7 @@
                 <Property name="text" type="java.lang.String" value="x"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="LogicSpinner1">
+            <Component class="javax.swing.JSpinner" name="integratorSpinner">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel37">
               <Properties>

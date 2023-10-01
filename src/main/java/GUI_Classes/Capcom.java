@@ -61,7 +61,7 @@ public class Capcom extends javax.swing.JFrame {
         directorstateGUI = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         PMstateGUI = new javax.swing.JLabel();
-        LogicSpinner1 = new javax.swing.JSpinner();
+        integratorSpinner = new javax.swing.JSpinner();
         jLabel37 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         PMfaultsGUI = new javax.swing.JLabel();
@@ -422,7 +422,7 @@ public class Capcom extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIzquierdoLayout.createSequentialGroup()
                                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(LogicSpinner1)))
+                                    .addComponent(integratorSpinner)))
                             .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel16)
                                 .addGroup(panelIzquierdoLayout.createSequentialGroup()
@@ -465,7 +465,7 @@ public class Capcom extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LogicSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(integratorSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -889,7 +889,6 @@ public class Capcom extends javax.swing.JFrame {
     private javax.swing.JLabel DeadlineGUI;
     private javax.swing.JSpinner LevelSpinner;
     private javax.swing.JSpinner LogicSpinner;
-    private javax.swing.JSpinner LogicSpinner1;
     private javax.swing.JSpinner NarrativeSpinner;
     private javax.swing.JLabel PMfaults$GUI;
     private javax.swing.JLabel PMfaultsGUI;
@@ -906,6 +905,7 @@ public class Capcom extends javax.swing.JFrame {
     private javax.swing.JLabel dlcMAXqtyGUI;
     private javax.swing.JLabel dlcqtyGUI;
     private javax.swing.JLabel exit;
+    private javax.swing.JSpinner integratorSpinner;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
