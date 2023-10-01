@@ -539,6 +539,9 @@ public class Configuration extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
+        SquareEnix v = new SquareEnix();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void btn_SquareEnixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SquareEnixMouseClicked
@@ -567,6 +570,9 @@ public class Configuration extends javax.swing.JFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
+        Capcom v = new Capcom();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel12MouseClicked
 
     private void btn_CapcomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CapcomMouseClicked

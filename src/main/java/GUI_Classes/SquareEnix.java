@@ -15,6 +15,8 @@ public class SquareEnix extends javax.swing.JFrame {
      */
     public SquareEnix() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -829,6 +831,10 @@ public class SquareEnix extends javax.swing.JFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
+        Capcom v = new Capcom();
+        v.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_jLabel12MouseClicked
 
     private void btn_CapcomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CapcomMouseClicked
@@ -840,6 +846,9 @@ public class SquareEnix extends javax.swing.JFrame {
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         // TODO add your handling code here:
+        Configuration v = new Configuration();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void btn_configurationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_configurationMouseClicked

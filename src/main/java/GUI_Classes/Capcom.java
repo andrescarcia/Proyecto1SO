@@ -16,6 +16,8 @@ public class Capcom extends javax.swing.JFrame {
      */
     public Capcom() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -825,6 +827,9 @@ public class Capcom extends javax.swing.JFrame {
 
     private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
         // TODO add your handling code here:
+        Configuration v = new Configuration();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void btn_ConfigurationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ConfigurationMouseClicked
