@@ -4,65 +4,93 @@
  */
 package MainClasses;
 
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Random;
+
 /**
  *
- * @author andre
+ * @author Sebastián
  */
 public class Director extends Thread {
-    private final double hourlyRate = 30;
-    private double earnings;
-    private ProjectManager pm;
     private Drive drive;
-
-    public Director(ProjectManager pm, Drive drive) {
-        this.pm = pm;
+    private Semaphore mutex;
+    private ProjectManager pm;
+    private boolean paused;
+    private int minuteDuration;
+    
+    public Director(Drive drive, Semaphore m, ProjectManager proj, int min){
         this.drive = drive;
-        this.earnings = 0;
-    }
-
-    @Override
-    public void run() {
-        while (true) { // El Director sigue trabajando indefinidamente
-            try {
-                if (pm.getDaysToDelivery() == 0) {
-                    deliverGames();
-                    resetDaysToDelivery();
-                } else {
-                    performAdministrativeTasks();
-                    checkOnProjectManager(); // No necesitas pasar un argumento aquí
-                }
-                Thread.sleep(24 * 60 * 60 * 1000); // Duerme 24 horas
-            } catch (InterruptedException ex) {
-                System.out.println("Error en el hilo del Director.");
-            }
-        }
-    }
-
-    private void deliverGames() {
-        // Lógica para enviar los videojuegos a las tiendas
-        //  vaciar el Drive de juegos terminados
-    }
-
-    private void resetDaysToDelivery() {
-        // Lógica para reiniciar el contador de días para la entrega
-        //  establecer un nuevo plazo basado en algún criterio
-    }
-
-    private void performAdministrativeTasks() {
-        // Lógica para realizar tareas administrativas
+        this.mutex = m;
+        this.pm = proj;
+        this.minuteDuration = min;
+        this.paused = false;
     }
     
-    public void checkOnProjectManager() { // No necesitas un argumento aquí
-        if (pm.watchStreams()) {
-            pm.addFine();
-            pm.deductSalary(50);
-            System.out.println("El PM fue descubierto viendo streams. Se le ha descontado $50 de su sueldo.");
-        } else {
-            System.out.println("El PM está trabajando correctamente.");
+    
+    @Override
+    public void run(){
+        try {
+            sleep(10);
+            while(true){
+                if(!this.paused){
+                    
+                    if(!"Trabajando".equals(this.pm.getCurrentState())){
+                        System.out.println("PM flojeando");
+                    }else{
+                        System.out.println("PM Trabajando");
+                    }
+                    
+                sleep(5);
+                    
+                    
+                }else{
+                    try {
+                        sleep(this.minuteDuration);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            
+            /**    public void work(){
+             * this.acc += this.productionPerDay;
+             * if (this.acc >= 1){
+             * try {
+             * //drive
+             * //Seccion critica
+             * this.mutex.acquire(1);          //wait
+             * this.drive.addToDrive(type, 1);
+             * this.acc = 0;
+             * this.mutex.release();                 //signal
+             * } catch (InterruptedException ex) {
+             * Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+             * }
+             * System.out.println(this.drive.levels);
+             * }
+             * }
+             * 
+             **/     } catch (InterruptedException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+    
     }
+    
+    public int randHour(){
+        Random random = new Random();
+        return random.nextInt(25 - 1) + 1;
+    }
+
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+ 
+    
+    
 }
-
-    // ... (otros métodos getter y setter según sea necesario)
-
-
