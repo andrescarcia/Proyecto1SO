@@ -28,54 +28,22 @@ public class Director extends Thread {
         this.paused = false;
     }
     
-    
     @Override
     public void run(){
-        try {
-            sleep(10);
-            while(true){
-                if(!this.paused){
-                    
-                    if(!"Trabajando".equals(this.pm.getCurrentState())){
-                        System.out.println("PM flojeando");
-                    }else{
-                        System.out.println("PM Trabajando");
-                    }
-                    
-                sleep(5);
-                    
-                    
-                }else{
-                    try {
-                        sleep(this.minuteDuration);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        while(true){
+            if(!this.paused){
+                if(!"Trabajando".equals(this.pm.getCurrentState())){
+                    System.out.println("PM flojeando");
+                } else {
+                    System.out.println("PM Trabajando");
+                }
+                try {
+                    Thread.sleep(minuteDuration);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            
-            /**    public void work(){
-             * this.acc += this.productionPerDay;
-             * if (this.acc >= 1){
-             * try {
-             * //drive
-             * //Seccion critica
-             * this.mutex.acquire(1);          //wait
-             * this.drive.addToDrive(type, 1);
-             * this.acc = 0;
-             * this.mutex.release();                 //signal
-             * } catch (InterruptedException ex) {
-             * Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
-             * }
-             * System.out.println(this.drive.levels);
-             * }
-             * }
-             * 
-             **/     } catch (InterruptedException ex) {
-            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    
     }
     
     public int randHour(){

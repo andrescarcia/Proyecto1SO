@@ -37,7 +37,7 @@ public class DirectorWatch extends Thread{
                 int upperWait = this.hourDuration * randomHour;
                 int lowerWait = this.hourDuration * (24 - randomHour + 1);
                 
-                for(int i = 0; i < 2; i++){
+                for(int i = 0; i < 2; i++){   ///no seria 3?
                     switch (i){
                 
                         case 0:
