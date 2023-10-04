@@ -277,11 +277,6 @@
                       </SubComponents>
                     </Container>
                     <Component class="javax.swing.JLabel" name="jLabel2">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\andre\OneDrive\Desktop\Proyecto1SO\src\main\java\Nuevo Logo Unimet Blanco.png"/>
-                        </Property>
-                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="60" y="10" width="-1" height="-1"/>
@@ -1104,11 +1099,6 @@
                       </Constraints>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\andre\OneDrive\Desktop\Proyecto1SO\src\main\java\SF.gif"/>
-                        </Property>
-                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="0" y="330" width="300" height="400"/>
@@ -1220,11 +1210,6 @@
                       </SubComponents>
                     </Container>
                     <Component class="javax.swing.JLabel" name="jLabel4">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\andre\OneDrive\Desktop\Proyecto1SO\src\main\java\Capcom_logo_color.png"/>
-                        </Property>
-                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="10" y="11" width="-1" height="80"/>
@@ -1262,7 +1247,7 @@
                               <Component id="barrasuperior1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel39" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2032,6 +2017,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="x"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="spriteqtyGUIPropertyChange"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="dlcqtyGUI">
                       <Properties>
@@ -2430,11 +2418,6 @@
                       </Constraints>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel7">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\andre\OneDrive\Desktop\Proyecto1SO\src\main\java\FinalFantasy.gif"/>
-                        </Property>
-                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="10" y="390" width="290" height="290"/>
@@ -2546,11 +2529,6 @@
                       </SubComponents>
                     </Container>
                     <Component class="javax.swing.JLabel" name="jLabel8">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="C:\Users\andre\OneDrive\Desktop\Proyecto1SO\src\main\java\SquareEnix_Logo_Color.png"/>
-                        </Property>
-                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="10" y="11" width="-1" height="80"/>
@@ -2613,7 +2591,7 @@
                               <Component id="barrasuperior2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel72" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

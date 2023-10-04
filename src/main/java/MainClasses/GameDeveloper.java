@@ -4,6 +4,10 @@
  */
 package MainClasses;
 
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author andre
@@ -14,19 +18,22 @@ public class GameDeveloper extends Thread {
     private double hourlyRate;
     private double dailyOutput;
     private double accumulatedOutput;
-    private final int developerID;
     private String gameComponent;
     private final boolean isActive = true;
-    private boolean isIntegrator;
     private String company; // Capcom or SquareEnix
+    private int dayDuration;
+    private Drive drive;
+    private Semaphore mutex;
 
-    public GameDeveloper(String componentType, int id, String company) {
-        this.developerID = id;
+    public GameDeveloper(String componentType, String company, int day, Drive drive, Semaphore m) {
         this.gameComponent = componentType;
         this.company = company;
         this.earnings = 0;
         this.accumulatedOutput = 0;
         this.configureDeveloperByComponent();
+        this.dayDuration = day;
+        this.drive = drive;
+        this.mutex = m;
     }
 
     @Override
@@ -34,9 +41,7 @@ public class GameDeveloper extends Thread {
         while (this.isActive) {
             try {
                 this.produceGameComponent();
-                this.addDailyOutput();
-                this.payDeveloper();
-                Thread.sleep(24 * 60 * 60 * 1000); // hay que despues cambiarlo para que se pueda cambiar la duracion del dia en la interfaz
+                sleep(this.dayDuration); // hay que despues cambiarlo para que se pueda cambiar la duracion del dia en la interfaz
             } catch (InterruptedException ex) {
                 System.out.println("Error in developer thread.");
             }
@@ -47,27 +52,27 @@ public class GameDeveloper extends Thread {
     private void configureDeveloperByComponent() {
         if (this.company.equals("Capcom")) {
             switch (this.gameComponent) {
-                case GameParts.narrative:
+                case "Narrative":
                     this.hourlyRate = 10;
                     this.dailyOutput = 0.5; // 1 guión cada 2 días
                     break;
-                case GameParts.levelDesign:
+                case "LevelDesign":
                     this.hourlyRate = 13;
                     this.dailyOutput = 0.5; // 1 nivel cada 2 días
                     break;
-                case GameParts.spriteArt:
+                case "SpriteArt":
                     this.hourlyRate = 20;
                     this.dailyOutput = 3; // 3 sprites set cada día
                     break;
-                case GameParts.gameLogic:
+                case "GameLogic":
                     this.hourlyRate = 8;
                     this.dailyOutput = 3; // 3 sistemas de juego cada día
                     break;
-                case GameParts.dlc:
+                case "DLC":
                     this.hourlyRate = 17;
                     this.dailyOutput = 1.0/3; // 1 DLC cada 3 días
                     break;
-                case GameParts.integrator:
+                case "Integrator":
                     this.hourlyRate = 25;
                     this.dailyOutput = 0.5; // 1 juego cada 2 días
                     break;
@@ -77,27 +82,27 @@ public class GameDeveloper extends Thread {
             }
         } else if (this.company.equals("SquareEnix")) {
             switch (this.gameComponent) {
-                case GameParts.narrative:
+                case "Narrative":
                     this.hourlyRate = 10;
                     this.dailyOutput = 0.25; // 1 guión cada 4 días
                     break;
-                case GameParts.levelDesign:
+                case "LevelDesign":
                     this.hourlyRate = 13;
                     this.dailyOutput = 0.25; // 1 nivel cada 4 días
                     break;
-                case GameParts.spriteArt:
+                case "SpriteArt":
                     this.hourlyRate = 20;
                     this.dailyOutput = 1; // 1 sprites set cada día
                     break;
-                case GameParts.gameLogic:
+                case "GameLogic":
                     this.hourlyRate = 8;
                     this.dailyOutput = 5; // 5 sistemas de juego cada día
                     break;
-                case GameParts.dlc:
+                case "DLC":
                     this.hourlyRate = 17;
                     this.dailyOutput = 0.5; // 1 DLC cada 2 días
                     break;
-                case GameParts.integrator:
+                case "Integrator":
                     this.hourlyRate = 25;
                     this.dailyOutput = 0.5; // 1 juego cada 2 días
                     break;
@@ -112,6 +117,16 @@ public class GameDeveloper extends Thread {
 
     public void produceGameComponent() {
         this.accumulatedOutput += this.dailyOutput;
+        if(this.accumulatedOutput >= 1){
+            try {
+                int roundAcc = (int) Math.floor(this.accumulatedOutput);
+                this.mutex.acquire(1);
+                this.drive.addToDrive(roundAcc, this.gameComponent);   
+                this.mutex.release();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GameDeveloper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void addDailyOutput() {
@@ -138,17 +153,10 @@ public class GameDeveloper extends Thread {
         return accumulatedOutput;
     }
 
-    public int getDeveloperID() {
-        return developerID;
-    }
-
     public boolean isIsActive() {
         return isActive;
     }
 
-    public boolean isIsIntegrator() {
-        return isIntegrator;
-    }
 
     public void setEarnings(double earnings) {
         this.earnings = earnings;
@@ -165,12 +173,6 @@ public class GameDeveloper extends Thread {
     public void setAccumulatedOutput(double accumulatedOutput) {
         this.accumulatedOutput = accumulatedOutput;
     }
-
-    public void setIsIntegrator(boolean isIntegrator) {
-        this.isIntegrator = isIntegrator;
-    }
-    
-    
 
 
     public String getCompany() {

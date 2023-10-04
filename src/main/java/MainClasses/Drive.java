@@ -4,6 +4,8 @@
  */
 package MainClasses;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author andre
@@ -18,6 +20,7 @@ public class Drive {
     private int vanillaGames;
     private int dlcGames;
     private int vanillaCounter;
+    private JLabel[] labels;
 
     public Drive() {
         this.scripts = 0;
@@ -29,6 +32,7 @@ public class Drive {
         this.vanillaGames = 0;
         this.dlcGames = 0;
         this.vanillaCounter = 0;
+        this.labels = new JLabel[5];
     }
     
     
@@ -130,7 +134,7 @@ public class Drive {
         
         switch (devType){
         
-            case "scripts":
+            case "Narrative":
                 if (this.scripts < 25){
                     if ((this.scripts + amount) > 25){
                         this.scripts += (25 - this.scripts);
@@ -138,10 +142,13 @@ public class Drive {
                     }else{
                         this.scripts += amount;
                     }
+                    
+                    this.labels[0].setText(Integer.toString(this.scripts));
+                    
                 }
                 break;
                 
-            case "level":
+            case "LevelDesign":
                 if (this.levels < 20){
                     if ((this.levels + amount) > 20){
                         this.levels += (20 - this.levels);
@@ -149,10 +156,13 @@ public class Drive {
                     }else{
                         this.levels += amount;
                     }
+                    
+                    this.labels[1].setText(Integer.toString(this.levels));
+                    
                 }
                 break;
                 
-            case "sprite":
+            case "SpriteArt":
                 if (this.sprites < 55){
                     if ((this.sprites + amount) > 55){
                         this.sprites += (55 - this.sprites);
@@ -160,10 +170,13 @@ public class Drive {
                     }else{
                         this.sprites += amount;
                     }
+                    
+                    this.labels[2].setText(Integer.toString(this.sprites));
+                    
                 }
                 break;
                 
-            case "logic":
+            case "GameLogic":
                 if (this.logics < 35){
                     if ((this.logics + amount) > 35){
                         this.logics += (35 - this.logics);
@@ -171,10 +184,14 @@ public class Drive {
                     }else{
                         this.logics += amount;
                     }
+                    
+                    this.labels[3].setText(Integer.toString(this.logics));
+                    
                 }
+                
                 break;
             
-            case "dlc":
+            case "DLC":
                 if (this.dlcs < 10){
                     if ((this.dlcs + amount) > 10){
                         this.dlcs += (10 - this.dlcs);
@@ -182,11 +199,24 @@ public class Drive {
                     }else{
                         this.dlcs += amount;
                     }
+                    
+                    this.labels[4].setText(Integer.toString(this.dlcs));
+                    
                 }
                 break;
                 
         }
         
     }
+
+    public JLabel[] getLabels() {
+        return labels;
+    }
+
+    public void setLabels(JLabel[] labels) {
+        this.labels = labels;
+    }
+    
+    
     
 }

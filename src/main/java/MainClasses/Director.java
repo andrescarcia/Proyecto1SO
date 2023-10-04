@@ -8,6 +8,7 @@ import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Random;
+import javax.swing.JLabel;
 
 /**
  *
@@ -19,13 +20,19 @@ public class Director extends Thread {
     private ProjectManager pm;
     private boolean paused;
     private int minuteDuration;
+    private boolean wasLazy;
+    private int pmPenalties;
+    private JLabel label;
     
-    public Director(Drive drive, Semaphore m, ProjectManager proj, int min){
+    public Director(Drive drive, Semaphore m, ProjectManager proj, int min, JLabel label){
         this.drive = drive;
         this.mutex = m;
         this.pm = proj;
         this.minuteDuration = min;
         this.paused = false;
+        this.wasLazy = false;
+        this.pmPenalties = 0;
+        this.label = label;
     }
     
     
@@ -36,10 +43,10 @@ public class Director extends Thread {
             while(true){
                 if(!this.paused){
                     
-                    if(!"Trabajando".equals(this.pm.getCurrentState())){
-                        System.out.println("PM flojeando");
-                    }else{
-                        System.out.println("PM Trabajando");
+                    if(!"Trabajando".equals(this.pm.getCurrentState()) && !this.wasLazy){
+                        this.wasLazy = true;
+                        this.pmPenalties += 1;
+                        this.label.setText(Integer.toString(this.pmPenalties));
                     }
                     
                 sleep(5);
@@ -89,6 +96,14 @@ public class Director extends Thread {
 
     public void setPaused(boolean paused) {
         this.paused = paused;
+    }
+
+    public boolean isWasLazy() {
+        return wasLazy;
+    }
+
+    public void setWasLazy(boolean wasLazy) {
+        this.wasLazy = wasLazy;
     }
  
     

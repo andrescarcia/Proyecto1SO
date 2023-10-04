@@ -3,18 +3,80 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI_Classes;
-
+import MainClasses.Director;
+import MainClasses.DirectorWatch;
+import MainClasses.GameDeveloper; 
+import MainClasses.Drive;
+import MainClasses.ProjectManager;
+import java.util.concurrent.Semaphore;
+import javax.swing.JLabel;
 /**
  *
  * @author andre
  */
 public class Main extends javax.swing.JFrame {
-
+        Semaphore CapcomMutex = new Semaphore(1);
+        Drive CapcomDrive = new Drive();
+        
+        Semaphore SquareMutex = new Semaphore(1);
+        Drive SquareDrive = new Drive();
+        
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
+        
+        int dayDuration = 10000;
+        int hourDuration = dayDuration/24;
+        int minDuration = hourDuration/60;
+        if(hourDuration == 0){
+            minDuration = 1;
+        }
+        
+        GameDeveloper capScript = new GameDeveloper("Narrative", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
+        GameDeveloper capLevel = new GameDeveloper("LevelDesign", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
+        GameDeveloper capSprite = new GameDeveloper("SpriteArt", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
+        GameDeveloper capLogic = new GameDeveloper("GameLogic", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
+        GameDeveloper capDLC = new GameDeveloper("DLC", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
+        ProjectManager capMan = new ProjectManager(10, dayDuration, CapcomDrive, CapcomMutex, PMstateGUI);
+        Director capDir = new Director(CapcomDrive, CapcomMutex, capMan, minDuration, PMfaultsGUI);
+        DirectorWatch capWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, capDir, CapcomDrive, directorstateGUI);
+        
+        GameDeveloper squareScript = new GameDeveloper("Narrative", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
+        GameDeveloper squareLevel = new GameDeveloper("LevelDesign", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
+        GameDeveloper squareSprite = new GameDeveloper("SpriteArt", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
+        GameDeveloper squareLogic = new GameDeveloper("GameLogic", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
+        GameDeveloper squareDLC = new GameDeveloper("DLC", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
+        ProjectManager squareMan = new ProjectManager(10, dayDuration, SquareDrive, SquareMutex, PMstateGUI1);
+        Director squareDir = new Director(SquareDrive, SquareMutex, squareMan, minDuration, PMfaultsGUI1);
+        DirectorWatch squareWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, squareDir, SquareDrive, directorstateGUI1);
+        
+        
+        
+        JLabel[] hola = {narrativeqtyGUI, levelqtyGUI, spriteqtyGUI, logicqtyGUI1, dlcqtyGUI};
+        JLabel[] chao = {narrativeqtyGUI1, levelqtyGUI1, spriteqtyGUI1, logicqtyGUI2, dlcqtyGUI1};
+        this.CapcomDrive.setLabels(hola);
+        this.SquareDrive.setLabels(chao);
+        
+        capScript.start();
+        capLevel.start();
+        capSprite.start();
+        capLogic.start();
+        capDLC.start();
+        capMan.start();
+        capDir.start();
+        capWatch.start();
+        
+        squareScript.start();
+        squareLevel.start();
+        squareSprite.start();
+        squareLogic.start();
+        squareDLC.start();
+        squareMan.start();
+        squareDir.start();
+        squareWatch.start();
+        
     }
 
     /**
@@ -359,8 +421,6 @@ public class Main extends javax.swing.JFrame {
         );
 
         SidePanel3.add(btn_Configuration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\Nuevo Logo Unimet Blanco.png")); // NOI18N
         SidePanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         jLabel110.setFont(new java.awt.Font("Alien Encounters", 1, 20)); // NOI18N
@@ -795,8 +855,6 @@ public class Main extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 96, 260, 10));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\SF.gif")); // NOI18N
         SidePanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 300, 400));
 
         btn_Capcom1.setBackground(new java.awt.Color(22, 95, 190));
@@ -868,8 +926,6 @@ public class Main extends javax.swing.JFrame {
         );
 
         SidePanel4.add(btn_Configuration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\Capcom_logo_color.png")); // NOI18N
         SidePanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 80));
 
         BG4.add(SidePanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 720));
@@ -935,7 +991,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(barrasuperior1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel39)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         BG4.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 1300, 120));
@@ -1185,6 +1241,11 @@ public class Main extends javax.swing.JFrame {
         spriteqtyGUI.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         spriteqtyGUI.setForeground(new java.awt.Color(255, 255, 255));
         spriteqtyGUI.setText("x");
+        spriteqtyGUI.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                spriteqtyGUIPropertyChange(evt);
+            }
+        });
 
         dlcqtyGUI.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         dlcqtyGUI.setForeground(new java.awt.Color(255, 255, 255));
@@ -1493,8 +1554,6 @@ public class Main extends javax.swing.JFrame {
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel5.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 96, 260, 10));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\FinalFantasy.gif")); // NOI18N
         SidePanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 290, 290));
 
         btn_Capcom2.setBackground(new java.awt.Color(153, 25, 30));
@@ -1566,8 +1625,6 @@ public class Main extends javax.swing.JFrame {
         );
 
         SidePanel5.add(btn_configuration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\OneDrive\\Desktop\\Proyecto1SO\\src\\main\\java\\SquareEnix_Logo_Color.png")); // NOI18N
         SidePanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 80));
 
         jPanel6.setBackground(new java.awt.Color(153, 25, 30));
@@ -1648,7 +1705,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(barrasuperior2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel72)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         BG5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 1300, 120));
@@ -2318,6 +2375,10 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_barrasuperior2MousePressed
 
+    private void spriteqtyGUIPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_spriteqtyGUIPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spriteqtyGUIPropertyChange
+
     /**
      * @param args the command line arguments
      */
@@ -2354,9 +2415,6 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BG;
-    private javax.swing.JPanel BG1;
-    private javax.swing.JPanel BG2;
     private javax.swing.JPanel BG3;
     private javax.swing.JPanel BG4;
     private javax.swing.JPanel BG5;
@@ -2388,9 +2446,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel PMfaultsGUI1;
     private javax.swing.JLabel PMstateGUI;
     private javax.swing.JLabel PMstateGUI1;
-    private javax.swing.JPanel SidePanel;
-    private javax.swing.JPanel SidePanel1;
-    private javax.swing.JPanel SidePanel2;
     private javax.swing.JPanel SidePanel3;
     private javax.swing.JPanel SidePanel4;
     private javax.swing.JPanel SidePanel5;
@@ -2407,9 +2462,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel btn_Capcom2;
     private javax.swing.JPanel btn_Configuration;
     private javax.swing.JPanel btn_Configuration1;
-    private javax.swing.JPanel btn_SquareEnix;
-    private javax.swing.JPanel btn_SquareEnix1;
-    private javax.swing.JPanel btn_SquareEnix2;
     private javax.swing.JPanel btn_SquareEnix3;
     private javax.swing.JPanel btn_SquareEnix4;
     private javax.swing.JPanel btn_SquareEnix5;
@@ -2434,14 +2486,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner integratorSpinner2;
     private javax.swing.JSpinner integratorSpinner3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

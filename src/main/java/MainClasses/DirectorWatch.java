@@ -7,6 +7,7 @@ package MainClasses;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -18,13 +19,17 @@ public class DirectorWatch extends Thread{
     private int hourDuration;
     private int minuteDuration;
     private Director dir;
+    private Drive drive;
+    private JLabel label;
     
-    public DirectorWatch(int sal, int day, int hora, int min, Director dir){
+    public DirectorWatch(int sal, int day, int hora, int min, Director dir, Drive drive, JLabel label){
     this.salary = sal;
     this.dayDuration = day;
     this.dir = dir;
     this.hourDuration = hora;
     this.minuteDuration = min;
+    this.drive = drive;
+    this.label = label;
     }
     
     public void run(){
@@ -32,34 +37,40 @@ public class DirectorWatch extends Thread{
         while(true){
             try {
                 
+                if(drive.getDaysRemaining() != 0){
                 
-                int randomHour = randHour();
-                int upperWait = this.hourDuration * randomHour;
-                int lowerWait = this.hourDuration * (24 - randomHour + 1);
                 
-                for(int i = 0; i < 2; i++){
-                    switch (i){
-                
-                        case 0:
-                            this.dir.setPaused(true);
-                            System.out.println("Director Pausado");
-                            sleep(upperWait);
-                            break;
-                        
-                        case 1:
-                            this.dir.setPaused(false);
-                            System.out.println("Director resumido");
-                            sleep(this.minuteDuration * 25);
-                            break;
-                            
-                        case 2:
-                            this.dir.setPaused(true);
-                            System.out.println("Director Pausado");
-                            sleep(this.dayDuration - ((this.minuteDuration*25) + upperWait));
+                    int randomHour = randHour();
+                    int upperWait = this.hourDuration * randomHour;
+                    int lowerWait = this.hourDuration * (24 - randomHour + 1);
+
+                    for(int i = 0; i < 3; i++){
+                        switch (i){
+
+                            case 0:
+                                this.dir.setPaused(true);
+                                this.label.setText("Labores administrativas");
+                                sleep(upperWait);
+                                break;
+
+                            case 1:
+                                this.dir.setPaused(false);
+                                this.label.setText("Revisando al PM");
+                                sleep(this.minuteDuration * 25);
+                                break;
+
+                            case 2:
+                                this.dir.setPaused(true);
+                                this.label.setText("Labores administrativas");
+                                this.dir.setWasLazy(false);
+                                sleep(this.dayDuration - ((this.minuteDuration*25) + upperWait));
+                        }
                     }
+            
+                }else{
+                    this.drive.setDaysRemaining(5);
                 }
-                
-                
+            
             } catch (InterruptedException ex) {
                 Logger.getLogger(DirectorWatch.class.getName()).log(Level.SEVERE, null, ex);
             }

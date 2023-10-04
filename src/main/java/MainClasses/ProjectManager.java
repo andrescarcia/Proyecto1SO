@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  *
@@ -21,8 +22,9 @@ public class ProjectManager extends Thread{
     private Drive drive;
     private Semaphore mutex;
     private String currentState;
+    private JLabel label;
 
-    public ProjectManager(int salary, int dayDuration, Drive drive, Semaphore m) {
+    public ProjectManager(int salary, int dayDuration, Drive drive, Semaphore m, JLabel label) {
         this.salary = salary;
         this.dayDuration = dayDuration;
         
@@ -41,6 +43,7 @@ public class ProjectManager extends Thread{
         this.drive = drive;
         this.mutex = m;
         this.currentState = "Trabajando";
+        this.label = label;
     }
     
     @Override
@@ -50,10 +53,14 @@ public class ProjectManager extends Thread{
                 susTime();                
                 if (((this.hourDuration/2)*32) + (this.hourDuration*8) < this.dayDuration){
                     sleep((this.hourDuration*8) + (this.dayDuration - (((this.hourDuration/2)*32) + (this.hourDuration*8))));
-                    System.out.println("Bajar un dia");
+                    this.mutex.acquire(1);
+                    this.drive.setDaysRemaining(this.drive.getDaysRemaining() - 1);
+                    this.mutex.release();
                 }else{
                     sleep(this.hourDuration*8);
-                    System.out.println("Bajar un dia");
+                    this.mutex.acquire(1);
+                    this.drive.setDaysRemaining(this.drive.getDaysRemaining() - 1);
+                    this.mutex.release();
                 }
                 
                 
@@ -70,9 +77,11 @@ public class ProjectManager extends Thread{
             try {
                 sleep(this.hourDuration/2);
                 this.currentState = watchSus();
+                this.label.setText(this.currentState);
                 
                 sleep(this.hourDuration/2);   
                 this.currentState = "Trabajando";
+                this.label.setText(this.currentState);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,6 +131,14 @@ public class ProjectManager extends Thread{
 
     public void setCurrentState(String currentState) {
         this.currentState = currentState;
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
     }
     
     
