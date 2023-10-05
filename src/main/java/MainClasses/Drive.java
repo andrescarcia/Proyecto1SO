@@ -216,7 +216,7 @@ public class Drive {
     }
      
     public void assembleGame() {
-        // Logic to consume the components when a game is assembled
+        //consumir los recursos
         scripts--;
         levels--;
         sprites--;

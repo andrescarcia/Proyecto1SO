@@ -21,45 +21,51 @@ public class Integrator extends Thread {
     public void run() {
         while (isActive) {
             try {
+                // Adquirir el semáforo para asegurar el acceso exclusivo al Drive
                 drive.getMutex().acquire();
 
+                // Verificar si hay suficientes componentes para ensamblar un juego
                 if (drive.canAssembleGame()) {
-                    System.out.println("Integrator: Components available. Starting assembly...");
+                    System.out.println("Integrador: Componentes disponibles. Iniciando ensamblaje...");
 
-                    // Consume components
+                    // Consumir componentes
                     drive.assembleGame();
 
-                    // Sleep for the necessary assembly time
-                    // (Here we sleep for a short time. Adjust as necessary.)
+                    // Dormir durante el tiempo necesario para el ensamblaje
+                    // (Aquí dormimos por un tiempo corto. Ajustar según sea necesario.)
                     Thread.sleep(2000);
 
-                    // Add assembled game to Drive
-                    // (Implement this as per your requirements.)
-                    System.out.println("Integrator: Game assembled!");
+                    // Agregar el juego ensamblado al Drive
+                    // (Implementar esto según tus requisitos.)
+                    System.out.println("Integrador: ¡Juego ensamblado!");
 
-                    // Pay the Integrator
+                    // Pagar al Integrador
                     payIntegrator();
                 } else {
-                    System.out.println("Integrator: Not enough components to assemble a game.");
+                    System.out.println("Integrador: No hay suficientes componentes para ensamblar un juego.");
                 }
                 
+                // Liberar el semáforo para permitir el acceso a otros threads
                 drive.getMutex().release();
 
-                // Sleep for a while before the next check.
+                // Dormir un rato antes de la siguiente comprobación.
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                System.out.println("Integrator interrupted.");
+                System.out.println("Integrador interrumpido.");
             }
         }
     }
 
     public void payIntegrator() {
-        earnings += 25 * 24;  // $25/hour, 24 hours/day, for 2 days
-        System.out.println("Integrator: Paid for 2 days of work. Total earnings: $" + earnings);
+        // $25/hora, 24 horas/día, durante 2 días
+        earnings += 25 * 24;  
+        System.out.println("Integrador: Pagado por 2 días de trabajo. Ganancias totales: $" + earnings);
     }
 
     public void stopWorking() {
+        // Detener el hilo
         isActive = false;
     }
 }
+
 
