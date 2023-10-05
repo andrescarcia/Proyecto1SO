@@ -4,6 +4,7 @@
  */
 package MainClasses;
 
+import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
 
 /**
@@ -21,6 +22,8 @@ public class Drive {
     private int dlcGames;
     private int vanillaCounter;
     private JLabel[] labels;
+     private Semaphore mutex; // Mutex to control concurrent access
+
 
     public Drive() {
         this.scripts = 0;
@@ -33,6 +36,7 @@ public class Drive {
         this.dlcGames = 0;
         this.vanillaCounter = 0;
         this.labels = new JLabel[5];
+        this.mutex = new Semaphore(1); // Initialize the mutex
     }
     
     
@@ -130,8 +134,8 @@ public class Drive {
      * @param devType 
      */
     
-    public void addToDrive(int amount, String devType){
-        
+    public void addToDrive(int amount, String devType)throws InterruptedException {
+            mutex.acquire();  // Acquire the mutex before modifying the drive
         switch (devType){
         
             case "Narrative":
@@ -204,11 +208,21 @@ public class Drive {
                     
                 }
                 break;
-                
         }
-        
+         mutex.release();  // Release the mutex after modifying the drive
     }
-
+    public boolean canAssembleGame() {
+        return scripts >= 1 && levels >= 1 && sprites >= 1 && logics >= 1 && dlcs >= 1;
+    }
+     
+    public void assembleGame() {
+        // Logic to consume the components when a game is assembled
+        scripts--;
+        levels--;
+        sprites--;
+        logics--;
+        dlcs--;
+    }
     public JLabel[] getLabels() {
         return labels;
     }
@@ -217,6 +231,9 @@ public class Drive {
         this.labels = labels;
     }
     
+    public Semaphore getMutex() {
+        return mutex;
+    }
     
     
 }
