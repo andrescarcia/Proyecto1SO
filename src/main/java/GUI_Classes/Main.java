@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI_Classes;
+import MainClasses.Company;
 import MainClasses.Director;
 import MainClasses.DirectorWatch;
 import MainClasses.GameDeveloper; 
@@ -10,16 +11,25 @@ import MainClasses.Drive;
 import MainClasses.ProjectManager;
 import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import javax.swing.JSpinner;
 /**
  *
  * @author andre
  */
 public class Main extends javax.swing.JFrame {
+        Company capcom = new Company(1 ,1 ,1);
         Semaphore CapcomMutex = new Semaphore(1);
         Drive CapcomDrive = new Drive();
         
+        Company squareEnix = new Company(1, 1 ,1);
         Semaphore SquareMutex = new Semaphore(1);
         Drive SquareDrive = new Drive();
+        
+        int dayDuration;
         
     /**
      * Creates new form Main
@@ -27,57 +37,113 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         
-        int dayDuration = 10000;
+        JLabel[] capDriveLabels = {narrativeqtyGUI, levelqtyGUI, spriteqtyGUI, logicqtyGUI1, dlcqtyGUI};
+        JLabel[] squareDriveLabels = {narrativeqtyGUI1, levelqtyGUI1, spriteqtyGUI1, logicqtyGUI2, dlcqtyGUI1};   
+        this.capcom.getCompanyDrive().setLabels(capDriveLabels);
+        this.squareEnix.getCompanyDrive().setLabels(squareDriveLabels);
+        
+        JSpinner[] capSpinners = {NarrativeSpinner2, LevelSpinner2, SpriteSpinner2, LogicSpinner2, DLCSpinner2};
+        JSpinner[] squareSpinners = {NarrativeSpinner3, LevelSpinner3, SpriteSpinner3, LogicSpinner3, DLCSpinner3};
+        this.capcom.setSpinners(capSpinners);
+        this.squareEnix.setSpinners(squareSpinners);
+        
+        readConfig();
+        
+        
         int hourDuration = dayDuration/24;
         int minDuration = hourDuration/60;
         if(hourDuration == 0){
             minDuration = 1;
         }
         
-        GameDeveloper capScript = new GameDeveloper("Narrative", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
-        GameDeveloper capLevel = new GameDeveloper("LevelDesign", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
-        GameDeveloper capSprite = new GameDeveloper("SpriteArt", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
-        GameDeveloper capLogic = new GameDeveloper("GameLogic", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
-        GameDeveloper capDLC = new GameDeveloper("DLC", "Capcom", dayDuration, CapcomDrive, CapcomMutex);
+        this.capcom.activateDevs();
+        
         ProjectManager capMan = new ProjectManager(10, dayDuration, CapcomDrive, CapcomMutex, PMstateGUI);
         Director capDir = new Director(CapcomDrive, CapcomMutex, capMan, minDuration, PMfaultsGUI);
         DirectorWatch capWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, capDir, CapcomDrive, directorstateGUI);
         
-        GameDeveloper squareScript = new GameDeveloper("Narrative", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
-        GameDeveloper squareLevel = new GameDeveloper("LevelDesign", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
-        GameDeveloper squareSprite = new GameDeveloper("SpriteArt", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
-        GameDeveloper squareLogic = new GameDeveloper("GameLogic", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
-        GameDeveloper squareDLC = new GameDeveloper("DLC", "SquareEnix", dayDuration, SquareDrive, SquareMutex);
+        
         ProjectManager squareMan = new ProjectManager(10, dayDuration, SquareDrive, SquareMutex, PMstateGUI1);
         Director squareDir = new Director(SquareDrive, SquareMutex, squareMan, minDuration, PMfaultsGUI1);
         DirectorWatch squareWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, squareDir, SquareDrive, directorstateGUI1);
         
         
         
-        JLabel[] hola = {narrativeqtyGUI, levelqtyGUI, spriteqtyGUI, logicqtyGUI1, dlcqtyGUI};
-        JLabel[] chao = {narrativeqtyGUI1, levelqtyGUI1, spriteqtyGUI1, logicqtyGUI2, dlcqtyGUI1};
-        this.CapcomDrive.setLabels(hola);
-        this.SquareDrive.setLabels(chao);
         
-        capScript.start();
-        capLevel.start();
-        capSprite.start();
-        capLogic.start();
-        capDLC.start();
-        capMan.start();
-        capDir.start();
-        capWatch.start();
         
-        squareScript.start();
-        squareLevel.start();
-        squareSprite.start();
-        squareLogic.start();
-        squareDLC.start();
-        squareMan.start();
-        squareDir.start();
-        squareWatch.start();
         
     }
+    
+    public void readConfig(){
+        String savedDevs = "";
+        String line;
+        String path = "cosas.txt";
+        File file = new File(path);
+        try{
+            if(!file.exists()){
+                file.createNewFile();
+                
+            }else{
+            
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                
+                while((line = br.readLine()) != null){
+                    if(!line.isEmpty()){
+                        String[] arraySplit = line.split(",");
+                        
+                        switch(arraySplit[0]){
+                        
+                            case "dia":
+                                this.dayDuration = Integer.parseInt(arraySplit[1]);
+                                break;
+                                
+                            case "GameDeveloper":
+                                
+                                switch(arraySplit[1]){
+                                    
+                                    case "Capcom":
+                                        
+                                        for(int j = 0; j < Integer.parseInt(arraySplit[3]); j++){
+                                        
+                                            GameDeveloper capDev = new GameDeveloper(arraySplit[2], "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+                                            capcom.addDev(capDev);
+                                        
+                                        }
+                                        break;
+                                        
+                                    case "SquareEnix":
+                                        
+                                        for(int j = 0; j < Integer.parseInt(arraySplit[3]); j++){
+                                        
+                                            GameDeveloper squareDev = new GameDeveloper(arraySplit[2], "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+                                            squareEnix.addDev(squareDev);
+                                        
+                                        }
+                                        break;
+                                
+                                }
+                                
+                                break;
+                            
+                        }
+                        
+                    }
+                }
+                
+                br.close();
+                
+            }
+            
+            
+            
+                
+        }catch(Exception e){
+            System.out.println(e);
+            }
+        }
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

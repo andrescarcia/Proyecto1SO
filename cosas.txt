@@ -1,0 +1,6 @@
+dia,1000
+GameDeveloper,Capcom,Narrative,2
+GameDeveloper,Capcom,LevelDesign,1
+GameDeveloper,Capcom,SpriteArt,1
+GameDeveloper,Capcom,GameLogic,1
+GameDeveloper,Capcom,DLC,1

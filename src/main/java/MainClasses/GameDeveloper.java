@@ -19,12 +19,11 @@ public class GameDeveloper extends Thread {
     private double dailyOutput;
     private double accumulatedOutput;
     private String gameComponent;
-    private final boolean isActive = true;
+    private boolean isActive = true;
     private String company; // Capcom or SquareEnix
     private int dayDuration;
     private Drive drive;
     private Semaphore mutex;
-
     public GameDeveloper(String componentType, String company, int day, Drive drive, Semaphore m) {
         this.gameComponent = componentType;
         this.company = company;
@@ -157,6 +156,9 @@ public class GameDeveloper extends Thread {
         return isActive;
     }
 
+    public void setIsActive(boolean b){
+        this.isActive = b;
+    }
 
     public void setEarnings(double earnings) {
         this.earnings = earnings;
@@ -192,6 +194,8 @@ public class GameDeveloper extends Thread {
         this.gameComponent = gameComponent;
         configureDeveloperByComponent(); //  llamar a este método aquí para reconfigurar automáticamente al desarrollador cuando cambies su componente.
     }
+    
+    
     
 
 }
