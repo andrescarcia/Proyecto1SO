@@ -68,7 +68,9 @@ public class Main extends javax.swing.JFrame {
         DirectorWatch squareWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, squareDir, SquareDrive, directorstateGUI1);
         
         
-        
+        capMan.start();
+        capDir.start();
+        capWatch.start();
         
         
         

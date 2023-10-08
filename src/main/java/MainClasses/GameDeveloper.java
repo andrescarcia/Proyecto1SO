@@ -122,6 +122,7 @@ public class GameDeveloper extends Thread {
                 this.mutex.acquire(1);
                 this.drive.addToDrive(roundAcc, this.gameComponent);   
                 this.mutex.release();
+                this.accumulatedOutput = 0;
             } catch (InterruptedException ex) {
                 Logger.getLogger(GameDeveloper.class.getName()).log(Level.SEVERE, null, ex);
             }
