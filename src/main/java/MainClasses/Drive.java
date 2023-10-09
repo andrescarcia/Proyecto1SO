@@ -17,6 +17,7 @@ public class Drive {
     private int logics;
     private int dlcs;
     private int daysRemaining;
+    private int deadLine;
     private int vanillaGames;
     private int dlcGames;
     private int vanillaCounter;
@@ -32,7 +33,6 @@ public class Drive {
         this.vanillaGames = 0;
         this.dlcGames = 0;
         this.vanillaCounter = 0;
-        this.labels = new JLabel[5];
     }
     
     
@@ -86,6 +86,8 @@ public class Drive {
 
     public void setDaysRemaining(int daysRemaining) {
         this.daysRemaining = daysRemaining;
+        this.labels[5].setText(Integer.toString(this.daysRemaining));
+            
     }
 
     public int getVanillaGames() {
@@ -215,6 +217,14 @@ public class Drive {
 
     public void setLabels(JLabel[] labels) {
         this.labels = labels;
+    }
+
+    public int getDeadLine() {
+        return deadLine;
+    }
+
+    public void setDeadLine(int deadLine) {
+        this.deadLine = deadLine;
     }
     
     

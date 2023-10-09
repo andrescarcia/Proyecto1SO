@@ -18,6 +18,7 @@ public class Company {
     private LinkList spriteDevs;
     private LinkList logicDevs;
     private LinkList dlcDevs;
+    private LinkList integrators;
     private ProjectManager pm;
     private Director dir;
     private DirectorWatch dirWatch;
@@ -28,9 +29,10 @@ public class Company {
     private int dayDuration;
     private int hourDuration;
     private int minDuration;
-    private JSpinner[] spinners;
+    private JLabel[] labels;
+    private int maxDevs;
     
-    public Company(int day, int hour, int min){
+    public Company(int day, int hour, int min, int maxDevs){
         this.mutex = new Semaphore(1);
         this.companyDrive = new Drive();
         
@@ -39,6 +41,7 @@ public class Company {
         this.spriteDevs = new LinkList();
         this.logicDevs = new LinkList();
         this.dlcDevs = new LinkList();
+        this.integrators = new LinkList();
         
         this.dayDuration = day;
         this.hourDuration = hour;
@@ -46,6 +49,8 @@ public class Company {
         
         this.income = 0;
         this.salary = 0;
+        
+        this.maxDevs = maxDevs;
         
         
     }
@@ -171,45 +176,48 @@ public class Company {
     }
 
     public void addDev(GameDeveloper dev){
-        
-        Node devNode = new Node(dev);
-        switch (dev.getGameComponent()){
-        
-            case "Narrative":
-                this.scriptDevs.insertEnd(devNode);
-                this.spinners[0].setValue(this.scriptDevs.getlSize());
-                break;
-        
-            case "LevelDesign":
-                this.levelDevs.insertEnd(devNode);
-                this.spinners[1].setValue(this.levelDevs.getlSize());
-                break;
-                
-            case "SpriteArt":
-                this.spriteDevs.insertEnd(devNode);
-                this.spinners[2].setValue(this.spriteDevs.getlSize());
-                break;
-                
-            case "GameLogic":
-                this.logicDevs.insertEnd(devNode);
-                this.spinners[3].setValue(this.logicDevs.getlSize());
-                break;
-                
-            case "DLC":
-                this.dlcDevs.insertEnd(devNode);
-                this.spinners[4].setValue(this.dlcDevs.getlSize());
-                break;
-        }        
+        if((this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()) < this.maxDevs){
+            Node devNode = new Node(dev);
+            switch (dev.getGameComponent()){
+
+                case "Narrative":
+                    this.scriptDevs.insertEnd(devNode);
+                    this.labels[1].setText(Integer.toString(this.scriptDevs.getlSize()));
+                    this.labels[8].setText(Integer.toString(this.scriptDevs.getlSize()));
+                    break;
+
+                case "LevelDesign":
+                    this.levelDevs.insertEnd(devNode);
+                    this.labels[2].setText(Integer.toString(this.levelDevs.getlSize()));
+                    this.labels[9].setText(Integer.toString(this.levelDevs.getlSize()));
+                    break;
+
+                case "SpriteArt":
+                    this.spriteDevs.insertEnd(devNode);
+                    this.labels[3].setText(Integer.toString(this.spriteDevs.getlSize()));
+                    this.labels[10].setText(Integer.toString(this.spriteDevs.getlSize()));
+                    break;
+
+                case "GameLogic":
+                    this.logicDevs.insertEnd(devNode);
+                    this.labels[4].setText(Integer.toString(this.logicDevs.getlSize()));
+                    this.labels[11].setText(Integer.toString(this.logicDevs.getlSize()));
+                    break;
+
+                case "DLC":
+                    this.dlcDevs.insertEnd(devNode);
+                    this.labels[5].setText(Integer.toString(this.dlcDevs.getlSize()));
+                    this.labels[12].setText(Integer.toString(this.dlcDevs.getlSize()));
+                    break;
+            }        
+
+            this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+            this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+            dev.start();
+            }
     }
 
-    public JSpinner[] getSpinners() {
-        return spinners;
-    }
-
-    public void setSpinners(JSpinner[] spinners) {
-        this.spinners = spinners;
-    }
-    
+ /*
     public void activateDevs(){
         Node tempNode = this.scriptDevs.getlFirst();
         for(int i = 0; i < this.scriptDevs.getlSize(); i++){
@@ -246,8 +254,8 @@ public class Company {
             tempNode = tempNode.getpNext();
         }
     
-    
     }
+*/
     
     public void removeDev(String devType){
     
@@ -264,6 +272,8 @@ public class Company {
                 tempDev = GameDeveloper.class.cast(tempNode.getData());
                 tempDev.setIsActive(false);
                 this.scriptDevs.delLast();
+                this.labels[1].setText(Integer.toString(this.scriptDevs.getlSize()));
+                this.labels[8].setText(Integer.toString(this.scriptDevs.getlSize()));
                 
                 break;
                 
@@ -273,6 +283,8 @@ public class Company {
                 tempDev = GameDeveloper.class.cast(tempNode.getData());
                 tempDev.setIsActive(false);
                 this.levelDevs.delLast();
+                this.labels[2].setText(Integer.toString(this.levelDevs.getlSize()));
+                this.labels[9].setText(Integer.toString(this.levelDevs.getlSize()));
                 
                 break;
                 
@@ -282,6 +294,8 @@ public class Company {
                 tempDev = GameDeveloper.class.cast(tempNode.getData());
                 tempDev.setIsActive(false);
                 this.spriteDevs.delLast();
+                this.labels[3].setText(Integer.toString(this.spriteDevs.getlSize()));
+                this.labels[10].setText(Integer.toString(this.spriteDevs.getlSize()));
                 
                 break;
                 
@@ -291,6 +305,8 @@ public class Company {
                 tempDev = GameDeveloper.class.cast(tempNode.getData());
                 tempDev.setIsActive(false);
                 this.logicDevs.delLast();
+                this.labels[4].setText(Integer.toString(this.logicDevs.getlSize()));
+                this.labels[11].setText(Integer.toString(this.logicDevs.getlSize()));
                 
                 break;
                 
@@ -300,12 +316,26 @@ public class Company {
                 tempDev = GameDeveloper.class.cast(tempNode.getData());
                 tempDev.setIsActive(false);
                 this.dlcDevs.delLast();
+                this.labels[5].setText(Integer.toString(this.dlcDevs.getlSize()));
+                this.labels[12].setText(Integer.toString(this.dlcDevs.getlSize()));
                 
                 break;
             
         }
         
+        this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize()));
+        this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize()));
+        
     }
+
+    public JLabel[] getLabels() {
+        return labels;
+    }
+
+    public void setLabels(JLabel[] labels) {
+        this.labels = labels;
+    }
+    
     
     
 }

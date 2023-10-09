@@ -21,13 +21,9 @@ import javax.swing.JSpinner;
  * @author andre
  */
 public class Main extends javax.swing.JFrame {
-        Company capcom = new Company(1 ,1 ,1);
-        Semaphore CapcomMutex = new Semaphore(1);
-        Drive CapcomDrive = new Drive();
+        Company capcom = new Company(1 ,1 ,1, 11);
         
-        Company squareEnix = new Company(1, 1 ,1);
-        Semaphore SquareMutex = new Semaphore(1);
-        Drive SquareDrive = new Drive();
+        Company squareEnix = new Company(1, 1 ,1, 10);
         
         int dayDuration;
         
@@ -37,10 +33,19 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         
-        JLabel[] capDriveLabels = {narrativeqtyGUI, levelqtyGUI, spriteqtyGUI, logicqtyGUI1, dlcqtyGUI};
-        JLabel[] squareDriveLabels = {narrativeqtyGUI1, levelqtyGUI1, spriteqtyGUI1, logicqtyGUI2, dlcqtyGUI1};   
+        JLabel[] capDriveLabels = {narrativeqtyGUI, levelqtyGUI, spriteqtyGUI, logicqtyGUI1, dlcqtyGUI, DeadlineGUI};
+        JLabel[] capCompanyLabels = {DevQty, NarrativeQty, LevelQty, SpriteQty, LogicQty, DLCQty, IntegratorQty, DevQty2, NarrativeQty2, LevelQty2, SpriteQty2, LogicQty2, DLCQty2, IntegratorQty2};
+        
+        JLabel[] squareDriveLabels = {narrativeqtyGUI1, levelqtyGUI1, spriteqtyGUI1, logicqtyGUI2, dlcqtyGUI1, DeadlineGUI};  
+        JLabel[] squareCompanyLabels = {DevQty1, NarrativeQty1, LevelQty1, SpriteQty1, LogicQty1, DLCQty1, IntegratorQty1, DevQty3, NarrativeQty3, LevelQty3, SpriteQty3, LogicQty3, DLCQty3, IntegratorQty3};
+        
+        
+        
         this.capcom.getCompanyDrive().setLabels(capDriveLabels);
+        this.capcom.setLabels(capCompanyLabels);
+        
         this.squareEnix.getCompanyDrive().setLabels(squareDriveLabels);
+        this.squareEnix.setLabels(squareCompanyLabels);
         
        
      
@@ -52,22 +57,26 @@ public class Main extends javax.swing.JFrame {
         if(hourDuration == 0){
             minDuration = 1;
         }
-        
+ 
+/*
         this.capcom.activateDevs();
+        this.squareEnix.activateDevs();
+*/        
+        ProjectManager capMan = new ProjectManager(10, this.dayDuration, hourDuration, minDuration,this.capcom.getCompanyDrive(),this.capcom.getMutex(), PMstateGUI);
+//        Director capDir = new Director(CapcomDrive, CapcomMutex, capMan, minDuration, PMfaultsGUI);
+//        DirectorWatch capWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, capDir, CapcomDrive, directorstateGUI);
         
-        ProjectManager capMan = new ProjectManager(10, dayDuration, CapcomDrive, CapcomMutex, PMstateGUI);
-        Director capDir = new Director(CapcomDrive, CapcomMutex, capMan, minDuration, PMfaultsGUI);
-        DirectorWatch capWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, capDir, CapcomDrive, directorstateGUI);
         
-        
-        ProjectManager squareMan = new ProjectManager(10, dayDuration, SquareDrive, SquareMutex, PMstateGUI1);
-        Director squareDir = new Director(SquareDrive, SquareMutex, squareMan, minDuration, PMfaultsGUI1);
-        DirectorWatch squareWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, squareDir, SquareDrive, directorstateGUI1);
+        ProjectManager squareMan = new ProjectManager(10, this.dayDuration, hourDuration, minDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), PMstateGUI1);
+//        Director squareDir = new Director(SquareDrive, SquareMutex, squareMan, minDuration, PMfaultsGUI1);
+//        DirectorWatch squareWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, squareDir, SquareDrive, directorstateGUI1);
         
         
         capMan.start();
-        capDir.start();
-        capWatch.start();
+//        capDir.start();
+//        capWatch.start();
+        
+        
         
         
         
@@ -122,6 +131,17 @@ public class Main extends javax.swing.JFrame {
                                         break;
                                 
                                 }
+                                
+                                break;
+                                
+                            case "deadLine":
+                                
+                                this.capcom.getCompanyDrive().setDeadLine(Integer.parseInt(arraySplit[1]));
+                                this.capcom.getCompanyDrive().setDaysRemaining(Integer.parseInt(arraySplit[1]));
+                                this.squareEnix.getCompanyDrive().setDeadLine(Integer.parseInt(arraySplit[1]));
+                                this.squareEnix.getCompanyDrive().setDaysRemaining(Integer.parseInt(arraySplit[1]));
+                                
+                                
                                 
                                 break;
                             
@@ -660,14 +680,14 @@ public class Main extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Developers qty :");
 
-        plusLogicQty1.setText("+");
+        plusLogicQty1.setText("-");
         plusLogicQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLogicQty1ActionPerformed(evt);
             }
         });
 
-        plusLevelQty1.setText("+");
+        plusLevelQty1.setText("-");
         plusLevelQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLevelQty1ActionPerformed(evt);
@@ -678,28 +698,28 @@ public class Main extends javax.swing.JFrame {
         LevelQty1.setForeground(new java.awt.Color(255, 255, 255));
         LevelQty1.setText("X");
 
-        lessSpriteQty1.setText("-");
+        lessSpriteQty1.setText("+");
         lessSpriteQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessSpriteQty1ActionPerformed(evt);
             }
         });
 
-        plusSpriteQty1.setText("+");
+        plusSpriteQty1.setText("-");
         plusSpriteQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusSpriteQty1ActionPerformed(evt);
             }
         });
 
-        lessLevelQty1.setText("-");
+        lessLevelQty1.setText("+");
         lessLevelQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLevelQty1ActionPerformed(evt);
             }
         });
 
-        plusDLCQty1.setText("+");
+        plusDLCQty1.setText("-");
         plusDLCQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusDLCQty1ActionPerformed(evt);
@@ -740,21 +760,21 @@ public class Main extends javax.swing.JFrame {
         SpriteQty1.setForeground(new java.awt.Color(255, 255, 255));
         SpriteQty1.setText("X");
 
-        lessNarrativeQty1.setText("-");
+        lessNarrativeQty1.setText("+");
         lessNarrativeQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessNarrativeQty1ActionPerformed(evt);
             }
         });
 
-        lessDLCQty1.setText("-");
+        lessDLCQty1.setText("+");
         lessDLCQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessDLCQty1ActionPerformed(evt);
             }
         });
 
-        plusNarrativeQty1.setText("+");
+        plusNarrativeQty1.setText("-");
         plusNarrativeQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusNarrativeQty1ActionPerformed(evt);
@@ -779,7 +799,7 @@ public class Main extends javax.swing.JFrame {
         NarrativeQty1.setForeground(new java.awt.Color(255, 255, 255));
         NarrativeQty1.setText("X");
 
-        lessLogicQty1.setText("-");
+        lessLogicQty1.setText("+");
         lessLogicQty1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLogicQty1ActionPerformed(evt);
@@ -970,14 +990,14 @@ public class Main extends javax.swing.JFrame {
         LevelQty.setForeground(new java.awt.Color(255, 255, 255));
         LevelQty.setText("X");
 
-        plusLevelQty.setText("+");
+        plusLevelQty.setText("-");
         plusLevelQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLevelQtyActionPerformed(evt);
             }
         });
 
-        lessLevelQty.setText("-");
+        lessLevelQty.setText("+");
         lessLevelQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLevelQtyActionPerformed(evt);
@@ -988,14 +1008,14 @@ public class Main extends javax.swing.JFrame {
         LogicQty.setForeground(new java.awt.Color(255, 255, 255));
         LogicQty.setText("X");
 
-        plusLogicQty.setText("+");
+        plusLogicQty.setText("-");
         plusLogicQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLogicQtyActionPerformed(evt);
             }
         });
 
-        lessLogicQty.setText("-");
+        lessLogicQty.setText("+");
         lessLogicQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLogicQtyActionPerformed(evt);
@@ -1006,14 +1026,14 @@ public class Main extends javax.swing.JFrame {
         SpriteQty.setForeground(new java.awt.Color(255, 255, 255));
         SpriteQty.setText("X");
 
-        plusSpriteQty.setText("+");
+        plusSpriteQty.setText("-");
         plusSpriteQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusSpriteQtyActionPerformed(evt);
             }
         });
 
-        lessSpriteQty.setText("-");
+        lessSpriteQty.setText("+");
         lessSpriteQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessSpriteQtyActionPerformed(evt);
@@ -1024,14 +1044,14 @@ public class Main extends javax.swing.JFrame {
         NarrativeQty.setForeground(new java.awt.Color(255, 255, 255));
         NarrativeQty.setText("X");
 
-        plusNarrativeQty.setText("+");
+        plusNarrativeQty.setText("-");
         plusNarrativeQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusNarrativeQtyActionPerformed(evt);
             }
         });
 
-        lessNarrativeQty.setText("-");
+        lessNarrativeQty.setText("+");
         lessNarrativeQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessNarrativeQtyActionPerformed(evt);
@@ -1042,14 +1062,14 @@ public class Main extends javax.swing.JFrame {
         DLCQty.setForeground(new java.awt.Color(255, 255, 255));
         DLCQty.setText("X");
 
-        plusDLCQty.setText("+");
+        plusDLCQty.setText("-");
         plusDLCQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusDLCQtyActionPerformed(evt);
             }
         });
 
-        lessDLCQty.setText("-");
+        lessDLCQty.setText("+");
         lessDLCQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessDLCQtyActionPerformed(evt);
@@ -1060,14 +1080,14 @@ public class Main extends javax.swing.JFrame {
         IntegratorQty.setForeground(new java.awt.Color(255, 255, 255));
         IntegratorQty.setText("X");
 
-        plusIntegratorQty.setText("+");
+        plusIntegratorQty.setText("-");
         plusIntegratorQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusIntegratorQtyActionPerformed(evt);
             }
         });
 
-        lessIntegratorQty.setText("-");
+        lessIntegratorQty.setText("+");
         lessIntegratorQty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessIntegratorQtyActionPerformed(evt);
@@ -1155,47 +1175,47 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(DevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessNarrativeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusNarrativeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(NarrativeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(NarrativeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessLevelQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusLevelQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LevelQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LevelQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessSpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusSpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(SpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(SpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessLogicQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusLogicQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LogicQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LogicQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessDLCQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusDLCQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DLCQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DLCQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessIntegratorQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusIntegratorQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(IntegratorQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(IntegratorQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(148, Short.MAX_VALUE))
         );
 
@@ -1296,19 +1316,19 @@ public class Main extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
-                .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
-                .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lessDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DeadLineDays, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DeadLineDays, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(271, Short.MAX_VALUE))
@@ -1595,28 +1615,28 @@ public class Main extends javax.swing.JFrame {
         IntegratorQty2.setForeground(new java.awt.Color(255, 255, 255));
         IntegratorQty2.setText("X");
 
-        plusIntegratorQty2.setText("+");
+        plusIntegratorQty2.setText("-");
         plusIntegratorQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusIntegratorQty2ActionPerformed(evt);
             }
         });
 
-        lessIntegratorQty2.setText("-");
+        lessIntegratorQty2.setText("+");
         lessIntegratorQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessIntegratorQty2ActionPerformed(evt);
             }
         });
 
-        lessDLCQty2.setText("-");
+        lessDLCQty2.setText("+");
         lessDLCQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessDLCQty2ActionPerformed(evt);
             }
         });
 
-        plusDLCQty2.setText("+");
+        plusDLCQty2.setText("-");
         plusDLCQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusDLCQty2ActionPerformed(evt);
@@ -1631,28 +1651,28 @@ public class Main extends javax.swing.JFrame {
         LogicQty2.setForeground(new java.awt.Color(255, 255, 255));
         LogicQty2.setText("X");
 
-        plusLogicQty2.setText("+");
+        plusLogicQty2.setText("-");
         plusLogicQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLogicQty2ActionPerformed(evt);
             }
         });
 
-        lessLogicQty2.setText("-");
+        lessLogicQty2.setText("+");
         lessLogicQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLogicQty2ActionPerformed(evt);
             }
         });
 
-        lessSpriteQty2.setText("-");
+        lessSpriteQty2.setText("+");
         lessSpriteQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessSpriteQty2ActionPerformed(evt);
             }
         });
 
-        plusSpriteQty2.setText("+");
+        plusSpriteQty2.setText("-");
         plusSpriteQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusSpriteQty2ActionPerformed(evt);
@@ -1667,28 +1687,28 @@ public class Main extends javax.swing.JFrame {
         LevelQty2.setForeground(new java.awt.Color(255, 255, 255));
         LevelQty2.setText("X");
 
-        plusLevelQty2.setText("+");
+        plusLevelQty2.setText("-");
         plusLevelQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLevelQty2ActionPerformed(evt);
             }
         });
 
-        lessLevelQty2.setText("-");
+        lessLevelQty2.setText("+");
         lessLevelQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLevelQty2ActionPerformed(evt);
             }
         });
 
-        lessNarrativeQty2.setText("-");
+        lessNarrativeQty2.setText("+");
         lessNarrativeQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessNarrativeQty2ActionPerformed(evt);
             }
         });
 
-        plusNarrativeQty2.setText("+");
+        plusNarrativeQty2.setText("-");
         plusNarrativeQty2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusNarrativeQty2ActionPerformed(evt);
@@ -2490,21 +2510,21 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        lessIntegratorQty3.setText("-");
+        lessIntegratorQty3.setText("+");
         lessIntegratorQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessIntegratorQty3ActionPerformed(evt);
             }
         });
 
-        lessDLCQty3.setText("-");
+        lessDLCQty3.setText("+");
         lessDLCQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessDLCQty3ActionPerformed(evt);
             }
         });
 
-        plusDLCQty3.setText("+");
+        plusDLCQty3.setText("-");
         plusDLCQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusDLCQty3ActionPerformed(evt);
@@ -2519,28 +2539,28 @@ public class Main extends javax.swing.JFrame {
         LogicQty3.setForeground(new java.awt.Color(255, 255, 255));
         LogicQty3.setText("X");
 
-        plusLogicQty3.setText("+");
+        plusLogicQty3.setText("-");
         plusLogicQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLogicQty3ActionPerformed(evt);
             }
         });
 
-        lessLogicQty3.setText("-");
+        lessLogicQty3.setText("+");
         lessLogicQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLogicQty3ActionPerformed(evt);
             }
         });
 
-        lessSpriteQty3.setText("-");
+        lessSpriteQty3.setText("+");
         lessSpriteQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessSpriteQty3ActionPerformed(evt);
             }
         });
 
-        plusSpriteQty3.setText("+");
+        plusSpriteQty3.setText("-");
         plusSpriteQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusSpriteQty3ActionPerformed(evt);
@@ -2555,28 +2575,28 @@ public class Main extends javax.swing.JFrame {
         LevelQty3.setForeground(new java.awt.Color(255, 255, 255));
         LevelQty3.setText("X");
 
-        plusLevelQty3.setText("+");
+        plusLevelQty3.setText("-");
         plusLevelQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusLevelQty3ActionPerformed(evt);
             }
         });
 
-        lessLevelQty3.setText("-");
+        lessLevelQty3.setText("+");
         lessLevelQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessLevelQty3ActionPerformed(evt);
             }
         });
 
-        lessNarrativeQty3.setText("-");
+        lessNarrativeQty3.setText("+");
         lessNarrativeQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessNarrativeQty3ActionPerformed(evt);
             }
         });
 
-        plusNarrativeQty3.setText("+");
+        plusNarrativeQty3.setText("-");
         plusNarrativeQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusNarrativeQty3ActionPerformed(evt);
@@ -2591,14 +2611,14 @@ public class Main extends javax.swing.JFrame {
         DevQty3.setForeground(new java.awt.Color(255, 255, 255));
         DevQty3.setText("X");
 
-        plusDevQty3.setText("+");
+        plusDevQty3.setText("-");
         plusDevQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 plusDevQty3ActionPerformed(evt);
             }
         });
 
-        lessDevQty3.setText("-");
+        lessDevQty3.setText("+");
         lessDevQty3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lessDevQty3ActionPerformed(evt);
@@ -2891,7 +2911,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCentro1Layout.createSequentialGroup()
-                                .addGap(0, 1, Short.MAX_VALUE)
+                                .addGap(0, 11, Short.MAX_VALUE)
                                 .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelCentro1Layout.createSequentialGroup()
                                         .addComponent(jLabel91)
@@ -2913,7 +2933,7 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(jLabel97)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(readygamesqtyGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel98, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel98, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
                                 .addGap(136, 136, 136))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCentro1Layout.createSequentialGroup()
                                 .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2926,7 +2946,7 @@ public class Main extends javax.swing.JFrame {
                                     .addGroup(panelCentro1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(narrativeqtyGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                                         .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                 .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -3261,43 +3281,58 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_plusDevQtyActionPerformed
 
     private void plusLevelQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQtyActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getLevelDevs().getlSize() > 1){
+            this.capcom.removeDev("LevelDesign");
+        }
     }//GEN-LAST:event_plusLevelQtyActionPerformed
 
     private void lessLevelQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLevelQtyActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("LevelDesign", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessLevelQtyActionPerformed
 
     private void plusLogicQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQtyActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getLogicDevs().getlSize() > 1){
+            this.capcom.removeDev("GameLogic");
+        }
     }//GEN-LAST:event_plusLogicQtyActionPerformed
 
     private void lessLogicQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLogicQtyActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("GameLogic", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessLogicQtyActionPerformed
 
     private void plusSpriteQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQtyActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getSpriteDevs().getlSize() > 1){
+            this.capcom.removeDev("SpriteArt");
+        }
     }//GEN-LAST:event_plusSpriteQtyActionPerformed
 
     private void lessSpriteQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessSpriteQtyActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("SpriteArt", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessSpriteQtyActionPerformed
 
     private void plusNarrativeQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQtyActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getScriptDevs().getlSize() > 1){
+            this.capcom.removeDev("Narrative");
+        }
     }//GEN-LAST:event_plusNarrativeQtyActionPerformed
 
     private void lessNarrativeQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessNarrativeQtyActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("Narrative", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessNarrativeQtyActionPerformed
 
     private void plusDLCQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQtyActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getDlcDevs().getlSize() > 1){
+            this.capcom.removeDev("DLC");
+        }
     }//GEN-LAST:event_plusDLCQtyActionPerformed
 
     private void lessDLCQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDLCQtyActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("DLC", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessDLCQtyActionPerformed
 
     private void plusIntegratorQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusIntegratorQtyActionPerformed
@@ -3333,43 +3368,58 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_lessIntegratorQty1ActionPerformed
 
     private void lessDLCQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDLCQty1ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("DLC", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessDLCQty1ActionPerformed
 
     private void plusDLCQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQty1ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getDlcDevs().getlSize() > 1){
+            this.squareEnix.removeDev("DLC");
+        }
     }//GEN-LAST:event_plusDLCQty1ActionPerformed
 
     private void plusLogicQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQty1ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getLogicDevs().getlSize() > 1){
+            this.squareEnix.removeDev("GameLogic");
+        }
     }//GEN-LAST:event_plusLogicQty1ActionPerformed
 
     private void lessLogicQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLogicQty1ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("GameLogic", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessLogicQty1ActionPerformed
 
     private void lessSpriteQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessSpriteQty1ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("SpriteArt", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessSpriteQty1ActionPerformed
 
     private void plusSpriteQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQty1ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getSpriteDevs().getlSize() > 1){
+            this.squareEnix.removeDev("SpriteArt");
+        }
     }//GEN-LAST:event_plusSpriteQty1ActionPerformed
 
     private void plusLevelQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQty1ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getLevelDevs().getlSize() > 1){
+            this.squareEnix.removeDev("LevelDesign");
+        }
     }//GEN-LAST:event_plusLevelQty1ActionPerformed
 
     private void lessLevelQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLevelQty1ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("LevelDesign", "LevelDesign", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessLevelQty1ActionPerformed
 
     private void lessNarrativeQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessNarrativeQty1ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("Narrative", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessNarrativeQty1ActionPerformed
 
     private void plusNarrativeQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty1ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getScriptDevs().getlSize() > 1){
+            this.squareEnix.removeDev("Narrative");
+        }
     }//GEN-LAST:event_plusNarrativeQty1ActionPerformed
 
     private void plusDevQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQty1ActionPerformed
@@ -3389,43 +3439,58 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_lessIntegratorQty2ActionPerformed
 
     private void lessDLCQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDLCQty2ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("DLC", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessDLCQty2ActionPerformed
 
     private void plusDLCQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQty2ActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getDlcDevs().getlSize() > 1){
+            this.capcom.removeDev("DLC");
+        }
     }//GEN-LAST:event_plusDLCQty2ActionPerformed
 
     private void plusLogicQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQty2ActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getLogicDevs().getlSize() > 1){
+            this.capcom.removeDev("GameLogic");
+        }
     }//GEN-LAST:event_plusLogicQty2ActionPerformed
 
     private void lessLogicQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLogicQty2ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("GameLogic", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessLogicQty2ActionPerformed
 
     private void lessSpriteQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessSpriteQty2ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("SpriteArt", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessSpriteQty2ActionPerformed
 
     private void plusSpriteQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQty2ActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getSpriteDevs().getlSize() > 1){
+            this.capcom.removeDev("SpriteArt");
+        }
     }//GEN-LAST:event_plusSpriteQty2ActionPerformed
 
     private void plusLevelQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQty2ActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getLevelDevs().getlSize() > 1){
+            this.capcom.removeDev("LevelDesign");
+        }
     }//GEN-LAST:event_plusLevelQty2ActionPerformed
 
     private void lessLevelQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLevelQty2ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("LevelDesign", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessLevelQty2ActionPerformed
 
     private void lessNarrativeQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessNarrativeQty2ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper capDev = new GameDeveloper("Narrative", "Capcom", dayDuration, capcom.getCompanyDrive(), capcom.getMutex());
+        capcom.addDev(capDev);
     }//GEN-LAST:event_lessNarrativeQty2ActionPerformed
 
     private void plusNarrativeQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty2ActionPerformed
-        // TODO add your handling code here:
+        if(this.capcom.getScriptDevs().getlSize() > 1){
+            this.capcom.removeDev("Narrative");
+        }
     }//GEN-LAST:event_plusNarrativeQty2ActionPerformed
 
     private void plusDevQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQty2ActionPerformed
@@ -3445,43 +3510,58 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_lessIntegratorQty3ActionPerformed
 
     private void lessDLCQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDLCQty3ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("DLC", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessDLCQty3ActionPerformed
 
     private void plusDLCQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQty3ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getDlcDevs().getlSize() > 1){
+            this.squareEnix.removeDev("DLC");
+        }
     }//GEN-LAST:event_plusDLCQty3ActionPerformed
 
     private void plusLogicQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQty3ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getLogicDevs().getlSize() > 1){
+            this.squareEnix.removeDev("GameLogic");
+        }
     }//GEN-LAST:event_plusLogicQty3ActionPerformed
 
     private void lessLogicQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLogicQty3ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("GameLogic", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessLogicQty3ActionPerformed
 
     private void lessSpriteQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessSpriteQty3ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("SpriteArt", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessSpriteQty3ActionPerformed
 
     private void plusSpriteQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQty3ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getSpriteDevs().getlSize() > 1){
+            this.squareEnix.removeDev("SpriteArt");
+        }
     }//GEN-LAST:event_plusSpriteQty3ActionPerformed
 
     private void plusLevelQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQty3ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getLevelDevs().getlSize() > 1){
+            this.squareEnix.removeDev("LevelDesign");
+        }
     }//GEN-LAST:event_plusLevelQty3ActionPerformed
 
     private void lessLevelQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLevelQty3ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("LevelDesign", "LevelDesign", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessLevelQty3ActionPerformed
 
     private void lessNarrativeQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessNarrativeQty3ActionPerformed
-        // TODO add your handling code here:
+        GameDeveloper squareDev = new GameDeveloper("Narrative", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
+        squareEnix.addDev(squareDev);
     }//GEN-LAST:event_lessNarrativeQty3ActionPerformed
 
     private void plusNarrativeQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty3ActionPerformed
-        // TODO add your handling code here:
+        if(this.squareEnix.getScriptDevs().getlSize() > 1){
+            this.squareEnix.removeDev("Narrative");
+        }
     }//GEN-LAST:event_plusNarrativeQty3ActionPerformed
 
     private void plusDevQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQty3ActionPerformed

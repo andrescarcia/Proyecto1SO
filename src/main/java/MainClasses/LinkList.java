@@ -111,6 +111,7 @@ public class LinkList {
             }
             aux.setpNext(null);
             this.lLast = aux;
+            this.lSize--;
             return previousLast;
         }   
     }

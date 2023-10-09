@@ -1,6 +1,12 @@
 dia,1000
-GameDeveloper,Capcom,Narrative,2
+deadLine,20
+GameDeveloper,Capcom,Narrative,1
 GameDeveloper,Capcom,LevelDesign,1
 GameDeveloper,Capcom,SpriteArt,1
 GameDeveloper,Capcom,GameLogic,1
 GameDeveloper,Capcom,DLC,1
+GameDeveloper,SquareEnix,Narrative,1
+GameDeveloper,SquareEnix,LevelDesign,1
+GameDeveloper,SquareEnix,SpriteArt,1
+GameDeveloper,SquareEnix,GameLogic,1
+GameDeveloper,SquareEnix,DLC,1

@@ -670,7 +670,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLogicQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLogicQty1ActionPerformed"/>
@@ -678,7 +678,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLevelQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLevelQty1ActionPerformed"/>
@@ -697,7 +697,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessSpriteQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessSpriteQty1ActionPerformed"/>
@@ -705,7 +705,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusSpriteQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusSpriteQty1ActionPerformed"/>
@@ -713,7 +713,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLevelQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLevelQty1ActionPerformed"/>
@@ -721,7 +721,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusDLCQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusDLCQty1ActionPerformed"/>
@@ -800,7 +800,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessNarrativeQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessNarrativeQty1ActionPerformed"/>
@@ -808,7 +808,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessDLCQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessDLCQty1ActionPerformed"/>
@@ -816,7 +816,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusNarrativeQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusNarrativeQty1ActionPerformed"/>
@@ -851,7 +851,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLogicQty1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLogicQty1ActionPerformed"/>
@@ -963,58 +963,58 @@
                                   <Component id="jLabel103" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel20" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessNarrativeQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusNarrativeQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="NarrativeQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel20" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel21" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessLevelQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusLevelQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="LevelQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel21" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel22" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessSpriteQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusSpriteQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="SpriteQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel22" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel23" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessLogicQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusLogicQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="LogicQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel23" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel26" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessDLCQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusDLCQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="DLCQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel26" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel37" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessIntegratorQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusIntegratorQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="IntegratorQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel37" min="-2" pref="34" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="148" max="32767" attributes="0"/>
                           </Group>
@@ -1150,7 +1150,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLevelQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLevelQtyActionPerformed"/>
@@ -1158,7 +1158,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLevelQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLevelQtyActionPerformed"/>
@@ -1177,7 +1177,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLogicQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLogicQtyActionPerformed"/>
@@ -1185,7 +1185,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLogicQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLogicQtyActionPerformed"/>
@@ -1204,7 +1204,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusSpriteQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusSpriteQtyActionPerformed"/>
@@ -1212,7 +1212,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessSpriteQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessSpriteQtyActionPerformed"/>
@@ -1231,7 +1231,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusNarrativeQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusNarrativeQtyActionPerformed"/>
@@ -1239,7 +1239,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessNarrativeQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessNarrativeQtyActionPerformed"/>
@@ -1258,7 +1258,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusDLCQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusDLCQtyActionPerformed"/>
@@ -1266,7 +1266,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessDLCQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessDLCQtyActionPerformed"/>
@@ -1285,7 +1285,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusIntegratorQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusIntegratorQtyActionPerformed"/>
@@ -1293,7 +1293,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessIntegratorQty">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessIntegratorQtyActionPerformed"/>
@@ -1365,22 +1365,22 @@
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="jLabel102" min="-2" pref="31" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel31" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessDayDur" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusDayDur" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="DayDur" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel31" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="17" pref="17" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel32" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                       <Component id="lessDeadLine" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="plusDeadLine" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="DeadLineDays" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jLabel32" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="67" pref="67" max="-2" attributes="0"/>
                               <Component id="saveButton" min="-2" pref="50" max="-2" attributes="0"/>
@@ -2255,7 +2255,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusIntegratorQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusIntegratorQty2ActionPerformed"/>
@@ -2263,7 +2263,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessIntegratorQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessIntegratorQty2ActionPerformed"/>
@@ -2271,7 +2271,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessDLCQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessDLCQty2ActionPerformed"/>
@@ -2279,7 +2279,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusDLCQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusDLCQty2ActionPerformed"/>
@@ -2309,7 +2309,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLogicQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLogicQty2ActionPerformed"/>
@@ -2317,7 +2317,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLogicQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLogicQty2ActionPerformed"/>
@@ -2325,7 +2325,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessSpriteQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessSpriteQty2ActionPerformed"/>
@@ -2333,7 +2333,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusSpriteQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusSpriteQty2ActionPerformed"/>
@@ -2363,7 +2363,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLevelQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLevelQty2ActionPerformed"/>
@@ -2371,7 +2371,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLevelQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLevelQty2ActionPerformed"/>
@@ -2379,7 +2379,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessNarrativeQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessNarrativeQty2ActionPerformed"/>
@@ -2387,7 +2387,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusNarrativeQty2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusNarrativeQty2ActionPerformed"/>
@@ -3833,7 +3833,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessIntegratorQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessIntegratorQty3ActionPerformed"/>
@@ -3841,7 +3841,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessDLCQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessDLCQty3ActionPerformed"/>
@@ -3849,7 +3849,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusDLCQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusDLCQty3ActionPerformed"/>
@@ -3879,7 +3879,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLogicQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLogicQty3ActionPerformed"/>
@@ -3887,7 +3887,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLogicQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLogicQty3ActionPerformed"/>
@@ -3895,7 +3895,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessSpriteQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessSpriteQty3ActionPerformed"/>
@@ -3903,7 +3903,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusSpriteQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusSpriteQty3ActionPerformed"/>
@@ -3933,7 +3933,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusLevelQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusLevelQty3ActionPerformed"/>
@@ -3941,7 +3941,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessLevelQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLevelQty3ActionPerformed"/>
@@ -3949,7 +3949,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessNarrativeQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessNarrativeQty3ActionPerformed"/>
@@ -3957,7 +3957,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusNarrativeQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusNarrativeQty3ActionPerformed"/>
@@ -3987,7 +3987,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="plusDevQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
+                        <Property name="text" type="java.lang.String" value="-"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusDevQty3ActionPerformed"/>
@@ -3995,7 +3995,7 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="lessDevQty3">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
+                        <Property name="text" type="java.lang.String" value="+"/>
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessDevQty3ActionPerformed"/>
@@ -4024,7 +4024,7 @@
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel91" min="-2" max="-2" attributes="0"/>
@@ -4051,7 +4051,7 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="readygamesqtyGUI1" min="-2" pref="26" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jLabel98" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jLabel98" alignment="0" pref="221" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                                           </Group>
@@ -4068,7 +4068,7 @@
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="narrativeqtyGUI1" min="-2" pref="42" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
+                                                      <EmptySpace pref="99" max="32767" attributes="0"/>
                                                       <Group type="103" groupAlignment="0" attributes="0">
                                                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                                               <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">

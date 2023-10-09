@@ -24,21 +24,13 @@ public class ProjectManager extends Thread{
     private String currentState;
     private JLabel label;
 
-    public ProjectManager(int salary, int dayDuration, Drive drive, Semaphore m, JLabel label) {
+    public ProjectManager(int salary, int day, int hour, int min ,Drive drive, Semaphore m, JLabel label) {
         this.salary = salary;
-        this.dayDuration = dayDuration;
+        this.dayDuration = day;
         
-        this.hourDuration = this.dayDuration/24;
-        if(this.hourDuration < 1){
-            this.hourDuration = 1;
-        }
+        this.hourDuration = hour;
         
-        this.minDuration = this.hourDuration/60;
-        if(this.minDuration < 1){
-            this.minDuration = 1;
-        }
-        
-        this.minDuration = minDuration;
+        this.minDuration = min;
         
         this.drive = drive;
         this.mutex = m;
