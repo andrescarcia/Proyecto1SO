@@ -68,7 +68,7 @@ public class DirectorWatch extends Thread{
                     }
             
                 }else{
-                    this.drive.setDaysRemaining(5);
+                    this.drive.setDaysRemaining(this.drive.getDeadLine());
                 }
             
             } catch (InterruptedException ex) {

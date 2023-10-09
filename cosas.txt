@@ -1,5 +1,5 @@
 dia,1000
-deadLine,20
+deadLine,50
 GameDeveloper,Capcom,Narrative,1
 GameDeveloper,Capcom,LevelDesign,1
 GameDeveloper,Capcom,SpriteArt,1

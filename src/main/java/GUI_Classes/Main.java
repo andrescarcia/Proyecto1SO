@@ -18,7 +18,7 @@ import java.io.BufferedReader;
 import javax.swing.JSpinner;
 /**
  *
- * @author andre
+ * @author andre y sebaa 
  */
 public class Main extends javax.swing.JFrame {
         Company capcom = new Company(1 ,1 ,1, 11);
@@ -63,8 +63,8 @@ public class Main extends javax.swing.JFrame {
         this.squareEnix.activateDevs();
 */        
         ProjectManager capMan = new ProjectManager(10, this.dayDuration, hourDuration, minDuration,this.capcom.getCompanyDrive(),this.capcom.getMutex(), PMstateGUI);
-//        Director capDir = new Director(CapcomDrive, CapcomMutex, capMan, minDuration, PMfaultsGUI);
-//        DirectorWatch capWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, capDir, CapcomDrive, directorstateGUI);
+        Director capDir = new Director(this.capcom.getCompanyDrive(), this.capcom.getMutex(), capMan, minDuration, PMfaultsGUI);
+        DirectorWatch capWatch = new DirectorWatch(10, this.dayDuration, hourDuration, minDuration, capDir, this.capcom.getCompanyDrive(), directorstateGUI);
         
         
         ProjectManager squareMan = new ProjectManager(10, this.dayDuration, hourDuration, minDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), PMstateGUI1);
@@ -73,8 +73,8 @@ public class Main extends javax.swing.JFrame {
         
         
         capMan.start();
-//        capDir.start();
-//        capWatch.start();
+        capDir.start();
+        capWatch.start();
         
         
         
@@ -1340,7 +1340,7 @@ public class Main extends javax.swing.JFrame {
         ConfigPanel.setLayout(ConfigPanelLayout);
         ConfigPanelLayout.setHorizontalGroup(
             ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG3, javax.swing.GroupLayout.DEFAULT_SIZE, 1542, Short.MAX_VALUE)
+            .addComponent(BG3, javax.swing.GroupLayout.DEFAULT_SIZE, 1620, Short.MAX_VALUE)
         );
         ConfigPanelLayout.setVerticalGroup(
             ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1597,7 +1597,7 @@ public class Main extends javax.swing.JFrame {
 
         PMfaultsGUI.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         PMfaultsGUI.setForeground(new java.awt.Color(255, 205, 16));
-        PMfaultsGUI.setText("x");
+        PMfaultsGUI.setText("0");
 
         PMfaults$GUI.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         PMfaults$GUI.setForeground(new java.awt.Color(255, 205, 16));
@@ -1996,7 +1996,7 @@ public class Main extends javax.swing.JFrame {
 
         narrativeMAXqtyGUI.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         narrativeMAXqtyGUI.setForeground(new java.awt.Color(255, 255, 255));
-        narrativeMAXqtyGUI.setText("x");
+        narrativeMAXqtyGUI.setText("25");
 
         jLabel63.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         jLabel63.setForeground(new java.awt.Color(255, 255, 255));
@@ -2189,9 +2189,9 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(utilityGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDerecho1Layout.createSequentialGroup()
                         .addComponent(jLabel67)
-                        .addGap(18, 18, 18)
-                        .addComponent(totalsalariesGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalsalariesGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         panelDerecho1Layout.setVerticalGroup(
             panelDerecho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2215,7 +2215,7 @@ public class Main extends javax.swing.JFrame {
         CapcomPanel.setLayout(CapcomPanelLayout);
         CapcomPanelLayout.setHorizontalGroup(
             CapcomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG4, javax.swing.GroupLayout.DEFAULT_SIZE, 1542, Short.MAX_VALUE)
+            .addComponent(BG4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         CapcomPanelLayout.setVerticalGroup(
             CapcomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3098,7 +3098,7 @@ public class Main extends javax.swing.JFrame {
         SquareEnixPanel.setLayout(SquareEnixPanelLayout);
         SquareEnixPanelLayout.setHorizontalGroup(
             SquareEnixPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG5, javax.swing.GroupLayout.DEFAULT_SIZE, 1542, Short.MAX_VALUE)
+            .addComponent(BG5, javax.swing.GroupLayout.DEFAULT_SIZE, 1620, Short.MAX_VALUE)
         );
         SquareEnixPanelLayout.setVerticalGroup(
             SquareEnixPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
