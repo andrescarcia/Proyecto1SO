@@ -304,6 +304,8 @@ public class Drive {
         this.salary = salary;
     }
     
-    
+    public void addSalary(double salary){
+        this.salary += ((salary/1000)*24);
+    }
     
 }

@@ -23,8 +23,9 @@ public class Director extends Thread {
     private boolean wasLazy;
     private int pmPenalties;
     private JLabel label;
+    private JLabel faultLabel;
     
-    public Director(Drive drive, Semaphore m, ProjectManager proj, int min, JLabel label){
+    public Director(Drive drive, Semaphore m, ProjectManager proj, int min, JLabel label, JLabel fault){
         this.drive = drive;
         this.mutex = m;
         this.pm = proj;
@@ -33,6 +34,7 @@ public class Director extends Thread {
         this.wasLazy = false;
         this.pmPenalties = 0;
         this.label = label;
+        this.faultLabel = fault;
     }
     
     
@@ -44,9 +46,9 @@ public class Director extends Thread {
                 if(!this.paused){
                     
                     if(!"Trabajando".equals(this.pm.getCurrentState()) && !this.wasLazy){
-                        this.wasLazy = true;
-                        this.pmPenalties += 1;
-                        this.label.setText(Integer.toString(this.pmPenalties));
+                        this.mutex.acquire(1);
+                        faultPM();
+                        this.mutex.release();
                     }
                     
                 sleep(5);
@@ -105,7 +107,31 @@ public class Director extends Thread {
     public void setWasLazy(boolean wasLazy) {
         this.wasLazy = wasLazy;
     }
+
+    public int getPmPenalties() {
+        return pmPenalties;
+    }
+
+    public void setPmPenalties(int pmPenalties) {
+        this.pmPenalties = pmPenalties;
+    }
  
+    public void faultPM(){
+        this.wasLazy = true;
+        this.pmPenalties += 1;
+        this.label.setText(Integer.toString(this.pmPenalties));
+        this.faultLabel.setText(Integer.toString(this.pmPenalties*50));
+        this.drive.setSalary(this.drive.getSalary() - (50/1000));
+    }
+
+    public JLabel getFaultLabel() {
+        return faultLabel;
+    }
+
+    public void setFaultLabel(JLabel faultLabel) {
+        this.faultLabel = faultLabel;
+    }
+    
     
     
 }

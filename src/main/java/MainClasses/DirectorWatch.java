@@ -25,8 +25,8 @@ public class DirectorWatch extends Thread{
     private Company company;
     private Semaphore mutex;
     
-    public DirectorWatch(int sal, int day, int hora, int min, Director dir, JLabel label, Company comp){
-    this.salary = sal;
+    public DirectorWatch(int day, int hora, int min, Director dir, JLabel label, Company comp){
+    this.salary = 30;
     this.dayDuration = day;
     this.dir = dir;
     this.hourDuration = hora;
@@ -71,11 +71,14 @@ public class DirectorWatch extends Thread{
                                 sleep(this.dayDuration - ((this.minuteDuration*25) + upperWait));
                         }
                     }
+                    
+                    this.mutex.acquire(1);
+                    this.drive.addSalary(salary);
+                    this.mutex.release();
             
                 }else{
                     this.mutex.acquire(1);
                     this.sellGames();
-                    this.drive.setDaysRemaining(this.drive.getDeadLine());
                     this.mutex.release();
                 }
             
@@ -94,16 +97,22 @@ public class DirectorWatch extends Thread{
     
     public void sellGames(){
         if(this.company.getCompanyName().equals("Capcom")){
-            this.company.setIncome((this.drive.getVanillaGames() * 400) + (this.drive.getDlcGames() * 750) + this.company.getIncome());       
+            this.company.addIncome((this.drive.getVanillaGames() * 400) + (this.drive.getDlcGames() * 750));       
         }else{
-            this.company.setIncome((this.drive.getVanillaGames() * 350) + (this.drive.getDlcGames() * 700));
+            this.company.addIncome((this.drive.getVanillaGames() * 350) + (this.drive.getDlcGames() * 700));
         }
         
-        this.company.setSalary(this.drive.getSalary() + this.company.getSalary());
+        this.drive.addSalary((this.salary/1000) * 24);
+        this.company.addSalary(this.drive.getSalary());
         this.company.setUtilities(this.company.getIncome() - this.company.getSalary());
         this.drive.setSalary(0);
         this.drive.setVanillaGames(0);
         this.drive.setDlcGames(0);
+        this.drive.setDaysRemaining(this.drive.getDeadLine());
+        
+        this.dir.setPmPenalties(0);
+        this.dir.getFaultLabel().setText(Integer.toString(this.dir.getPmPenalties()));
+        
     }
     
 }

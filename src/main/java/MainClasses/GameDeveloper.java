@@ -121,7 +121,7 @@ public class GameDeveloper extends Thread {
                 int roundAcc = (int) Math.floor(this.accumulatedOutput);
                 this.mutex.acquire(1);
                 this.drive.addToDrive(roundAcc, this.gameComponent);
-                this.drive.setSalary(this.drive.getSalary() + ((this.hourlyRate/100)*24));
+                this.drive.addSalary(hourlyRate);
                 this.mutex.release();
                 this.accumulatedOutput = 0;
             } catch (InterruptedException ex) {

@@ -377,6 +377,14 @@ public class Company {
         this.labels[15].setText(Double.toString(this.utilities));
     }
     
+    public void addSalary(double salary){
+        this.salary += salary;
+        this.labels[16].setText(Double.toString(this.salary));
+    }
     
+    public void addIncome(double income){
+        this.income += income;
+        this.labels[14].setText(Double.toString(this.income));
+    }
     
 }

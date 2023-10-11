@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 public class Integrator extends Thread {
     private Drive drive;
     private Semaphore mutex;
-    private double earnings = 0;
+    private double salary = 25;
     private boolean isActive = true;
     private int dayDuration;
 
@@ -35,6 +35,7 @@ public class Integrator extends Thread {
 
                     // Consumir componentes
                     drive.assembleGame();
+                    this.drive.addSalary(this.salary);
                     this.mutex.release();
                     // Dormir durante el tiempo necesario para el ensamblaje
                     // (Aquí dormimos por un tiempo corto. Ajustar según sea necesario.)
@@ -44,15 +45,12 @@ public class Integrator extends Thread {
                     // (Implementar esto según tus requisitos.)
                     System.out.println("Integrador: ¡Juego ensamblado!");
 
-                    // Pagar al Integrador
-                    payIntegrator();
                 } else {
                     System.out.println("Integrador: No hay suficientes componentes para ensamblar un juego.");
+                    this.drive.addSalary((this.salary));
                     this.mutex.release();
                     sleep(this.dayDuration);
                 }
-                // Pagar al Integrador
-                payIntegrator();
                 
             } catch (InterruptedException e) {
                 System.out.println("Integrador interrumpido.");
@@ -60,11 +58,6 @@ public class Integrator extends Thread {
         }
     }
 
-    public void payIntegrator() {
-        // $25/hora, 24 horas/día, durante 2 días
-        earnings += 25 * 24;  
-        System.out.println("Integrador: Pagado por 2 días de trabajo. Ganancias totales: $" + earnings);
-    }
 
     public boolean isIsActive() {
         return isActive;
@@ -90,12 +83,12 @@ public class Integrator extends Thread {
         this.mutex = mutex;
     }
 
-    public double getEarnings() {
-        return earnings;
+    public double getSalary() {
+        return salary;
     }
 
-    public void setEarnings(double earnings) {
-        this.earnings = earnings;
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 
     public int getDayDuration() {

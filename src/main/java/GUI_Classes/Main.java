@@ -63,21 +63,23 @@ public class Main extends javax.swing.JFrame {
         this.capcom.activateDevs();
         this.squareEnix.activateDevs();
 */        
-        ProjectManager capMan = new ProjectManager(10, this.dayDuration, hourDuration, minDuration,this.capcom.getCompanyDrive(),this.capcom.getMutex(), PMstateGUI);
-        Director capDir = new Director(this.capcom.getCompanyDrive(), this.capcom.getMutex(), capMan, minDuration, PMfaultsGUI);
-        DirectorWatch capWatch = new DirectorWatch(10, this.dayDuration, hourDuration, minDuration, capDir, directorstateGUI, this.capcom);
+        ProjectManager capMan = new ProjectManager( this.dayDuration, hourDuration, minDuration,this.capcom.getCompanyDrive(),this.capcom.getMutex(), PMstateGUI);
+        Director capDir = new Director(this.capcom.getCompanyDrive(), this.capcom.getMutex(), capMan, minDuration, PMfaultsGUI, PMfaults$GUI);
+        DirectorWatch capWatch = new DirectorWatch( this.dayDuration, hourDuration, minDuration, capDir, directorstateGUI, this.capcom);
 
         
-        ProjectManager squareMan = new ProjectManager(10, this.dayDuration, hourDuration, minDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), PMstateGUI1);
-//        Director squareDir = new Director(SquareDrive, SquareMutex, squareMan, minDuration, PMfaultsGUI1);
-//        DirectorWatch squareWatch = new DirectorWatch(10, dayDuration, hourDuration, minDuration, squareDir, SquareDrive, directorstateGUI1);
+        ProjectManager squareMan = new ProjectManager(this.dayDuration, hourDuration, minDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), PMstateGUI1);
+        Director squareDir = new Director(this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), squareMan, minDuration, PMfaultsGUI1, PMfaults$GUI1);
+        DirectorWatch squareWatch = new DirectorWatch(this.dayDuration, hourDuration, minDuration, squareDir, directorstateGUI1,this.squareEnix);
         
         
         capMan.start();
         capDir.start();
         capWatch.start();
         
-        
+        squareMan.start();
+        squareDir.start();
+        squareWatch.start();
         
         
         
