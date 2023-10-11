@@ -4,6 +4,7 @@
  */
 package MainClasses;
 
+import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
 
 /**
@@ -22,8 +23,11 @@ public class Drive {
     private int dlcGames;
     private int vanillaCounter;
     private JLabel[] labels;
+    private String company;
+    private double salary;
 
-    public Drive() {
+
+    public Drive(String comp) {
         this.scripts = 0;
         this.levels = 0;
         this.sprites = 0;
@@ -33,6 +37,8 @@ public class Drive {
         this.vanillaGames = 0;
         this.dlcGames = 0;
         this.vanillaCounter = 0;
+        this.company = comp;
+        this.salary = 0;
     }
     
     
@@ -132,8 +138,7 @@ public class Drive {
      * @param devType 
      */
     
-    public void addToDrive(int amount, String devType){
-        
+    public void addToDrive(int amount, String devType)throws InterruptedException {
         switch (devType){
         
             case "Narrative":
@@ -206,11 +211,75 @@ public class Drive {
                     
                 }
                 break;
+        }
+    }
+    public boolean canAssembleGame() {
+        if(this.company.equals("Capcom")){
+            if(this.vanillaCounter >= 3){
+                return this.scripts >= 1 && this.levels >= 2 && this.sprites >= 6 && this.logics >= 5 && this.dlcs >= 1;
                 
+            }else{
+                return this.scripts >= 1 && this.levels >= 2 && this.sprites >= 6 && this.logics >= 5;
+            }
+            
+        }else{
+            if(this.vanillaCounter >= 2){
+                return this.scripts >= 1 && this.levels >= 1 && this.sprites >= 2 && this.logics >= 4;
+                
+            }else{
+                return this.scripts >= 1 && this.levels >= 2 && this.sprites >= 6 && this.logics >= 5 && this.dlcs>= 3;
+            }
+        }
+    }
+     
+    public void assembleGame() {
+        if(this.company.equals("Capcom")){
+            this.scripts -= 1;
+            this.levels -= 2;
+            this.sprites -= 6;
+            this.logics -= 5;
+            
+            if(this.vanillaCounter >= 3){
+                this.dlcs -= 1;
+                this.vanillaCounter = 0;
+                this.dlcGames += 1;
+                
+            }else{
+                this.vanillaCounter += 1;
+                this.vanillaGames += 1;
+            }
+                
+        }else{
+            this.scripts -= 1;
+            this.levels -= 1;
+            this.sprites -= 2;
+            this.logics -= 4;
+            
+            if(this.vanillaCounter >= 2){
+                this.dlcs -= 3;
+                this.vanillaCounter = 0;
+                this.dlcGames += 1;
+                
+            }else{
+                this.vanillaCounter += 1;
+                this.vanillaGames += 1;
+            }
+        
         }
         
+        this.labels[0].setText(Integer.toString(this.scripts));
+        this.labels[1].setText(Integer.toString(this.levels));
+        this.labels[2].setText(Integer.toString(this.sprites));
+        this.labels[3].setText(Integer.toString(this.logics));
+        this.labels[4].setText(Integer.toString(this.dlcs));
+        this.labels[6].setText(Integer.toString(this.vanillaGames));
+        this.labels[7].setText(Integer.toString(this.dlcGames));
+        
+        
+        
+        
+        
     }
-
     public JLabel[] getLabels() {
         return labels;
     }
@@ -225,6 +294,14 @@ public class Drive {
 
     public void setDeadLine(int deadLine) {
         this.deadLine = deadLine;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
     
     

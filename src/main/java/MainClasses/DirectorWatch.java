@@ -5,6 +5,7 @@
 package MainClasses;
 
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -21,15 +22,19 @@ public class DirectorWatch extends Thread{
     private Director dir;
     private Drive drive;
     private JLabel label;
+    private Company company;
+    private Semaphore mutex;
     
-    public DirectorWatch(int sal, int day, int hora, int min, Director dir, Drive drive, JLabel label){
+    public DirectorWatch(int sal, int day, int hora, int min, Director dir, JLabel label, Company comp){
     this.salary = sal;
     this.dayDuration = day;
     this.dir = dir;
     this.hourDuration = hora;
     this.minuteDuration = min;
-    this.drive = drive;
     this.label = label;
+    this.company = comp;
+    this.drive = this.company.getCompanyDrive();
+    this.mutex = this.company.getMutex();
     }
     
     public void run(){
@@ -68,7 +73,10 @@ public class DirectorWatch extends Thread{
                     }
             
                 }else{
+                    this.mutex.acquire(1);
+                    this.sellGames();
                     this.drive.setDaysRemaining(this.drive.getDeadLine());
+                    this.mutex.release();
                 }
             
             } catch (InterruptedException ex) {
@@ -82,6 +90,20 @@ public class DirectorWatch extends Thread{
     public int randHour(){
         Random random = new Random();
         return random.nextInt(25 - 1) + 1;
+    }
+    
+    public void sellGames(){
+        if(this.company.getCompanyName().equals("Capcom")){
+            this.company.setIncome((this.drive.getVanillaGames() * 400) + (this.drive.getDlcGames() * 750) + this.company.getIncome());       
+        }else{
+            this.company.setIncome((this.drive.getVanillaGames() * 350) + (this.drive.getDlcGames() * 700));
+        }
+        
+        this.company.setSalary(this.drive.getSalary() + this.company.getSalary());
+        this.company.setUtilities(this.company.getIncome() - this.company.getSalary() + this.company.getUtilities());
+        this.drive.setSalary(0);
+        this.drive.setVanillaGames(0);
+        this.drive.setDlcGames(0);
     }
     
 }

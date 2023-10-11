@@ -13,28 +13,37 @@ import javax.swing.JSpinner;
  * @author Sebastián
  */
 public class Company {
+    private String companyName;
+    
     private LinkList scriptDevs;
     private LinkList levelDevs;
     private LinkList spriteDevs;
     private LinkList logicDevs;
     private LinkList dlcDevs;
     private LinkList integrators;
+    
     private ProjectManager pm;
     private Director dir;
     private DirectorWatch dirWatch;
+    
     private Semaphore mutex;
     private Drive companyDrive;
-    private int income;
-    private int salary;
+    
+    private double income;
+    private double salary;
+    private double utilities;
+    
     private int dayDuration;
     private int hourDuration;
     private int minDuration;
+    
     private JLabel[] labels;
+    
     private int maxDevs;
     
-    public Company(int day, int hour, int min, int maxDevs){
+    public Company(int maxDevs, String company){
         this.mutex = new Semaphore(1);
-        this.companyDrive = new Drive();
+        this.companyDrive = new Drive(company);
         
         this.scriptDevs = new LinkList();
         this.levelDevs = new LinkList();
@@ -42,15 +51,14 @@ public class Company {
         this.logicDevs = new LinkList();
         this.dlcDevs = new LinkList();
         this.integrators = new LinkList();
-        
-        this.dayDuration = day;
-        this.hourDuration = hour;
-        this.minDuration = min;
-        
+               
+        this.utilities = 0;
         this.income = 0;
         this.salary = 0;
         
         this.maxDevs = maxDevs;
+        
+        this.companyName = company;
         
         
     }
@@ -135,20 +143,22 @@ public class Company {
         this.companyDrive = companyDrive;
     }
 
-    public int getIncome() {
+    public double getIncome() {
         return income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(double income) {
         this.income = income;
+        this.labels[14].setText(Double.toString(this.income));
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
+        this.labels[16].setText(Double.toString(this.salary));
     }
 
     public int getDayDuration() {
@@ -217,6 +227,20 @@ public class Company {
             }
     }
 
+    
+    public void addIntegrator(Integrator integ){
+        if((this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()) < this.maxDevs){
+            Node integNode = new Node(integ);
+            this.integrators.insertEnd(integNode);
+            this.labels[6].setText(Integer.toString(this.integrators.getlSize()));
+            this.labels[13].setText(Integer.toString(this.integrators.getlSize()));
+            
+            this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+            this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+            integ.start();
+        }
+    }
+    
  /*
     public void activateDevs(){
         Node tempNode = this.scriptDevs.getlFirst();
@@ -323,8 +347,8 @@ public class Company {
             
         }
         
-        this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize()));
-        this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize()));
+        this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+        this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
         
     }
 
@@ -334,6 +358,23 @@ public class Company {
 
     public void setLabels(JLabel[] labels) {
         this.labels = labels;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public double getUtilities() {
+        return utilities;
+    }
+
+    public void setUtilities(double utilities) {
+        this.utilities = utilities;
+        this.labels[15].setText(Double.toString(this.utilities));
     }
     
     

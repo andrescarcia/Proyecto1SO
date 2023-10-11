@@ -4,7 +4,9 @@
 
 package com.mycompany.proyecto1so;
 
+import MainClasses.Drive;
 import MainClasses.GUIHelpers;
+import MainClasses.Integrator;
 
 /**
  *
