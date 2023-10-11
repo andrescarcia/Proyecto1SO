@@ -100,7 +100,7 @@ public class DirectorWatch extends Thread{
         }
         
         this.company.setSalary(this.drive.getSalary() + this.company.getSalary());
-        this.company.setUtilities(this.company.getIncome() - this.company.getSalary() + this.company.getUtilities());
+        this.company.setUtilities(this.company.getIncome() - this.company.getSalary());
         this.drive.setSalary(0);
         this.drive.setVanillaGames(0);
         this.drive.setDlcGames(0);
