@@ -1420,7 +1420,9 @@ public class Main extends javax.swing.JFrame {
         ConfigPanel.setLayout(ConfigPanelLayout);
         ConfigPanelLayout.setHorizontalGroup(
             ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG3, javax.swing.GroupLayout.DEFAULT_SIZE, 1620, Short.MAX_VALUE)
+            .addGroup(ConfigPanelLayout.createSequentialGroup()
+                .addComponent(BG3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         ConfigPanelLayout.setVerticalGroup(
             ConfigPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2285,7 +2287,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel68)
                         .addGap(18, 18, 18)
                         .addComponent(utilityGUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelDerecho1Layout.setVerticalGroup(
             panelDerecho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3032,7 +3034,7 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(jLabel97)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(readygamesqtyGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel98, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                                    .addComponent(jLabel98, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(136, 136, 136))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCentro1Layout.createSequentialGroup()
                                 .addGroup(panelCentro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3213,7 +3215,7 @@ public class Main extends javax.swing.JFrame {
         SquareEnixPanel.setLayout(SquareEnixPanelLayout);
         SquareEnixPanelLayout.setHorizontalGroup(
             SquareEnixPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG5, javax.swing.GroupLayout.DEFAULT_SIZE, 1620, Short.MAX_VALUE)
+            .addComponent(BG5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         SquareEnixPanelLayout.setVerticalGroup(
             SquareEnixPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3226,7 +3228,7 @@ public class Main extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1542, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
