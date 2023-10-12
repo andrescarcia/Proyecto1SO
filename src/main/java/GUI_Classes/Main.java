@@ -262,38 +262,10 @@ public class Main extends javax.swing.JFrame {
         Integrator squareInt = new Integrator(this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), this.dayDuration);
         this.squareEnix.addIntegrator(squareInt);
         
-        /*        
-        GameDeveloper capScript = new GameDeveloper("Narrative", "Capcom", this.dayDuration, this.capcom.getCompanyDrive(), this.capcom.getMutex());
-        GameDeveloper capLevel = new GameDeveloper("LevelDesign", "Capcom", this.dayDuration, this.capcom.getCompanyDrive(), this.capcom.getMutex());
-        GameDeveloper capSprite = new GameDeveloper("SpriteArt", "Capcom", this.dayDuration, this.capcom.getCompanyDrive(), this.capcom.getMutex());
-        GameDeveloper capLogic = new GameDeveloper("GameLogic", "Capcom", this.dayDuration, this.capcom.getCompanyDrive(), this.capcom.getMutex());
-        GameDeveloper capDLC = new GameDeveloper("DLC", "Capcom", this.dayDuration, this.capcom.getCompanyDrive(), this.capcom.getMutex());
-        Integrator capInt = new Integrator(this.capcom.getCompanyDrive(), this.capcom.getMutex(), this.dayDuration);   
-        this.capcom.addDev(capScript);
-        this.capcom.addDev(capLevel);
-        this.capcom.addDev(capSprite);
-        this.capcom.addDev(capLogic);
-        this.capcom.addDev(capDLC);
-        this.capcom.addIntegrator(capInt);
-  
-       
-        GameDeveloper squareScript = new GameDeveloper("Narrative", "SquareEnix", this.dayDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex());
-        GameDeveloper squareLevel = new GameDeveloper("LevelDesign", "SquareEnix", this.dayDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex());
-        GameDeveloper squareSprite = new GameDeveloper("SpriteArt", "SquareEnix", this.dayDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex());
-        GameDeveloper squareLogic = new GameDeveloper("GameLogic", "SquareEnix", this.dayDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex());
-        GameDeveloper squareDLC = new GameDeveloper("DLC", "SquareEnix", this.dayDuration, this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex());
-        Integrator squareInt = new Integrator(this.squareEnix.getCompanyDrive(), this.squareEnix.getMutex(), this.dayDuration);
-        this.squareEnix.addDev(squareScript);
-        this.squareEnix.addDev(squareLevel);
-        this.squareEnix.addDev(squareSprite);
-        this.squareEnix.addDev(squareLogic);
-        this.squareEnix.addDev(squareDLC);
-        this.squareEnix.addIntegrator(squareInt);
- 
-*/        
+        
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -400,12 +372,12 @@ public class Main extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
         btn_Capcom1 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
         btn_Configuration1 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         barrasuperior1 = new javax.swing.JPanel();
         exit1 = new javax.swing.JLabel();
@@ -483,6 +455,7 @@ public class Main extends javax.swing.JFrame {
         utilityGUI = new javax.swing.JLabel();
         jLabel104 = new javax.swing.JLabel();
         incomeGUI = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         SquareEnixPanel = new javax.swing.JPanel();
         BG5 = new javax.swing.JPanel();
         SidePanel5 = new javax.swing.JPanel();
@@ -490,7 +463,6 @@ public class Main extends javax.swing.JFrame {
         jLabel69 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
         btn_Capcom2 = new javax.swing.JPanel();
         jLabel70 = new javax.swing.JLabel();
         btn_configuration = new javax.swing.JPanel();
@@ -574,6 +546,7 @@ public class Main extends javax.swing.JFrame {
         incomeGUI1 = new javax.swing.JLabel();
         jLabel105 = new javax.swing.JLabel();
         utilityGUI2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -696,7 +669,9 @@ public class Main extends javax.swing.JFrame {
         );
 
         SidePanel3.add(btn_Configuration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
-        SidePanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\Nuevo Logo Unimet Blanco.png")); // NOI18N
+        SidePanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
 
         jLabel110.setFont(new java.awt.Font("Alien Encounters", 1, 20)); // NOI18N
         jLabel110.setForeground(new java.awt.Color(255, 255, 255));
@@ -1395,14 +1370,14 @@ public class Main extends javax.swing.JFrame {
 
         DeadLineDays.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DeadLineDays.setForeground(new java.awt.Color(255, 255, 255));
-        DeadLineDays.setText("X");
+        DeadLineDays.setText("0");
 
         javax.swing.GroupLayout panelDerecho3Layout = new javax.swing.GroupLayout(panelDerecho3);
         panelDerecho3.setLayout(panelDerecho3Layout);
         panelDerecho3Layout.setHorizontalGroup(
             panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDerecho3Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerecho3Layout.createSequentialGroup()
                         .addComponent(jLabel102)
@@ -1421,17 +1396,16 @@ public class Main extends javax.swing.JFrame {
                             .addGroup(panelDerecho3Layout.createSequentialGroup()
                                 .addComponent(DeadLineDays, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(plusDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lessDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(plusDeadLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(panelDerecho3Layout.createSequentialGroup()
                                 .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(plusDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lessDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))))))
+                                .addComponent(plusDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lessDayDur, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lessDeadLine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12))))
         );
         panelDerecho3Layout.setVerticalGroup(
             panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1491,7 +1465,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel34.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Square Enix stats ");
+        jLabel34.setText("sebastian castillo");
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel34MouseClicked(evt);
@@ -1503,9 +1477,9 @@ public class Main extends javax.swing.JFrame {
         btn_SquareEnix4Layout.setHorizontalGroup(
             btn_SquareEnix4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_SquareEnix4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel34)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         btn_SquareEnix4Layout.setVerticalGroup(
             btn_SquareEnix4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1525,7 +1499,6 @@ public class Main extends javax.swing.JFrame {
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 96, 260, 10));
-        SidePanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 300, 400));
 
         btn_Capcom1.setBackground(new java.awt.Color(22, 95, 190));
         btn_Capcom1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1536,7 +1509,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel35.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setText("Capcom STATS");
+        jLabel35.setText("andre scarcia");
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel35MouseClicked(evt);
@@ -1571,7 +1544,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel36.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel36.setText("Configuration");
+        jLabel36.setText("proyecto 1");
         jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel36MouseClicked(evt);
@@ -1585,7 +1558,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(btn_Configuration1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jLabel36)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         btn_Configuration1Layout.setVerticalGroup(
             btn_Configuration1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1595,8 +1568,25 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        SidePanel4.add(btn_Configuration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
+        SidePanel4.add(btn_Configuration1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 300, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\Capcom_logo_color.png")); // NOI18N
         SidePanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 80));
+
+        jPanel8.setBackground(new java.awt.Color(22, 95, 190));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+
+        SidePanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 610, 300, 110));
 
         BG4.add(SidePanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 720));
 
@@ -2331,6 +2321,9 @@ public class Main extends javax.swing.JFrame {
 
         BG4.add(panelDerecho1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 120, 400, -1));
 
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\SF.gif")); // NOI18N
+        BG4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 340, 400, 380));
+
         javax.swing.GroupLayout CapcomPanelLayout = new javax.swing.GroupLayout(CapcomPanel);
         CapcomPanel.setLayout(CapcomPanelLayout);
         CapcomPanelLayout.setHorizontalGroup(
@@ -2339,7 +2332,7 @@ public class Main extends javax.swing.JFrame {
         );
         CapcomPanelLayout.setVerticalGroup(
             CapcomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG4, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+            .addComponent(BG4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Capcom Dashboard", CapcomPanel);
@@ -2359,7 +2352,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel69.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel69.setText("Square Enix stats ");
+        jLabel69.setText("Andre Scarcia");
         jLabel69.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel69MouseClicked(evt);
@@ -2371,9 +2364,9 @@ public class Main extends javax.swing.JFrame {
         btn_SquareEnix5Layout.setHorizontalGroup(
             btn_SquareEnix5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_SquareEnix5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel69)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         btn_SquareEnix5Layout.setVerticalGroup(
             btn_SquareEnix5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2393,7 +2386,6 @@ public class Main extends javax.swing.JFrame {
         jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         SidePanel5.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 96, 260, 10));
-        SidePanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 290, 290));
 
         btn_Capcom2.setBackground(new java.awt.Color(153, 25, 30));
         btn_Capcom2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2404,7 +2396,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel70.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel70.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel70.setText("Capcom STATS");
+        jLabel70.setText("sebastian castillo");
         jLabel70.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel70MouseClicked(evt);
@@ -2416,9 +2408,9 @@ public class Main extends javax.swing.JFrame {
         btn_Capcom2Layout.setHorizontalGroup(
             btn_Capcom2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_Capcom2Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel70)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         btn_Capcom2Layout.setVerticalGroup(
             btn_Capcom2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2439,7 +2431,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel71.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel71.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel71.setText("Configuration");
+        jLabel71.setText("proyecto 1");
         jLabel71.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel71MouseClicked(evt);
@@ -2464,6 +2456,8 @@ public class Main extends javax.swing.JFrame {
         );
 
         SidePanel5.add(btn_configuration, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\SquareEnix_Logo_Color.png")); // NOI18N
         SidePanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 80));
 
         jPanel6.setBackground(new java.awt.Color(153, 25, 30));
@@ -3146,6 +3140,8 @@ public class Main extends javax.swing.JFrame {
         utilityGUI2.setForeground(new java.awt.Color(255, 255, 255));
         utilityGUI2.setText("0");
 
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\FinalFantasy.gif")); // NOI18N
+
         javax.swing.GroupLayout panelDerecho2Layout = new javax.swing.GroupLayout(panelDerecho2);
         panelDerecho2.setLayout(panelDerecho2Layout);
         panelDerecho2Layout.setHorizontalGroup(
@@ -3168,7 +3164,11 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(jLabel105)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(incomeGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerecho2Layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(17, 17, 17))
         );
         panelDerecho2Layout.setVerticalGroup(
             panelDerecho2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3187,7 +3187,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(panelDerecho2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel105, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(incomeGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(147, 147, 147))
         );
 
         BG5.add(panelDerecho2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 120, 400, -1));
@@ -3940,6 +3942,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;

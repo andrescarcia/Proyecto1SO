@@ -284,45 +284,7 @@ public class Company {
         return totalDevs < maxDevs;
     }
     
- /*
-    public void activateDevs(){
-        Node tempNode = this.scriptDevs.getlFirst();
-        for(int i = 0; i < this.scriptDevs.getlSize(); i++){
-            GameDeveloper tempDev = GameDeveloper.class.cast(tempNode.getData()); 
-            tempDev.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.levelDevs.getlFirst();
-        for(int i = 0; i < this.levelDevs.getlSize(); i++){
-            GameDeveloper tempDev = GameDeveloper.class.cast(tempNode.getData()); 
-            tempDev.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.spriteDevs.getlFirst();
-        for(int i = 0; i < this.spriteDevs.getlSize(); i++){
-            GameDeveloper tempDev = GameDeveloper.class.cast(tempNode.getData()); 
-            tempDev.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.logicDevs.getlFirst();
-        for(int i = 0; i < this.logicDevs.getlSize(); i++){
-            GameDeveloper tempDev = GameDeveloper.class.cast(tempNode.getData()); 
-            tempDev.start();
-            tempNode = tempNode.getpNext();
-        }
-        
-        tempNode = this.dlcDevs.getlFirst();
-        for(int i = 0; i < this.dlcDevs.getlSize(); i++){
-            GameDeveloper tempDev = GameDeveloper.class.cast(tempNode.getData()); 
-            tempDev.start();
-            tempNode = tempNode.getpNext();
-        }
-    
-    }
-*/
+
     
     public void removeDev(String devType){
     

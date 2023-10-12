@@ -1,4 +1,4 @@
-dia,111
+dia,215
 deadLine,20
 GameDeveloper,Capcom,Narrative,2
 GameDeveloper,Capcom,LevelDesign,2
