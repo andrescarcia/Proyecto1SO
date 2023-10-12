@@ -9,6 +9,7 @@ import MainClasses.DirectorWatch;
 import MainClasses.GameDeveloper; 
 import MainClasses.Drive;
 import MainClasses.Integrator;
+import MainClasses.LinkList;
 import MainClasses.ProjectManager;
 import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JSpinner;
 /**
  *
@@ -49,6 +51,7 @@ public class Main extends javax.swing.JFrame {
         
         this.squareEnix.getCompanyDrive().setLabels(squareDriveLabels);
         this.squareEnix.setLabels(squareCompanyLabels);
+        this.DayDur.setText(Integer.toString(dayDuration));
         
        
      
@@ -188,16 +191,56 @@ public class Main extends javax.swing.JFrame {
             System.out.println(e);
             }
         }
-    
-    public void writeConfig(){
-        String savedDevs = "";
-        String line;
+    public void saveConfig(Company capcom, Company squareEnix) {
         String path = "cosas.txt";
         File file = new File(path);
-        
-        
+
+        try {
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            // Guardar dayDuration (sólo uno porque supongo que ambos tienen la misma duración)
+            bw.write("dia," + capcom.getDayDuration() + "\n");
+
+            // Guardar deadLine (tomo el valor de Capcom suponiendo que es igual para ambos)
+            bw.write("deadLine," + capcom.getCompanyDrive().getDeadLine() + "\n");
+
+            // Función auxiliar para guardar GameDevelopers
+            saveGameDevelopers(bw, "Capcom", capcom);
+            saveGameDevelopers(bw, "SquareEnix", squareEnix);
+
+            // Función auxiliar para guardar Integrators
+            saveIntegrators(bw, "Capcom", capcom);
+            saveIntegrators(bw, "SquareEnix", squareEnix);
+
+            bw.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
-        
+
+    private void saveGameDevelopers(BufferedWriter bw, String companyName, Company company) throws IOException {
+        saveSpecificDevs(bw, companyName, "Narrative", company.getScriptDevs());
+        saveSpecificDevs(bw, companyName, "LevelDesign", company.getLevelDevs());
+        saveSpecificDevs(bw, companyName, "SpriteArt", company.getSpriteDevs());
+        saveSpecificDevs(bw, companyName, "GameLogic", company.getLogicDevs());
+        saveSpecificDevs(bw, companyName, "DLC", company.getDlcDevs());
+    }
+
+    private void saveSpecificDevs(BufferedWriter bw, String companyName, String devType, LinkList devs) throws IOException {
+        if (devs.getlSize() > 0) {
+            bw.write("GameDeveloper," + companyName + "," + devType + "," + devs.getlSize() + "\n");
+        }
+    }
+
+    private void saveIntegrators(BufferedWriter bw, String companyName, Company company) throws IOException {
+        if (company.getIntegrators().getlSize() > 0) {
+            bw.write("Integrator," + companyName + "," + company.getIntegrators().getlSize() + "\n");
+        }
+    }
+
+
+  
     /*Funcion que inicializa los trabajadores iniciales, el minimo de 1 por cada tipo*/
     
     public void addDefaults(){
@@ -1309,10 +1352,15 @@ public class Main extends javax.swing.JFrame {
 
         saveButton.setFont(new java.awt.Font("Alien Encounters", 0, 18)); // NOI18N
         saveButton.setText("SAVE");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         DayDur.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DayDur.setForeground(new java.awt.Color(255, 255, 255));
-        DayDur.setText("X");
+        DayDur.setText("0");
 
         plusDayDur.setText("+");
         plusDayDur.addActionListener(new java.awt.event.ActionListener() {
@@ -2131,14 +2179,15 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(jLabel61)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(levelqtyGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelCentroLayout.createSequentialGroup()
-                                        .addComponent(jLabel55)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(DeadlineGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelCentroLayout.createSequentialGroup()
-                                        .addComponent(jLabel54)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(dayspassedGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCentroLayout.createSequentialGroup()
+                                            .addComponent(jLabel54)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dayspassedGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCentroLayout.createSequentialGroup()
+                                            .addComponent(jLabel55)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(DeadlineGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelCentroLayout.createSequentialGroup()
                         .addGap(132, 132, 132)
@@ -3406,18 +3455,42 @@ public class Main extends javax.swing.JFrame {
 
     private void plusDayDurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDayDurActionPerformed
         // TODO add your handling code here:
+            dayDuration++; 
+            this.DayDur.setText(Integer.toString(dayDuration));
+
+        
     }//GEN-LAST:event_plusDayDurActionPerformed
 
     private void lessDayDurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDayDurActionPerformed
         // TODO add your handling code here:
+            if(dayDuration > 1) { // Asumiendo que no quieres que sea menor a 1.
+                dayDuration--; 
+                this.DayDur.setText(Integer.toString(dayDuration));
+            }
+
     }//GEN-LAST:event_lessDayDurActionPerformed
 
     private void plusDeadLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDeadLineActionPerformed
         // TODO add your handling code here:
+        int currentDeadline = capcom.getCompanyDrive().getDeadLine(); // Capcom y SquareEnix tienen el mismo deadline.
+        currentDeadline++;
+        capcom.getCompanyDrive().setDeadLine(currentDeadline);
+        squareEnix.getCompanyDrive().setDeadLine(currentDeadline);
+        
+        this.DeadLineDays.setText(Integer.toString(currentDeadline));
     }//GEN-LAST:event_plusDeadLineActionPerformed
 
     private void lessDeadLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDeadLineActionPerformed
         // TODO add your handling code here:
+        int currentDeadline = capcom.getCompanyDrive().getDeadLine();
+        if (currentDeadline > 1) {
+            currentDeadline--;
+            capcom.getCompanyDrive().setDeadLine(currentDeadline);
+            squareEnix.getCompanyDrive().setDeadLine(currentDeadline);
+                    this.DeadLineDays.setText(Integer.toString(currentDeadline));
+
+        }
+
     }//GEN-LAST:event_lessDeadLineActionPerformed
 
     private void plusIntegratorQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusIntegratorQty2ActionPerformed
@@ -3643,6 +3716,13 @@ public class Main extends javax.swing.JFrame {
             this.squareEnix.removeDev("GameLogic");
         }
     }//GEN-LAST:event_plusLogicQty1ActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+            saveConfig(capcom, squareEnix);
+
+        
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
