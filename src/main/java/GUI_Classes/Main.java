@@ -190,7 +190,12 @@ public class Main extends javax.swing.JFrame {
         }
     
     public void writeConfig(){
-
+        String savedDevs = "";
+        String line;
+        String path = "cosas.txt";
+        File file = new File(path);
+        
+        
     }
         
     /*Funcion que inicializa los trabajadores iniciales, el minimo de 1 por cada tipo*/
@@ -396,8 +401,6 @@ public class Main extends javax.swing.JFrame {
         plusNarrativeQty2 = new javax.swing.JButton();
         NarrativeQty2 = new javax.swing.JLabel();
         DevQty2 = new javax.swing.JLabel();
-        plusDevQty2 = new javax.swing.JButton();
-        lessDevQty2 = new javax.swing.JButton();
         panelCentro = new javax.swing.JPanel();
         jLabel53 = new javax.swing.JLabel();
         levelqtyGUI = new javax.swing.JLabel();
@@ -489,8 +492,6 @@ public class Main extends javax.swing.JFrame {
         plusNarrativeQty3 = new javax.swing.JButton();
         NarrativeQty3 = new javax.swing.JLabel();
         DevQty3 = new javax.swing.JLabel();
-        plusDevQty3 = new javax.swing.JButton();
-        lessDevQty3 = new javax.swing.JButton();
         panelCentro1 = new javax.swing.JPanel();
         jLabel86 = new javax.swing.JLabel();
         levelqtyGUI1 = new javax.swing.JLabel();
@@ -779,7 +780,7 @@ public class Main extends javax.swing.JFrame {
 
         LevelQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         LevelQty1.setForeground(new java.awt.Color(255, 255, 255));
-        LevelQty1.setText("X");
+        LevelQty1.setText("0");
 
         lessSpriteQty1.setText("+");
         lessSpriteQty1.addActionListener(new java.awt.event.ActionListener() {
@@ -811,7 +812,7 @@ public class Main extends javax.swing.JFrame {
 
         IntegratorQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         IntegratorQty1.setForeground(new java.awt.Color(255, 255, 255));
-        IntegratorQty1.setText("X");
+        IntegratorQty1.setText("0");
 
         lessIntegratorQty1.setText("-");
         lessIntegratorQty1.addActionListener(new java.awt.event.ActionListener() {
@@ -822,7 +823,7 @@ public class Main extends javax.swing.JFrame {
 
         DevQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DevQty1.setForeground(new java.awt.Color(255, 255, 255));
-        DevQty1.setText("X");
+        DevQty1.setText("0");
 
         lessDevQty1.setText("+");
         lessDevQty1.addActionListener(new java.awt.event.ActionListener() {
@@ -833,15 +834,15 @@ public class Main extends javax.swing.JFrame {
 
         DLCQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DLCQty1.setForeground(new java.awt.Color(255, 255, 255));
-        DLCQty1.setText("X");
+        DLCQty1.setText("0");
 
         LogicQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         LogicQty1.setForeground(new java.awt.Color(255, 255, 255));
-        LogicQty1.setText("X");
+        LogicQty1.setText("0");
 
         SpriteQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         SpriteQty1.setForeground(new java.awt.Color(255, 255, 255));
-        SpriteQty1.setText("X");
+        SpriteQty1.setText("0");
 
         lessNarrativeQty1.setText("+");
         lessNarrativeQty1.addActionListener(new java.awt.event.ActionListener() {
@@ -880,7 +881,7 @@ public class Main extends javax.swing.JFrame {
 
         NarrativeQty1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         NarrativeQty1.setForeground(new java.awt.Color(255, 255, 255));
-        NarrativeQty1.setText("X");
+        NarrativeQty1.setText("0");
 
         lessLogicQty1.setText("+");
         lessLogicQty1.addActionListener(new java.awt.event.ActionListener() {
@@ -1040,7 +1041,7 @@ public class Main extends javax.swing.JFrame {
 
         DevQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DevQty.setForeground(new java.awt.Color(255, 255, 255));
-        DevQty.setText("X");
+        DevQty.setText("0");
 
         jLabel33.setFont(new java.awt.Font("Alien Encounters", 1, 36)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
@@ -1066,7 +1067,7 @@ public class Main extends javax.swing.JFrame {
 
         LevelQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         LevelQty.setForeground(new java.awt.Color(255, 255, 255));
-        LevelQty.setText("X");
+        LevelQty.setText("0");
 
         plusLevelQty.setText("-");
         plusLevelQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1084,7 +1085,7 @@ public class Main extends javax.swing.JFrame {
 
         LogicQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         LogicQty.setForeground(new java.awt.Color(255, 255, 255));
-        LogicQty.setText("X");
+        LogicQty.setText("0");
 
         plusLogicQty.setText("-");
         plusLogicQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1102,7 +1103,7 @@ public class Main extends javax.swing.JFrame {
 
         SpriteQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         SpriteQty.setForeground(new java.awt.Color(255, 255, 255));
-        SpriteQty.setText("X");
+        SpriteQty.setText("0");
 
         plusSpriteQty.setText("-");
         plusSpriteQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1120,7 +1121,7 @@ public class Main extends javax.swing.JFrame {
 
         NarrativeQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         NarrativeQty.setForeground(new java.awt.Color(255, 255, 255));
-        NarrativeQty.setText("X");
+        NarrativeQty.setText("0");
 
         plusNarrativeQty.setText("-");
         plusNarrativeQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1138,7 +1139,7 @@ public class Main extends javax.swing.JFrame {
 
         DLCQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DLCQty.setForeground(new java.awt.Color(255, 255, 255));
-        DLCQty.setText("X");
+        DLCQty.setText("0");
 
         plusDLCQty.setText("-");
         plusDLCQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1156,7 +1157,7 @@ public class Main extends javax.swing.JFrame {
 
         IntegratorQty.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         IntegratorQty.setForeground(new java.awt.Color(255, 255, 255));
-        IntegratorQty.setText("X");
+        IntegratorQty.setText("0");
 
         plusIntegratorQty.setText("-");
         plusIntegratorQty.addActionListener(new java.awt.event.ActionListener() {
@@ -1796,20 +1797,6 @@ public class Main extends javax.swing.JFrame {
         DevQty2.setForeground(new java.awt.Color(255, 255, 255));
         DevQty2.setText("0");
 
-        plusDevQty2.setText("-");
-        plusDevQty2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plusDevQty2ActionPerformed(evt);
-            }
-        });
-
-        lessDevQty2.setText("+");
-        lessDevQty2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lessDevQty2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelIzquierdo1Layout = new javax.swing.GroupLayout(panelIzquierdo1);
         panelIzquierdo1.setLayout(panelIzquierdo1Layout);
         panelIzquierdo1Layout.setHorizontalGroup(
@@ -1838,12 +1825,7 @@ public class Main extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lessIntegratorQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(panelIzquierdo1Layout.createSequentialGroup()
-                                            .addComponent(DevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(plusDevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lessDevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(DevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(panelIzquierdo1Layout.createSequentialGroup()
                                             .addComponent(DLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1924,10 +1906,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelIzquierdo1Layout.createSequentialGroup()
-                        .addGroup(panelIzquierdo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lessDevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plusDevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)
                         .addComponent(lessNarrativeQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -2590,7 +2569,7 @@ public class Main extends javax.swing.JFrame {
 
         IntegratorQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         IntegratorQty3.setForeground(new java.awt.Color(255, 255, 255));
-        IntegratorQty3.setText("X");
+        IntegratorQty3.setText("0");
 
         plusIntegratorQty3.setText("-");
         plusIntegratorQty3.addActionListener(new java.awt.event.ActionListener() {
@@ -2622,11 +2601,11 @@ public class Main extends javax.swing.JFrame {
 
         DLCQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DLCQty3.setForeground(new java.awt.Color(255, 255, 255));
-        DLCQty3.setText("X");
+        DLCQty3.setText("0");
 
         LogicQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         LogicQty3.setForeground(new java.awt.Color(255, 255, 255));
-        LogicQty3.setText("X");
+        LogicQty3.setText("0");
 
         plusLogicQty3.setText("-");
         plusLogicQty3.addActionListener(new java.awt.event.ActionListener() {
@@ -2658,11 +2637,11 @@ public class Main extends javax.swing.JFrame {
 
         SpriteQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         SpriteQty3.setForeground(new java.awt.Color(255, 255, 255));
-        SpriteQty3.setText("X");
+        SpriteQty3.setText("0");
 
         LevelQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         LevelQty3.setForeground(new java.awt.Color(255, 255, 255));
-        LevelQty3.setText("X");
+        LevelQty3.setText("0");
 
         plusLevelQty3.setText("-");
         plusLevelQty3.addActionListener(new java.awt.event.ActionListener() {
@@ -2694,25 +2673,11 @@ public class Main extends javax.swing.JFrame {
 
         NarrativeQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         NarrativeQty3.setForeground(new java.awt.Color(255, 255, 255));
-        NarrativeQty3.setText("X");
+        NarrativeQty3.setText("0");
 
         DevQty3.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
         DevQty3.setForeground(new java.awt.Color(255, 255, 255));
         DevQty3.setText("0");
-
-        plusDevQty3.setText("-");
-        plusDevQty3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plusDevQty3ActionPerformed(evt);
-            }
-        });
-
-        lessDevQty3.setText("+");
-        lessDevQty3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lessDevQty3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelIzquierdo2Layout = new javax.swing.GroupLayout(panelIzquierdo2);
         panelIzquierdo2.setLayout(panelIzquierdo2Layout);
@@ -2774,18 +2739,14 @@ public class Main extends javax.swing.JFrame {
                                     .addComponent(jLabel81)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(PMstateGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelIzquierdo2Layout.createSequentialGroup()
-                                .addGroup(panelIzquierdo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel73)
-                                    .addGroup(panelIzquierdo2Layout.createSequentialGroup()
-                                        .addComponent(jLabel74)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(DevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(plusDevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lessDevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 14, Short.MAX_VALUE)))
+                            .addGroup(panelIzquierdo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel73)
+                                .addGroup(panelIzquierdo2Layout.createSequentialGroup()
+                                    .addComponent(jLabel74)
+                                    .addGap(55, 55, 55)
+                                    .addComponent(DevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(63, 63, 63))))
+                        .addGap(0, 32, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelIzquierdo2Layout.setVerticalGroup(
@@ -2810,10 +2771,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel82, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelIzquierdo2Layout.createSequentialGroup()
-                        .addGroup(panelIzquierdo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lessDevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plusDevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(panelIzquierdo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lessNarrativeQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3363,6 +3321,9 @@ public class Main extends javax.swing.JFrame {
     private void lessDevQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQtyActionPerformed
         // TODO add your handling code here:
         this.capcom.setMaxDevs(this.capcom.getMaxDevs() + 1);
+        this.DevQty.setText(Integer.toString(this.capcom.getMaxDevs()));
+
+        
     }//GEN-LAST:event_lessDevQtyActionPerformed
 
     private void plusDevQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQtyActionPerformed
@@ -3370,7 +3331,8 @@ public class Main extends javax.swing.JFrame {
         if(this.capcom.canDecreaseMaxDevs()){
             this.capcom.setMaxDevs(this.capcom.getMaxDevs()-1);
         }
-
+        this.DevQty.setText(Integer.toString(this.capcom.getMaxDevs()));
+        
     }//GEN-LAST:event_plusDevQtyActionPerformed
 
     private void plusLevelQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQtyActionPerformed
@@ -3527,14 +3489,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_plusNarrativeQty2ActionPerformed
 
-    private void plusDevQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQty2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_plusDevQty2ActionPerformed
-
-    private void lessDevQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQty2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lessDevQty2ActionPerformed
-
     private void plusIntegratorQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusIntegratorQty3ActionPerformed
         // TODO add your handling code here:
         if(this.squareEnix.getIntegrators().getlSize() > 1){
@@ -3603,14 +3557,6 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_plusNarrativeQty3ActionPerformed
 
-    private void plusDevQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQty3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_plusDevQty3ActionPerformed
-
-    private void lessDevQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQty3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lessDevQty3ActionPerformed
-
     private void lessLogicQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessLogicQty1ActionPerformed
         GameDeveloper squareDev = new GameDeveloper("GameLogic", "SquareEnix", dayDuration, squareEnix.getCompanyDrive(), squareEnix.getMutex());
         squareEnix.addDev(squareDev);
@@ -3624,6 +3570,12 @@ public class Main extends javax.swing.JFrame {
 
     private void plusDevQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQty1ActionPerformed
         // TODO add your handling code here:
+        
+        if(this.squareEnix.canDecreaseMaxDevs()){
+            this.squareEnix.setMaxDevs(this.squareEnix.getMaxDevs()-1);
+        }
+        this.DevQty1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
+
     }//GEN-LAST:event_plusDevQty1ActionPerformed
 
     private void plusNarrativeQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty1ActionPerformed
@@ -3644,6 +3596,8 @@ public class Main extends javax.swing.JFrame {
 
     private void lessDevQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQty1ActionPerformed
         // TODO add your handling code here:
+        this.squareEnix.setMaxDevs(this.squareEnix.getMaxDevs() + 1);
+        this.DevQty1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
     }//GEN-LAST:event_lessDevQty1ActionPerformed
 
     private void lessIntegratorQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessIntegratorQty1ActionPerformed
@@ -3915,8 +3869,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton lessDeadLine;
     private javax.swing.JButton lessDevQty;
     private javax.swing.JButton lessDevQty1;
-    private javax.swing.JButton lessDevQty2;
-    private javax.swing.JButton lessDevQty3;
     private javax.swing.JButton lessIntegratorQty;
     private javax.swing.JButton lessIntegratorQty1;
     private javax.swing.JButton lessIntegratorQty2;
@@ -3966,8 +3918,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton plusDeadLine;
     private javax.swing.JButton plusDevQty;
     private javax.swing.JButton plusDevQty1;
-    private javax.swing.JButton plusDevQty2;
-    private javax.swing.JButton plusDevQty3;
     private javax.swing.JButton plusIntegratorQty;
     private javax.swing.JButton plusIntegratorQty1;
     private javax.swing.JButton plusIntegratorQty2;
