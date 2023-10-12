@@ -63,6 +63,16 @@ public class Company {
         
     }
 
+    public int getMaxDevs() {
+        return maxDevs;
+    }
+
+    public void setMaxDevs(int maxDevs) {
+        this.maxDevs = maxDevs;
+    }
+    
+    
+
     public LinkList getScriptDevs() {
         return scriptDevs;
     }
@@ -266,6 +276,12 @@ public class Company {
         
         }
        
+    }
+    
+    
+    public boolean canDecreaseMaxDevs() {
+        int totalDevs = scriptDevs.getlSize() + levelDevs.getlSize() + spriteDevs.getlSize() + logicDevs.getlSize() + dlcDevs.getlSize() + integrators.getlSize();
+        return totalDevs < maxDevs;
     }
     
  /*

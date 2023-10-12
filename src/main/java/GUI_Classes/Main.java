@@ -3362,10 +3362,15 @@ public class Main extends javax.swing.JFrame {
 
     private void lessDevQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQtyActionPerformed
         // TODO add your handling code here:
+        this.capcom.setMaxDevs(this.capcom.getMaxDevs() + 1);
     }//GEN-LAST:event_lessDevQtyActionPerformed
 
     private void plusDevQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDevQtyActionPerformed
         // TODO add your handling code here:
+        if(this.capcom.canDecreaseMaxDevs()){
+            this.capcom.setMaxDevs(this.capcom.getMaxDevs()-1);
+        }
+
     }//GEN-LAST:event_plusDevQtyActionPerformed
 
     private void plusLevelQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQtyActionPerformed
