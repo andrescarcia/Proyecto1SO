@@ -24,6 +24,7 @@ public class ProjectManager extends Thread{
     private String currentState;
     private JLabel label;
 
+
     public ProjectManager(int day, int hour, int min ,Drive drive, Semaphore m, JLabel label) {
         this.salary = 20;
         this.dayDuration = day;
@@ -136,6 +137,11 @@ public class ProjectManager extends Thread{
     public void countDay(){
         this.drive.setDaysRemaining(this.drive.getDaysRemaining() - 1);
         this.drive.addSalary(salary);
+        daysPassed();
+    }
+    
+    public void daysPassed(){
+        this.drive.addDayspassed();
     }
     
 }

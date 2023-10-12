@@ -67,6 +67,15 @@ public class Company {
         return scriptDevs;
     }
 
+    public LinkList getIntegrators() {
+        return integrators;
+    }
+
+    public void setIntegrators(LinkList integrators) {
+        this.integrators = integrators;
+    }
+    
+
     public void setScriptDevs(LinkList scriptDevs) {
         this.scriptDevs = scriptDevs;
     }
@@ -239,6 +248,24 @@ public class Company {
             this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
             integ.start();
         }
+    }
+
+    public void removeIntegrator(){
+        if (this.integrators.getlSize() > 1) {
+            Node tempNode;
+            Integrator tempInte;
+
+            tempNode = this.integrators.getlLast();
+            tempInte = Integrator.class.cast(tempNode.getData());
+            tempInte.setIsActive(false);
+            this.integrators.delLast();
+            this.labels[6].setText(Integer.toString(this.integrators.getlSize()));
+            this.labels[13].setText(Integer.toString(this.integrators.getlSize()));
+            this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+            this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
+        
+        }
+       
     }
     
  /*

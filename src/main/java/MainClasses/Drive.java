@@ -25,6 +25,7 @@ public class Drive {
     private JLabel[] labels;
     private String company;
     private double salary;
+    private int dayspassed;
 
 
     public Drive(String comp) {
@@ -39,6 +40,7 @@ public class Drive {
         this.vanillaCounter = 0;
         this.company = comp;
         this.salary = 0;
+        this.dayspassed =0;
     }
     
     
@@ -306,6 +308,17 @@ public class Drive {
     
     public void addSalary(double salary){
         this.salary += ((salary/1000)*24);
+    }
+
+    public int getDayspassed() {
+        return dayspassed;
+    }
+
+    public void addDayspassed() {
+        this.dayspassed += 1;
+        this.labels[8].setText(Integer.toString(this.dayspassed));
+        
+        
     }
     
 }
