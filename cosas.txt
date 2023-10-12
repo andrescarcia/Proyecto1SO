@@ -1,4 +1,4 @@
-dia,0
+dia,111
 deadLine,20
 GameDeveloper,Capcom,Narrative,2
 GameDeveloper,Capcom,LevelDesign,2
@@ -6,8 +6,8 @@ GameDeveloper,Capcom,SpriteArt,4
 GameDeveloper,Capcom,GameLogic,1
 GameDeveloper,Capcom,DLC,1
 GameDeveloper,SquareEnix,Narrative,3
-GameDeveloper,SquareEnix,LevelDesign,4
-GameDeveloper,SquareEnix,SpriteArt,3
+GameDeveloper,SquareEnix,LevelDesign,3
+GameDeveloper,SquareEnix,SpriteArt,1
 GameDeveloper,SquareEnix,GameLogic,1
 GameDeveloper,SquareEnix,DLC,1
 Integrator,Capcom,1

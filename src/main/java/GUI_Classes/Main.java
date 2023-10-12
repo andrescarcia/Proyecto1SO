@@ -113,6 +113,8 @@ public class Main extends javax.swing.JFrame {
                             case "dia":
                                 this.dayDuration = Integer.parseInt(arraySplit[1]);
                                 addDefaults();
+                                this.DayDur.setText(Integer.toString(dayDuration));
+                                
                                 break;
                                 
                             case "GameDeveloper":
@@ -149,6 +151,7 @@ public class Main extends javax.swing.JFrame {
                                 this.capcom.getCompanyDrive().setDaysRemaining(Integer.parseInt(arraySplit[1]));
                                 this.squareEnix.getCompanyDrive().setDeadLine(Integer.parseInt(arraySplit[1]));
                                 this.squareEnix.getCompanyDrive().setDaysRemaining(Integer.parseInt(arraySplit[1]));
+                                this.DeadLineDays.setText(Integer.toString(capcom.getCompanyDrive().getDeadLine()));
                                 
                                 
                                 
@@ -191,7 +194,7 @@ public class Main extends javax.swing.JFrame {
             System.out.println(e);
             }
         }
-    public void saveConfig(Company capcom, Company squareEnix) {
+    public void saveConfig(Company capcom, Company squareEnix, int dayduration) {
         String path = "cosas.txt";
         File file = new File(path);
 
@@ -199,10 +202,10 @@ public class Main extends javax.swing.JFrame {
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
 
-            // Guardar dayDuration (sólo uno porque supongo que ambos tienen la misma duración)
-            bw.write("dia," + capcom.getDayDuration() + "\n");
+            // Guardar dayDuration (sólo uno porque que ambos tienen la misma duración)
+            bw.write("dia," + dayDuration + "\n");
 
-            // Guardar deadLine (tomo el valor de Capcom suponiendo que es igual para ambos)
+            // Guardar deadLine (tomo el valor de Capcom que es igual para ambos)
             bw.write("deadLine," + capcom.getCompanyDrive().getDeadLine() + "\n");
 
             // Función auxiliar para guardar GameDevelopers
@@ -3719,7 +3722,7 @@ public class Main extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-            saveConfig(capcom, squareEnix);
+            saveConfig(capcom, squareEnix, dayDuration);
 
         
     }//GEN-LAST:event_saveButtonActionPerformed
