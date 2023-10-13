@@ -20,24 +20,29 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 /**
  *
  * @author andre y sebaa 
  */
 public class Main extends javax.swing.JFrame {
+    //Se inicializan las compañias con parametros por defecto
         Company capcom = new Company(11, "Capcom");
         
-        Company squareEnix = new Company(10, "SquareEnix");
-        
+        Company squareEnix = new Company(17, "SquareEnix");
+    
+        //Se inicializa la variable de duracion de dia
         int dayDuration;
         
     /**
      * Creates new form Main
      */
     public Main() {
+        //Se inician los componentes de la interfaz
         initComponents();
-        
+
+    //Se pasan los labels correspondientes a cada compañia y sus drives para manipular la interfaz        
         JLabel[] capDriveLabels = {narrativeqtyGUI, levelqtyGUI, spriteqtyGUI, logicqtyGUI1, dlcqtyGUI, DeadlineGUI, readygamesqtyGUI, readydlcGUI, dayspassedGUI1};
         JLabel[] capCompanyLabels = {DevQty, NarrativeQty, LevelQty, SpriteQty, LogicQty, DLCQty, IntegratorQty, DevQty2, NarrativeQty2, LevelQty2, SpriteQty2, LogicQty2, DLCQty2, IntegratorQty2, incomeGUI, utilityGUI, totalsalariesGUI};
         
@@ -54,20 +59,25 @@ public class Main extends javax.swing.JFrame {
         this.DayDur.setText(Integer.toString(dayDuration));
         
        
-     
+    //Lectura de la configuracion guardada en txt 
         readConfig();
         
+    //Se refleja la lectura la lectura de desarrolladores maximos de cada compañia    
+        maxDevsGUI.setText(Integer.toString(this.capcom.getMaxDevs()));
+        maxDevsGUI1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
         
+    //Conversion de hora y minutos   
         int hourDuration = dayDuration/24;
         int minDuration = hourDuration/60;
         if(hourDuration == 0){
+            hourDuration = 1;
+        }
+        if(minDuration == 0){
             minDuration = 1;
         }
  
-/*
-        this.capcom.activateDevs();
-        this.squareEnix.activateDevs();
-*/      
+
+    //Se crea e inicializan los directores y pms de cada compañia
         ProjectManager capMan = new ProjectManager( this.dayDuration, hourDuration, minDuration,this.capcom.getCompanyDrive(),this.capcom.getMutex(), PMstateGUI);
         Director capDir = new Director(this.capcom.getCompanyDrive(), this.capcom.getMutex(), capMan, minDuration, PMfaultsGUI, PMfaults$GUI);
         DirectorWatch capWatch = new DirectorWatch( this.dayDuration, hourDuration, minDuration, capDir, directorstateGUI, this.capcom);
@@ -90,6 +100,8 @@ public class Main extends javax.swing.JFrame {
         
     }
     
+    /*Funcion de lectura de configuracion de txt
+    */
     public void readConfig(){
         String savedDevs = "";
         String line;
@@ -104,19 +116,44 @@ public class Main extends javax.swing.JFrame {
                 FileReader fr = new FileReader(file);
                 BufferedReader br = new BufferedReader(fr);
                 
+                //Si una linea no es vacia, se lee
                 while((line = br.readLine()) != null){
                     if(!line.isEmpty()){
                         String[] arraySplit = line.split(",");
                         
+                        //Se revisa que tipo de datos de esta leyendo
                         switch(arraySplit[0]){
                         
+                            //Dato dia: se modifica el valor de la duracion del dia
                             case "dia":
                                 this.dayDuration = Integer.parseInt(arraySplit[1]);
                                 addDefaults();
                                 this.DayDur.setText(Integer.toString(dayDuration));
                                 
                                 break;
+                               
+                            //Dato capcom: Se modifica la cantidad maxima de desarrolladores de capcom
+                            case "Capcom":
+                                this.capcom.setMaxDevs(Integer.parseInt(arraySplit[1]));
+                                break;
+                            
                                 
+                            //Dato SquareEnix: se modifica la cantidad maxima de desarrolladores de square enix
+                            case "SquareEnix":
+                                this.squareEnix.setMaxDevs(Integer.parseInt(arraySplit[1]));
+                                break;
+                               
+                            /**
+                             * Game Developer: Se añade desarrolladores segun los datos leidos
+                             * Los datos leidos en las posiciones de la linea convertida en arreglo son los siguientes:
+                             * 
+                             * 1: Compañia a la que el desarrollador pertenece
+                             * 
+                             * 2: Tipo de desarrollador
+                             * 
+                             * 3:Cantidad de desarrolladores del tipo dado, se ejecuta un for de la cantidad - 1
+                             * debido al minimo de 1 añadido por defecto
+                             */
                             case "GameDeveloper":
                                 
                                 switch(arraySplit[1]){
@@ -144,7 +181,9 @@ public class Main extends javax.swing.JFrame {
                                 }
                                 
                                 break;
+                             
                                 
+                            //Se lee el deadline para la entrega de los juegos
                             case "deadLine":
                                 
                                 this.capcom.getCompanyDrive().setDeadLine(Integer.parseInt(arraySplit[1]));
@@ -157,6 +196,7 @@ public class Main extends javax.swing.JFrame {
                                 
                                 break;
                             
+                            //Se añade integradores segun compañia(1) y su cantidad(2)
                             case "Integrator":
                                 
                                 switch(arraySplit[1]){
@@ -194,7 +234,7 @@ public class Main extends javax.swing.JFrame {
             System.out.println(e);
             }
         }
-    public void saveConfig(Company capcom, Company squareEnix, int dayduration) {
+    public void saveConfig(Company capcom, Company squareEnix, int savedayduration) {
         String path = "cosas.txt";
         File file = new File(path);
 
@@ -203,11 +243,17 @@ public class Main extends javax.swing.JFrame {
             BufferedWriter bw = new BufferedWriter(fw);
 
             // Guardar dayDuration (sólo uno porque que ambos tienen la misma duración)
-            bw.write("dia," + dayDuration + "\n");
+            bw.write("dia," + savedayduration + "\n");
 
             // Guardar deadLine (tomo el valor de Capcom que es igual para ambos)
             bw.write("deadLine," + capcom.getCompanyDrive().getDeadLine() + "\n");
 
+            //Guardar desarrolladores maximos de capcom
+            bw.write("Capcom," + this.capcom.getMaxDevs() + "\n");
+            
+            //Guardar desarrolladores maximos de Square Enix
+            bw.write("SquareEnix," + this.squareEnix.getMaxDevs() + "\n");
+            
             // Función auxiliar para guardar GameDevelopers
             saveGameDevelopers(bw, "Capcom", capcom);
             saveGameDevelopers(bw, "SquareEnix", squareEnix);
@@ -293,6 +339,14 @@ public class Main extends javax.swing.JFrame {
 */        
         
     }
+    
+    public void maxDevError(){
+        JOptionPane.showMessageDialog(null, "No es posible bajar el numero maximo de desarrolladores, reduzca la cantidad de algun tipo de desarrollador primero");
+    }
+     
+    public void minDevNotice(){
+        JOptionPane.showMessageDialog(null, "No es posible disminuir la cantidad de desarrolladores bajo el minimo de 1");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -352,6 +406,8 @@ public class Main extends javax.swing.JFrame {
         plusIntegratorQty1 = new javax.swing.JButton();
         NarrativeQty1 = new javax.swing.JLabel();
         lessLogicQty1 = new javax.swing.JButton();
+        jLabel107 = new javax.swing.JLabel();
+        maxDevsGUI1 = new javax.swing.JLabel();
         panelIzquierdo = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -382,17 +438,18 @@ public class Main extends javax.swing.JFrame {
         IntegratorQty = new javax.swing.JLabel();
         plusIntegratorQty = new javax.swing.JButton();
         lessIntegratorQty = new javax.swing.JButton();
+        jLabel106 = new javax.swing.JLabel();
+        maxDevsGUI = new javax.swing.JLabel();
         panelDerecho3 = new javax.swing.JPanel();
         jLabel102 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         DayDur = new javax.swing.JLabel();
-        plusDayDur = new javax.swing.JButton();
-        lessDayDur = new javax.swing.JButton();
         plusDeadLine = new javax.swing.JButton();
         lessDeadLine = new javax.swing.JButton();
         DeadLineDays = new javax.swing.JLabel();
+        configdayDuration = new javax.swing.JTextField();
         CapcomPanel = new javax.swing.JPanel();
         BG4 = new javax.swing.JPanel();
         SidePanel4 = new javax.swing.JPanel();
@@ -936,6 +993,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jLabel107.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
+        jLabel107.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel107.setText("Max Developers:");
+
+        maxDevsGUI1.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
+        maxDevsGUI1.setForeground(new java.awt.Color(255, 255, 255));
+        maxDevsGUI1.setText("0");
+
         javax.swing.GroupLayout panelDerechoLayout = new javax.swing.GroupLayout(panelDerecho);
         panelDerecho.setLayout(panelDerechoLayout);
         panelDerechoLayout.setHorizontalGroup(
@@ -951,58 +1016,68 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(DevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelDerechoLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IntegratorQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LevelQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LogicQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SpriteQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(NarrativeQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DLCQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel107, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelDerechoLayout.createSequentialGroup()
                                 .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(plusLevelQty1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                                        .addComponent(plusSpriteQty1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(plusLogicQty1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(plusNarrativeQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerechoLayout.createSequentialGroup()
+                                    .addComponent(DevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelDerechoLayout.createSequentialGroup()
                                         .addGap(2, 2, 2)
-                                        .addComponent(plusDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(IntegratorQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LevelQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LogicQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(SpriteQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(NarrativeQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(DLCQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lessLogicQty1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                    .addComponent(lessSpriteQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lessLevelQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lessNarrativeQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lessDevQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(panelDerechoLayout.createSequentialGroup()
-                                    .addComponent(plusDLCQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(lessDLCQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelDerechoLayout.createSequentialGroup()
-                                    .addComponent(lessIntegratorQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(plusIntegratorQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelDerechoLayout.createSequentialGroup()
+                                        .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(plusLevelQty1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                                            .addComponent(plusSpriteQty1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(plusLogicQty1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(plusNarrativeQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lessLogicQty1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                                            .addComponent(lessSpriteQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lessLevelQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lessNarrativeQty1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(panelDerechoLayout.createSequentialGroup()
+                                            .addComponent(plusDLCQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lessDLCQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panelDerechoLayout.createSequentialGroup()
+                                            .addComponent(lessIntegratorQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(plusIntegratorQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(panelDerechoLayout.createSequentialGroup()
+                                .addComponent(maxDevsGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(plusDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lessDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panelDerechoLayout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(jLabel17)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         panelDerechoLayout.setVerticalGroup(
             panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDerechoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(25, 25, 25)
+                .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel107, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxDevsGUI1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plusDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lessDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDerechoLayout.createSequentialGroup()
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1019,10 +1094,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelDerechoLayout.createSequentialGroup()
-                        .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plusDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lessDevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DevQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(panelDerechoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NarrativeQty1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1219,10 +1291,22 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jLabel106.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
+        jLabel106.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel106.setText("Max Developers:");
+
+        maxDevsGUI.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
+        maxDevsGUI.setForeground(new java.awt.Color(255, 255, 255));
+        maxDevsGUI.setText("0");
+
         javax.swing.GroupLayout panelIzquierdoLayout = new javax.swing.GroupLayout(panelIzquierdo);
         panelIzquierdo.setLayout(panelIzquierdoLayout);
         panelIzquierdoLayout.setHorizontalGroup(
             panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel33)
+                .addGap(122, 122, 122))
             .addGroup(panelIzquierdoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1232,9 +1316,11 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel23)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
-                    .addComponent(jLabel26))
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(maxDevsGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelIzquierdoLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -1246,51 +1332,57 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(NarrativeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(DLCQty, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(plusIntegratorQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plusDLCQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plusLogicQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plusSpriteQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plusLevelQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plusNarrativeQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plusDevQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIzquierdoLayout.createSequentialGroup()
+                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(plusIntegratorQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(plusDLCQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(plusLogicQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(plusSpriteQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(plusLevelQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(plusNarrativeQty, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lessIntegratorQty, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                                    .addComponent(lessDLCQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lessDevQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(lessLogicQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lessSpriteQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(lessLevelQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lessNarrativeQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel33)
-                .addGap(122, 122, 122))
+                                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lessIntegratorQty, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                                            .addComponent(lessDLCQty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(lessLogicQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lessSpriteQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lessLevelQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lessNarrativeQty, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelIzquierdoLayout.createSequentialGroup()
+                        .addComponent(plusDevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lessDevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         panelIzquierdoLayout.setVerticalGroup(
             panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelIzquierdoLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(11, 11, 11)
+                .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(maxDevsGUI, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plusDevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lessDevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelIzquierdoLayout.createSequentialGroup()
-                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lessDevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel103, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lessSpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lessSpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(plusSpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1305,9 +1397,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(lessIntegratorQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelIzquierdoLayout.createSequentialGroup()
-                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(DevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plusDevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DevQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(NarrativeQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1319,9 +1409,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(plusLevelQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lessLevelQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(SpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plusSpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SpriteQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelIzquierdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LogicQty, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1365,20 +1453,6 @@ public class Main extends javax.swing.JFrame {
         DayDur.setForeground(new java.awt.Color(255, 255, 255));
         DayDur.setText("0");
 
-        plusDayDur.setText("+");
-        plusDayDur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plusDayDurActionPerformed(evt);
-            }
-        });
-
-        lessDayDur.setText("-");
-        lessDayDur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lessDayDurActionPerformed(evt);
-            }
-        });
-
         plusDeadLine.setText("+");
         plusDeadLine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1402,11 +1476,8 @@ public class Main extends javax.swing.JFrame {
         panelDerecho3Layout.setHorizontalGroup(
             panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDerecho3Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerecho3Layout.createSequentialGroup()
-                        .addComponent(jLabel102)
-                        .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerecho3Layout.createSequentialGroup()
                         .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel32)
@@ -1414,24 +1485,26 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(70, 70, 70)
                                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(119, 119, 119))
-                    .addGroup(panelDerecho3Layout.createSequentialGroup()
-                        .addComponent(jLabel31)
-                        .addGap(33, 33, 33)
-                        .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerecho3Layout.createSequentialGroup()
+                        .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelDerecho3Layout.createSequentialGroup()
-                                .addComponent(DeadLineDays, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(plusDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lessDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel31)
+                                .addGap(33, 33, 33)
+                                .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelDerecho3Layout.createSequentialGroup()
+                                        .addComponent(DeadLineDays, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(plusDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lessDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelDerecho3Layout.createSequentialGroup()
+                                        .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                        .addComponent(configdayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panelDerecho3Layout.createSequentialGroup()
-                                .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(plusDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lessDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27))))))
+                                .addComponent(jLabel102)
+                                .addGap(53, 53, 53)))
+                        .addGap(17, 17, 17))))
         );
         panelDerecho3Layout.setVerticalGroup(
             panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1441,9 +1514,8 @@ public class Main extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lessDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(plusDayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(DayDur, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(configdayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1872,17 +1944,9 @@ public class Main extends javax.swing.JFrame {
                                     .addGroup(panelIzquierdo1Layout.createSequentialGroup()
                                         .addComponent(IntegratorQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(plusIntegratorQty2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(plusIntegratorQty2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lessIntegratorQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(DevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panelIzquierdo1Layout.createSequentialGroup()
-                                            .addComponent(DLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(plusDLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(lessDLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdo1Layout.createSequentialGroup()
                                         .addGroup(panelIzquierdo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(panelIzquierdo1Layout.createSequentialGroup()
@@ -1906,7 +1970,15 @@ public class Main extends javax.swing.JFrame {
                                             .addComponent(lessNarrativeQty2, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                                             .addComponent(lessLevelQty2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(lessSpriteQty2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lessLogicQty2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                            .addComponent(lessLogicQty2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(DevQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelIzquierdo1Layout.createSequentialGroup()
+                                            .addComponent(DLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(plusDLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(lessDLCQty2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(panelIzquierdo1Layout.createSequentialGroup()
                                 .addComponent(jLabel40)
                                 .addGap(42, 42, 42)))
@@ -2796,9 +2868,9 @@ public class Main extends javax.swing.JFrame {
                                 .addGroup(panelIzquierdo2Layout.createSequentialGroup()
                                     .addComponent(jLabel74)
                                     .addGap(55, 55, 55)
-                                    .addComponent(DevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(63, 63, 63))))
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                                    .addComponent(DevQty3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(11, 11, 11))))
+                        .addGap(0, 49, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelIzquierdo2Layout.setVerticalGroup(
@@ -3373,7 +3445,7 @@ public class Main extends javax.swing.JFrame {
     private void lessDevQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQtyActionPerformed
         // TODO add your handling code here:
         this.capcom.setMaxDevs(this.capcom.getMaxDevs() + 1);
-        this.DevQty.setText(Integer.toString(this.capcom.getMaxDevs()));
+        this.maxDevsGUI.setText(Integer.toString(this.capcom.getMaxDevs()));
 
         
     }//GEN-LAST:event_lessDevQtyActionPerformed
@@ -3382,14 +3454,18 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.capcom.canDecreaseMaxDevs()){
             this.capcom.setMaxDevs(this.capcom.getMaxDevs()-1);
+        }else{
+            maxDevError();
         }
-        this.DevQty.setText(Integer.toString(this.capcom.getMaxDevs()));
+        this.maxDevsGUI.setText(Integer.toString(this.capcom.getMaxDevs()));
         
     }//GEN-LAST:event_plusDevQtyActionPerformed
 
     private void plusLevelQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQtyActionPerformed
         if(this.capcom.getLevelDevs().getlSize() > 1){
             this.capcom.removeDev("LevelDesign");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLevelQtyActionPerformed
 
@@ -3401,6 +3477,8 @@ public class Main extends javax.swing.JFrame {
     private void plusLogicQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQtyActionPerformed
         if(this.capcom.getLogicDevs().getlSize() > 1){
             this.capcom.removeDev("GameLogic");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLogicQtyActionPerformed
 
@@ -3412,6 +3490,8 @@ public class Main extends javax.swing.JFrame {
     private void plusSpriteQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQtyActionPerformed
         if(this.capcom.getSpriteDevs().getlSize() > 1){
             this.capcom.removeDev("SpriteArt");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusSpriteQtyActionPerformed
 
@@ -3423,6 +3503,8 @@ public class Main extends javax.swing.JFrame {
     private void plusNarrativeQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQtyActionPerformed
         if(this.capcom.getScriptDevs().getlSize() > 1){
             this.capcom.removeDev("Narrative");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusNarrativeQtyActionPerformed
 
@@ -3434,6 +3516,8 @@ public class Main extends javax.swing.JFrame {
     private void plusDLCQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQtyActionPerformed
         if(this.capcom.getDlcDevs().getlSize() > 1){
             this.capcom.removeDev("DLC");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusDLCQtyActionPerformed
 
@@ -3445,7 +3529,9 @@ public class Main extends javax.swing.JFrame {
     private void plusIntegratorQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusIntegratorQtyActionPerformed
         // TODO add your handling code here:
         if(this.capcom.getIntegrators().getlSize() > 1){
-        this.capcom.removeIntegrator();
+            this.capcom.removeIntegrator();
+        }else{
+            minDevNotice();
         }
    
     }//GEN-LAST:event_plusIntegratorQtyActionPerformed
@@ -3455,23 +3541,6 @@ public class Main extends javax.swing.JFrame {
         Integrator  integrator = new Integrator (this.capcom.getCompanyDrive(), this.capcom.getMutex(), this.dayDuration);
         capcom.addIntegrator(integrator);
     }//GEN-LAST:event_lessIntegratorQtyActionPerformed
-
-    private void plusDayDurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDayDurActionPerformed
-        // TODO add your handling code here:
-            dayDuration++; 
-            this.DayDur.setText(Integer.toString(dayDuration));
-
-        
-    }//GEN-LAST:event_plusDayDurActionPerformed
-
-    private void lessDayDurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDayDurActionPerformed
-        // TODO add your handling code here:
-            if(dayDuration > 1) { // Asumiendo que no quieres que sea menor a 1.
-                dayDuration--; 
-                this.DayDur.setText(Integer.toString(dayDuration));
-            }
-
-    }//GEN-LAST:event_lessDayDurActionPerformed
 
     private void plusDeadLineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDeadLineActionPerformed
         // TODO add your handling code here:
@@ -3500,6 +3569,8 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.capcom.getIntegrators().getlSize() > 1){
         this.capcom.removeIntegrator();
+        }else{
+            minDevNotice();
         }
         
     }//GEN-LAST:event_plusIntegratorQty2ActionPerformed
@@ -3518,12 +3589,16 @@ public class Main extends javax.swing.JFrame {
     private void plusDLCQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQty2ActionPerformed
         if(this.capcom.getDlcDevs().getlSize() > 1){
             this.capcom.removeDev("DLC");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusDLCQty2ActionPerformed
 
     private void plusLogicQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQty2ActionPerformed
         if(this.capcom.getLogicDevs().getlSize() > 1){
             this.capcom.removeDev("GameLogic");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLogicQty2ActionPerformed
 
@@ -3540,12 +3615,16 @@ public class Main extends javax.swing.JFrame {
     private void plusSpriteQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQty2ActionPerformed
         if(this.capcom.getSpriteDevs().getlSize() > 1){
             this.capcom.removeDev("SpriteArt");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusSpriteQty2ActionPerformed
 
     private void plusLevelQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQty2ActionPerformed
         if(this.capcom.getLevelDevs().getlSize() > 1){
             this.capcom.removeDev("LevelDesign");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLevelQty2ActionPerformed
 
@@ -3562,6 +3641,8 @@ public class Main extends javax.swing.JFrame {
     private void plusNarrativeQty2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty2ActionPerformed
         if(this.capcom.getScriptDevs().getlSize() > 1){
             this.capcom.removeDev("Narrative");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusNarrativeQty2ActionPerformed
 
@@ -3569,6 +3650,8 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.squareEnix.getIntegrators().getlSize() > 1){
         this.squareEnix.removeIntegrator();
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusIntegratorQty3ActionPerformed
 
@@ -3586,12 +3669,16 @@ public class Main extends javax.swing.JFrame {
     private void plusDLCQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQty3ActionPerformed
         if(this.squareEnix.getDlcDevs().getlSize() > 1){
             this.squareEnix.removeDev("DLC");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusDLCQty3ActionPerformed
 
     private void plusLogicQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQty3ActionPerformed
         if(this.squareEnix.getLogicDevs().getlSize() > 1){
             this.squareEnix.removeDev("GameLogic");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLogicQty3ActionPerformed
 
@@ -3608,12 +3695,16 @@ public class Main extends javax.swing.JFrame {
     private void plusSpriteQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQty3ActionPerformed
         if(this.squareEnix.getSpriteDevs().getlSize() > 1){
             this.squareEnix.removeDev("SpriteArt");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusSpriteQty3ActionPerformed
 
     private void plusLevelQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQty3ActionPerformed
         if(this.squareEnix.getLevelDevs().getlSize() > 1){
             this.squareEnix.removeDev("LevelDesign");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLevelQty3ActionPerformed
 
@@ -3630,6 +3721,8 @@ public class Main extends javax.swing.JFrame {
     private void plusNarrativeQty3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty3ActionPerformed
         if(this.squareEnix.getScriptDevs().getlSize() > 1){
             this.squareEnix.removeDev("Narrative");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusNarrativeQty3ActionPerformed
 
@@ -3649,14 +3742,19 @@ public class Main extends javax.swing.JFrame {
         
         if(this.squareEnix.canDecreaseMaxDevs()){
             this.squareEnix.setMaxDevs(this.squareEnix.getMaxDevs()-1);
+        }else{
+            maxDevError();
         }
-        this.DevQty1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
+        
+        this.maxDevsGUI1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
 
     }//GEN-LAST:event_plusDevQty1ActionPerformed
 
     private void plusNarrativeQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusNarrativeQty1ActionPerformed
         if(this.squareEnix.getScriptDevs().getlSize() > 1){
             this.squareEnix.removeDev("Narrative");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusNarrativeQty1ActionPerformed
 
@@ -3673,13 +3771,15 @@ public class Main extends javax.swing.JFrame {
     private void lessDevQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessDevQty1ActionPerformed
         // TODO add your handling code here:
         this.squareEnix.setMaxDevs(this.squareEnix.getMaxDevs() + 1);
-        this.DevQty1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
+        this.maxDevsGUI1.setText(Integer.toString(this.squareEnix.getMaxDevs()));
     }//GEN-LAST:event_lessDevQty1ActionPerformed
 
     private void lessIntegratorQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lessIntegratorQty1ActionPerformed
         // TODO add your handling code here:
         if(this.squareEnix.getIntegrators().getlSize() > 1){
-        this.squareEnix.removeIntegrator();
+            this.squareEnix.removeIntegrator();
+        }else{
+            minDevNotice();
         }
 
         
@@ -3689,6 +3789,8 @@ public class Main extends javax.swing.JFrame {
     private void plusDLCQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusDLCQty1ActionPerformed
         if(this.squareEnix.getDlcDevs().getlSize() > 1){
             this.squareEnix.removeDev("DLC");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusDLCQty1ActionPerformed
 
@@ -3700,6 +3802,8 @@ public class Main extends javax.swing.JFrame {
     private void plusSpriteQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusSpriteQty1ActionPerformed
         if(this.squareEnix.getSpriteDevs().getlSize() > 1){
             this.squareEnix.removeDev("SpriteArt");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusSpriteQty1ActionPerformed
 
@@ -3711,18 +3815,25 @@ public class Main extends javax.swing.JFrame {
     private void plusLevelQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLevelQty1ActionPerformed
         if(this.squareEnix.getLevelDevs().getlSize() > 1){
             this.squareEnix.removeDev("LevelDesign");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLevelQty1ActionPerformed
 
     private void plusLogicQty1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusLogicQty1ActionPerformed
         if(this.squareEnix.getLogicDevs().getlSize() > 1){
             this.squareEnix.removeDev("GameLogic");
+        }else{
+            minDevNotice();
         }
     }//GEN-LAST:event_plusLogicQty1ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
-            saveConfig(capcom, squareEnix, dayDuration);
+        if(configdayDuration.getText().matches("[0-9]+")){
+            saveConfig(capcom, squareEnix, Integer.parseInt(configdayDuration.getText()));
+        }else{
+            JOptionPane.showMessageDialog(null, "Se ha producido un error, por favor verifique que el cuadro de dias restantes solo contenga numeros");
+        }
 
         
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -3822,6 +3933,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel btn_SquareEnix4;
     private javax.swing.JPanel btn_SquareEnix5;
     private javax.swing.JPanel btn_configuration;
+    private javax.swing.JTextField configdayDuration;
     private javax.swing.JLabel dayspassedGUI1;
     private javax.swing.JLabel dayspassedGUI2;
     private javax.swing.JLabel directorstateGUI;
@@ -3842,6 +3954,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel110;
     private javax.swing.JLabel jLabel111;
     private javax.swing.JLabel jLabel13;
@@ -3948,7 +4062,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton lessDLCQty1;
     private javax.swing.JButton lessDLCQty2;
     private javax.swing.JButton lessDLCQty3;
-    private javax.swing.JButton lessDayDur;
     private javax.swing.JButton lessDeadLine;
     private javax.swing.JButton lessDevQty;
     private javax.swing.JButton lessDevQty1;
@@ -3980,6 +4093,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel logicMAXqtyGUI3;
     private javax.swing.JLabel logicqtyGUI1;
     private javax.swing.JLabel logicqtyGUI2;
+    private javax.swing.JLabel maxDevsGUI;
+    private javax.swing.JLabel maxDevsGUI1;
     private javax.swing.JLabel narrativeMAXqtyGUI;
     private javax.swing.JLabel narrativeMAXqtyGUI1;
     private javax.swing.JLabel narrativeqtyGUI;
@@ -3997,7 +4112,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton plusDLCQty1;
     private javax.swing.JButton plusDLCQty2;
     private javax.swing.JButton plusDLCQty3;
-    private javax.swing.JButton plusDayDur;
     private javax.swing.JButton plusDeadLine;
     private javax.swing.JButton plusDevQty;
     private javax.swing.JButton plusDevQty1;

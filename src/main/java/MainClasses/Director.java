@@ -41,10 +41,13 @@ public class Director extends Thread {
     @Override
     public void run(){
         try {
+            //Se toman pausas cortas entre ejecucion
             sleep(10);
             while(true){
+                //Si ya es la hora de revisar el project manager, el condicional sera cierto y se ejecuta el codigo correspondiente
                 if(!this.paused){
                     
+                    //Si el pm no esta trabajando y aun no se le ha colocado una falta, se procede a colocarle una falta
                     if(!"Trabajando".equals(this.pm.getCurrentState()) && !this.wasLazy){
                         this.mutex.acquire(1);
                         faultPM();
@@ -87,6 +90,7 @@ public class Director extends Thread {
     
     }
     
+    //Esta funcion realmente no se usa aqui, pretende que no existe
     public int randHour(){
         Random random = new Random();
         return random.nextInt(25 - 1) + 1;
@@ -116,7 +120,14 @@ public class Director extends Thread {
         this.pmPenalties = pmPenalties;
     }
  
+    /**
+     * Funcion para registrar fallas del pm
+     */
     public void faultPM(){
+        /**
+         * Se modifica el booleano que indica que ya se penalizo al pm
+         * Aumentan en 1 las penalizaciones para este deadline y se reduce su salario en 50
+         */
         this.wasLazy = true;
         this.pmPenalties += 1;
         this.label.setText(Integer.toString(this.pmPenalties));

@@ -31,7 +31,6 @@ public class Integrator extends Thread {
                 // Verificar si hay suficientes componentes para ensamblar un juego
                 this.mutex.acquire(1);
                 if (this.drive.canAssembleGame()) {
-                    System.out.println("Integrador: Componentes disponibles. Iniciando ensamblaje...");
 
                     // Consumir componentes
                     drive.assembleGame();
@@ -43,10 +42,8 @@ public class Integrator extends Thread {
 
                     // Agregar el juego ensamblado al Drive
                     // (Implementar esto según tus requisitos.)
-                    System.out.println("Integrador: ¡Juego ensamblado!");
 
                 } else {
-                    System.out.println("Integrador: No hay suficientes componentes para ensamblar un juego.");
                     this.drive.addSalary((this.salary));
                     this.mutex.release();
                     sleep(this.dayDuration);

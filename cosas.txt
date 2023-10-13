@@ -1,5 +1,7 @@
-dia,111
+dia,1000
 deadLine,20
+Capcom,11
+SquareEnix,17
 GameDeveloper,Capcom,Narrative,2
 GameDeveloper,Capcom,LevelDesign,2
 GameDeveloper,Capcom,SpriteArt,4

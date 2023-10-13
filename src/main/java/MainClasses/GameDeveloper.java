@@ -39,7 +39,11 @@ public class GameDeveloper extends Thread {
     public void run() {
         while (this.isActive) {
             try {
+                //Logicamente los desarrolladores siempre trabajan, teoricamente no
                 this.produceGameComponent();
+                this.mutex.acquire();
+                this.drive.addSalary(hourlyRate);
+                this.mutex.release();
                 sleep(this.dayDuration); // hay que despues cambiarlo para que se pueda cambiar la duracion del dia en la interfaz
             } catch (InterruptedException ex) {
                 System.out.println("Error in developer thread.");
@@ -48,6 +52,11 @@ public class GameDeveloper extends Thread {
         
     }
 
+    /**
+     * Funcion para la construccion del desarrollador
+     * 
+     * Segun su compañia y su tipo, determina su salario y produccion por dia
+     */
     private void configureDeveloperByComponent() {
         if (this.company.equals("Capcom")) {
             switch (this.gameComponent) {
@@ -112,8 +121,14 @@ public class GameDeveloper extends Thread {
         }
     }
     
-
-
+    
+    /**
+     * Trabajo de los desarrolladores
+     * 
+     * Cada dia suman a su acumulado
+     * 
+     * Si el acumulado es 1 o mas lo cargan al drive y reinician su acumulado
+     */
     public void produceGameComponent() {
         this.accumulatedOutput += this.dailyOutput;
         if(this.accumulatedOutput >= 1){
@@ -121,7 +136,6 @@ public class GameDeveloper extends Thread {
                 int roundAcc = (int) Math.floor(this.accumulatedOutput);
                 this.mutex.acquire(1);
                 this.drive.addToDrive(roundAcc, this.gameComponent);
-                this.drive.addSalary(hourlyRate);
                 this.mutex.release();
                 this.accumulatedOutput = 0;
             } catch (InterruptedException ex) {

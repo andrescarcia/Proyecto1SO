@@ -38,16 +38,22 @@ public class DirectorWatch extends Thread{
     }
     
     public void run(){
+        /**
+         * Ejecucion del director, si no hay 0 dias restantes, revisa al pm en una hora aleatoria cambiando el booleano de
+         * activacion para el thread que ejecuta las reviciones
+         * al final de los 25 minutos de la revision, cambia el booleano para desactivar al thread de revision
+         * 
+         * Si hay 0 dias restantes, procede a vender los juegos
+         */
         System.out.println(this.minuteDuration);
         while(true){
             try {
                 
-                if(drive.getDaysRemaining() != 0){
-                
+                if(drive.getDaysRemaining() > 0){
                 
                     int randomHour = randHour();
                     int upperWait = this.hourDuration * randomHour;
-                    int lowerWait = this.hourDuration * (24 - randomHour + 1);
+                    int lowerWait = this.hourDuration * (24 - randomHour - 1);
 
                     for(int i = 0; i < 3; i++){
                         switch (i){
@@ -90,10 +96,26 @@ public class DirectorWatch extends Thread{
     
     }
     
+    /**
+     * Funcion de hora aleatoria, esta si es la que se usa
+     * @return 
+     */
     public int randHour(){
         Random random = new Random();
-        return random.nextInt(25 - 1) + 1;
+        return random.nextInt(24 - 1) + 1;
     }
+    
+    /**
+     * Funcion de venta de juegos
+     * 
+     * Se revisa de que compañia se trata para determinar la ganancia por juego
+     * 
+     * Luego se calcula la ganancia segun los juegos, se añade el salario del director para este dia
+     * se carga el salario acumulado en el drive para este deadline, se calculan las utilidades.
+     * 
+     * Despues se reinicia el salario para este deadline, la cantidad de juegos sin dlc, los juegos con dlc
+     * la cantidad de dias restantes y las faltas del pm
+     */
     
     public void sellGames(){
         if(this.company.getCompanyName().equals("Capcom")){
@@ -102,14 +124,15 @@ public class DirectorWatch extends Thread{
             this.company.addIncome((this.drive.getVanillaGames() * 350) + (this.drive.getDlcGames() * 700));
         }
         
-        this.drive.addSalary((this.salary/1000) * 24);
+        this.drive.addSalary(this.salary);
         this.company.addSalary(this.drive.getSalary());
         this.company.setUtilities(this.company.getIncome() - this.company.getSalary());
         this.drive.setSalary(0);
         this.drive.setVanillaGames(0);
         this.drive.setDlcGames(0);
         this.drive.setDaysRemaining(this.drive.getDeadLine());
-        
+        System.out.println(this.drive.getDeadLine());
+        System.out.println(this.drive.getDaysRemaining());
         this.dir.setPmPenalties(0);
         this.dir.getFaultLabel().setText(Integer.toString(this.dir.getPmPenalties()));
         

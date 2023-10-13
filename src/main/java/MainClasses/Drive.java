@@ -140,6 +140,22 @@ public class Drive {
      * @param devType 
      */
     
+    /**
+     * Funcion para añadir componentes al drive
+     * @param amount cantidad del componente a añadir
+     * @param devType tipo de desarrollador, determina que es el componente que se esta cargando
+     * @throws InterruptedException 
+     * 
+     * Primero se verifica el tipo de desarrollador que hace la peticion de carga para determinar el componente a cargar
+     * 
+     * Luego se verifica si el drive para ese componente esta lleno, en caso de no estarlo se procede a verificar si 
+     * el acumulado a cargar excede de la capacidad del drive.
+     * 
+     * En caso de exceder, la cantidad actual del drive se colocara en su maximo
+     * De no exceder, se carga normalmente el acumulado
+     * 
+     * Si el drive esta lleno no se hace nada
+     */
     public void addToDrive(int amount, String devType)throws InterruptedException {
         switch (devType){
         
@@ -215,6 +231,17 @@ public class Drive {
                 break;
         }
     }
+    
+    /**
+     * Funcion que verifica si es posible ensamblar un juego
+     * 
+     * Primero se verifica a que compañia se pertenece
+     * 
+     * Luego se verifica si es necesario realiza run juego con dlc segun el contador de juegos hechos sin dlc
+     * 
+     * Se retorna un booleano que indicara si se cumplen las condiciones
+     * @return boolean
+     */
     public boolean canAssembleGame() {
         if(this.company.equals("Capcom")){
             if(this.vanillaCounter >= 3){
@@ -233,7 +260,20 @@ public class Drive {
             }
         }
     }
-     
+    
+    /**
+     * Funcion para el ensamblaje de juegos (utilizada por el integrador)
+     * 
+     * Primero se verifica a que compañia se pertenece para determinar los requerimientos del juego
+     * luego se verifica si el juego a crear debe ser con dlc o no
+     * segun las condiciones que se cumplan, se restan las partes utilizadas para la creacion del juego
+     * 
+     * si fue un juego normal, se aumenta en 1 la cantidad de juegos normales en el drive y se aumenta el contador
+     * que indica cuantos juegos sin dlc se han realizado
+     * 
+     * si fue un juego con dlc, se aumenta en 1 la cantidad de juegos con dlc en el drive y se reinicia el contador de
+     * cuantos juegos sin dlc se han hechos
+     */
     public void assembleGame() {
         if(this.company.equals("Capcom")){
             this.scripts -= 1;

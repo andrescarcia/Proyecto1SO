@@ -43,7 +43,10 @@ public class ProjectManager extends Thread{
     public void run(){
         while(true){
             try{
+                //Al iniciar el dia, inicia su rutina de trabajar y alternar streams
                 susTime();                
+                /*Segun el tiempo que pasa viendo streams, espera el resto para el siguiente dia y baja en 1 el contador
+                de dias restantes*/
                 if (((this.hourDuration/2)*32) + (this.hourDuration*8) < this.dayDuration){
                     sleep((this.hourDuration*8) + (this.dayDuration - (((this.hourDuration/2)*32) + (this.hourDuration*8))));
                     this.mutex.acquire(1);
@@ -65,6 +68,13 @@ public class ProjectManager extends Thread{
         }
     }
     
+    /**
+     * Funcion para el pm ver streams las primeras 16 horas del dia
+     * 
+     * Utiliza un para repetir el proceso cada hora
+     * 
+     * primero trabaja media hora, luego ve streams media hora
+     */
     public void susTime() {
         for (int i = 1; i <= 16; i++){
             try {
@@ -83,7 +93,11 @@ public class ProjectManager extends Thread{
                 }
 }
     
-    /*Esta funcion es solo por entretenimiento*/
+    /**Esta funcion es solo por entretenimiento
+     * 
+     * Utilizando un numero aleatorio, determina que stream esta viendo el pm porque tiene variedad
+     * 
+     */
     public String watchSus(){
         String stream = "";
         Random random = new Random();

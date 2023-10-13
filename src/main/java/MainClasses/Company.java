@@ -6,6 +6,7 @@ package MainClasses;
 
 import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
 /**
@@ -243,7 +244,10 @@ public class Company {
             this.labels[0].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
             this.labels[7].setText(Integer.toString(this.scriptDevs.getlSize() + this.levelDevs.getlSize() + this.spriteDevs.getlSize() + this.logicDevs.getlSize() + this.dlcDevs.getlSize() + this.integrators.getlSize()));
             dev.start();
-            }
+            
+        }else{
+            devLimitNotice();
+        }
     }
 
     
@@ -428,6 +432,10 @@ public class Company {
     public void addIncome(double income){
         this.income += income;
         this.labels[14].setText(Double.toString(this.income));
+    }
+ 
+    public void devLimitNotice(){
+        JOptionPane.showMessageDialog(null, "Limite de desarrolladores alcanzado, incremente el maximo para poder añadir más");
     }
     
 }

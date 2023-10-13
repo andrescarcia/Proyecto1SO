@@ -446,57 +446,62 @@
                                           <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel38" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="DevQty1" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="IntegratorQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="LevelQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="LogicQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="SpriteQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="NarrativeQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                                  <Component id="DLCQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                          <Component id="jLabel107" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="plusLevelQty1" alignment="0" pref="42" max="32767" attributes="0"/>
-                                                      <Component id="plusSpriteQty1" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="plusLogicQty1" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="plusNarrativeQty1" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                                      <Component id="plusDevQty1" min="-2" pref="46" max="-2" attributes="0"/>
+                                                  <Component id="DevQty1" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Component id="IntegratorQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <Component id="LevelQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <Component id="LogicQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <Component id="SpriteQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <Component id="NarrativeQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <Component id="DLCQty1" alignment="0" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="lessLogicQty1" pref="50" max="32767" attributes="0"/>
-                                                  <Component id="lessSpriteQty1" max="32767" attributes="0"/>
-                                                  <Component id="lessLevelQty1" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="lessNarrativeQty1" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="lessDevQty1" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                          <Component id="plusLevelQty1" alignment="0" pref="42" max="32767" attributes="0"/>
+                                                          <Component id="plusSpriteQty1" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="plusLogicQty1" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="plusNarrativeQty1" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="lessLogicQty1" pref="50" max="32767" attributes="0"/>
+                                                          <Component id="lessSpriteQty1" max="32767" attributes="0"/>
+                                                          <Component id="lessLevelQty1" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="lessNarrativeQty1" alignment="0" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="plusDLCQty1" min="-2" pref="42" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                                          <Component id="lessDLCQty1" min="-2" pref="50" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="lessIntegratorQty1" min="-2" pref="42" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="plusIntegratorQty1" min="-2" pref="46" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
                                               </Group>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="plusDLCQty1" min="-2" pref="42" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                  <Component id="lessDLCQty1" min="-2" pref="50" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="lessIntegratorQty1" min="-2" pref="42" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="plusIntegratorQty1" min="-2" pref="46" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="maxDevsGUI1" min="-2" pref="26" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <Component id="plusDevQty1" min="-2" pref="46" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lessDevQty1" min="-2" pref="50" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -505,7 +510,7 @@
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace pref="48" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -514,7 +519,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="jLabel17" min="-2" pref="31" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel107" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="maxDevsGUI1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="plusDevQty1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="lessDevQty1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel19" min="-2" pref="33" max="-2" attributes="0"/>
@@ -532,11 +544,7 @@
                                       <Component id="jLabel38" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="DevQty1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                          <Component id="plusDevQty1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="lessDevQty1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="DevQty1" min="-2" pref="33" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="NarrativeQty1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -860,6 +868,28 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessLogicQty1ActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel107">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Alien Encounters" size="18" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Max Developers:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="maxDevsGUI1">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Alien Encounters" size="18" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panelIzquierdo">
@@ -877,6 +907,11 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -887,9 +922,11 @@
                                   <Component id="jLabel22" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                                   <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel26" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel106" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="maxDevsGUI" min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="DevQty" alignment="0" min="-2" pref="26" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
@@ -904,39 +941,41 @@
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="plusIntegratorQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="plusDLCQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="plusLogicQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="plusSpriteQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="plusLevelQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="plusNarrativeQty" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="plusDevQty" alignment="0" pref="48" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="plusIntegratorQty" alignment="0" pref="48" max="32767" attributes="0"/>
+                                          <Component id="plusDLCQty" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="plusLogicQty" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="plusSpriteQty" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="plusLevelQty" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="plusNarrativeQty" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="lessIntegratorQty" alignment="0" pref="48" max="32767" attributes="0"/>
-                                                  <Component id="lessDLCQty" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="lessDevQty" alignment="0" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="lessIntegratorQty" alignment="0" pref="48" max="32767" attributes="0"/>
+                                                          <Component id="lessDLCQty" alignment="0" max="32767" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="lessLogicQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="lessSpriteQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
                                               </Group>
-                                              <Component id="lessLogicQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
+                                              <Component id="lessLevelQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="lessSpriteQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
+                                          <Component id="lessNarrativeQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="lessLevelQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="lessNarrativeQty" alignment="1" min="-2" pref="48" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="plusDevQty" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lessDevQty" min="-2" pref="48" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace pref="15" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                              <EmptySpace pref="55" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -945,20 +984,27 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                               <Component id="jLabel33" min="-2" pref="33" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel106" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="maxDevsGUI" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="plusDevQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="lessDevQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lessDevQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="jLabel103" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel103" min="-2" pref="33" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Component id="jLabel20" min="-2" pref="34" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLabel21" min="-2" pref="34" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lessSpriteQty" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                              <Component id="lessSpriteQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                              <Component id="plusSpriteQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                          </Group>
                                           <Component id="jLabel22" min="-2" pref="34" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -978,10 +1024,7 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="DevQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                          <Component id="plusDevQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="DevQty" min="-2" pref="33" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="NarrativeQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -995,10 +1038,7 @@
                                           <Component id="lessLevelQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="SpriteQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                          <Component id="plusSpriteQty" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="SpriteQty" min="-2" pref="33" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="LogicQty" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
@@ -1299,6 +1339,28 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessIntegratorQtyActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel106">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Alien Encounters" size="18" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Max Developers:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="maxDevsGUI">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Alien Encounters" size="18" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panelDerecho3">
@@ -1317,12 +1379,8 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace pref="71" max="32767" attributes="0"/>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel102" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
@@ -1333,27 +1391,32 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
                                           <Group type="102" attributes="0">
-                                              <Component id="DeadLineDays" min="-2" pref="34" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="plusDeadLine" min="-2" pref="36" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lessDeadLine" min="-2" pref="36" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="DeadLineDays" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="plusDeadLine" min="-2" pref="36" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lessDeadLine" min="-2" pref="36" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="DayDur" min="-2" pref="34" max="-2" attributes="0"/>
+                                                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                                                      <Component id="configdayDuration" min="-2" pref="124" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="DayDur" min="-2" pref="34" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="plusDayDur" min="-2" pref="36" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="lessDayDur" min="-2" pref="36" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                              <Component id="jLabel102" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1367,9 +1430,8 @@
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                      <Component id="lessDayDur" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                      <Component id="plusDayDur" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                       <Component id="DayDur" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="configdayDuration" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel31" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
@@ -1445,22 +1507,6 @@
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="plusDayDur">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plusDayDurActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="lessDayDur">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lessDayDurActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JButton" name="plusDeadLine">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="+"/>
@@ -1487,6 +1533,8 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="X"/>
                       </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="configdayDuration">
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1881,19 +1929,9 @@
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="IntegratorQty2" min="-2" pref="34" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="plusIntegratorQty2" max="32767" attributes="0"/>
+                                                      <Component id="plusIntegratorQty2" pref="62" max="32767" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="lessIntegratorQty2" min="-2" pref="48" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                      <Component id="DevQty2" min="-2" pref="20" max="-2" attributes="0"/>
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="DLCQty2" min="-2" pref="34" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="plusDLCQty2" min="-2" pref="51" max="-2" attributes="0"/>
-                                                          <EmptySpace max="-2" attributes="0"/>
-                                                          <Component id="lessDLCQty2" min="-2" pref="48" max="-2" attributes="0"/>
-                                                      </Group>
                                                   </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1924,6 +1962,16 @@
                                                           <Component id="lessLevelQty2" max="32767" attributes="0"/>
                                                           <Component id="lessSpriteQty2" max="32767" attributes="0"/>
                                                           <Component id="lessLogicQty2" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                      <Component id="DevQty2" min="-2" pref="66" max="-2" attributes="0"/>
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="DLCQty2" min="-2" pref="34" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="plusDLCQty2" min="-2" pref="51" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="lessDLCQty2" min="-2" pref="48" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
@@ -3511,12 +3559,12 @@
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                                  <Component id="DevQty3" min="-2" pref="25" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                                                  <Component id="DevQty3" min="-2" pref="77" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="49" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
