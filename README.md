@@ -17,7 +17,8 @@ Para lograrlo, los desarrolladores de software deben presentar un Dashboard en d
 Los estudios requieren personal especializado en cada área, al que se le debe pagar un sueldo por hora. También, cada grupo de trabajadores cuenta con un espacio de Google Drive, el cual tiene una capacidad limitada para guardar elementos del videojuego ya terminados, si la sección del Drive está llena no se pueden producir más elementos.
 
 Cada estudio cuenta con: 
-- **11 trabajadores**
+- **Capcom :11 trabajadores**
+- **Square Enix :17 trabajadores**
 
 Ese número de desarrolladores abarcan las áreas que se encuentran a continuación y a los integradores finales:
 
