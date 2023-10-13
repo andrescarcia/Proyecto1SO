@@ -136,7 +136,7 @@ public class Main extends javax.swing.JFrame {
       private CategoryDataset CrearDataset() {
         final String escala1 = "capcom";
         final String escala2 = "SquareEnix";
-        final String dolares = "dolares";
+        final String dolares = "Miles de Dolares";
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(this.squareEnix.getUtilities(), escala1, dolares);
         dataset.addValue(this.capcom.getUtilities(), escala2, dolares);
