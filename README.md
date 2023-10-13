@@ -62,35 +62,45 @@ Este tipo de empleados accede al Drive, toma las partes de videojuegos necesaria
 
 ### 3. Project Manager
 
-- Hay uno por estudio.
-- Cobra: $20 la hora
-- Funciones detalladas en el texto original...
+Solo hay uno por cada estudio, y su trabajo es registrar el paso de los días. Tiene acceso a un contador con los días restantes para la entrega de los juegos terminados a las tiendas. Sin embargo, al PM se le conoce por su fanatismo a los E-sports (Among us competitivo), a tal punto que las primeras 16 horas del día logra ver streams a escondidas. Cada intervalo de 30 minutos ve streams, y los siguientes 30 minutos trabaja revisando el avance del proyecto, siguiendo el ciclo durante las primeras 16 horas del día. Las últimas 8 horas del día las invierte cambiando el contador con los días restantes para la entrega. El PM cobra $20 la hora esté trabajando o esté viendo Streams.
 
 ### 4. Director
 
-- Hay uno por estudio.
-- Cobra: $30 la hora
-- Funciones detalladas en el texto original...
+Solo hay uno por estudio y se encarga de revisar cuántos días restan para la entrega de los videojuegos a las tiendas. El director siempre cobra $30 la hora. Funciones detalladas:
+
+#### a. Proceso de envío
+
+Si el contador marca 0 días restantes, el director se encarga de enviar todos los videojuegos ya creados a las tiendas, lo que le toma 24 horas. Una vez terminado registra la nueva ganancia de los juegos enviados y reinicia el contador de los días restantes para entregar los videojuegos, lo cual le toma un tiempo despreciable.
+
+#### b. Labores diarias
+
+Si el contador marca 1 día o más restantes, entonces el director trabajará con labores administrativas durante todo el día. Además, escogerá una hora aleatoria del día en la que revisará lo que está haciendo el PM por 25 minutos. Si durante ese intervalo el director descubre al PM viendo streams, le colocará una falta y descontará $50 de su sueldo.
 
 ## Requerimientos funcionales 
 
 - Uso de Hilos/Threads y Semáforos/Semaphores.
 - Asegurar Exclusión mutua para Drive.
-- (Otros requerimientos detallados en el texto original...)
+- Cada estudio de desarrollo debe contar en todo momento con un desarrollador de cada tipo como mínimo.
+- Cada empresa requiere conocer los datos más relevantes sobre la simulación de su estudio.
+- Uso de una interfaz gráfica.
+- La simulación debe permitir en tiempo de ejecución varios ajustes.
 
 ## Consideraciones 
 
-- No se permite uso de librerías para estructuras de datos, como ArrayList.
+No se permite uso de librerías para estructuras de datos, como ArrayList.
 
 ## Especificaciones de las empresas de desarrollo
 
 ### Capcom
 
-- Videojuego estándar: Detalles en el texto original...
-- Videojuego con DLC: Detalles en el texto original...
+- **Videojuego estándar**: Narrativa simple (1 guión), niveles complejos (2 niveles), gráficos realistas (6 sets de sprites), sistemas complejos (5 sistemas de juego). Ganancia al sacar el juego: $400K.
+  
+- **Videojuego con DLC**: Después de crear 3 videojuegos, el siguiente tendrá 1 DLC adicional. Ganancia al sacar el juego: $750K.
 
 ### Square Enix
 
-- Videojuego estándar: Detalles en el texto original...
-- Videojuego con DLC: Detalles en el texto original...
+- **Videojuego estándar**: Narrativa simple (1 guión), niveles simples (1 nivel), gráficos retro (2 sets de sprites), sistemas abundantes (4 sistemas de juego). Ganancia al sacar el juego: $350K.
+  
+- **Videojuego con DLC**: Después de crear 2 videojuegos, el siguiente tendrá 3 DLC´s adicionales. Ganancia al sacar el juego: $700K.
+
 
