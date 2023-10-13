@@ -3552,10 +3552,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_barrasuperiorMousePressed
 
     private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
-        // TODO add your handling code here:
-        SquareEnix v = new SquareEnix();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jLabel34MouseClicked
 
     private void btn_SquareEnix4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SquareEnix4MouseClicked
@@ -3572,16 +3569,12 @@ public class Main extends javax.swing.JFrame {
 
     private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
         // TODO add your handling code here:
-        Configuration v = new Configuration();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jLabel36MouseClicked
 
     private void btn_Configuration1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Configuration1MouseClicked
         // TODO add your handling code here:
-        Configuration v = new Configuration();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btn_Configuration1MouseClicked
 
     private void exit1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit1MousePressed
@@ -3607,31 +3600,22 @@ public class Main extends javax.swing.JFrame {
 
     private void jLabel70MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel70MouseClicked
         // TODO add your handling code here:
-        Capcom v = new Capcom();
-        v.setVisible(true);
-        this.dispose();
+
 
     }//GEN-LAST:event_jLabel70MouseClicked
 
     private void btn_Capcom2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Capcom2MouseClicked
         // TODO add your handling code here:
-        Capcom v = new Capcom();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btn_Capcom2MouseClicked
 
     private void jLabel71MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel71MouseClicked
         // TODO add your handling code here:
-        Configuration v = new Configuration();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jLabel71MouseClicked
 
     private void btn_configurationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_configurationMouseClicked
-        // TODO add your handling code here:
-        Configuration v = new Configuration();
-        v.setVisible(true);
-        this.dispose();
+
 
     }//GEN-LAST:event_btn_configurationMouseClicked
 
@@ -4058,30 +4042,22 @@ public class Main extends javax.swing.JFrame {
 
     private void btn_CapcomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_CapcomMouseClicked
         // TODO add your handling code here:
-        Capcom v = new Capcom();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btn_CapcomMouseClicked
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
         // TODO add your handling code here:
-        Capcom v = new Capcom();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jLabel14MouseClicked
 
     private void btn_SquareEnix3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_SquareEnix3MouseClicked
         // TODO add your handling code here:
-        SquareEnix v = new SquareEnix();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_btn_SquareEnix3MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         // TODO add your handling code here:
-        SquareEnix v = new SquareEnix();
-        v.setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_jLabel13MouseClicked
 
     /**

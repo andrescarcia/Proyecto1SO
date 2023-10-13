@@ -4947,11 +4947,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\andre\Desktop\Proyecto1SO\src\main\java\round.gif"/>
-                </Property>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel108">
               <Properties>
