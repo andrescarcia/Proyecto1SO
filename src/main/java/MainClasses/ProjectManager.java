@@ -78,13 +78,14 @@ public class ProjectManager extends Thread{
     public void susTime() {
         for (int i = 1; i <= 16; i++){
             try {
-                sleep(this.hourDuration/2);
                 this.currentState = watchSus();
                 this.label.setText(this.currentState);
+                sleep(this.hourDuration/2);  
                 
-                sleep(this.hourDuration/2);   
+                 
                 this.currentState = "Trabajando";
                 this.label.setText(this.currentState);
+                sleep(this.hourDuration/2);
                 
             } catch (InterruptedException ex) {
                 Logger.getLogger(ProjectManager.class.getName()).log(Level.SEVERE, null, ex);
