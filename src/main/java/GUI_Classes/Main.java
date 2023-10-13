@@ -504,6 +504,8 @@ public class Main extends javax.swing.JFrame {
         lessDeadLine = new javax.swing.JButton();
         DeadLineDays = new javax.swing.JLabel();
         configdayDuration = new javax.swing.JTextField();
+        narrativeMAXqtyGUI8 = new javax.swing.JLabel();
+        narrativeMAXqtyGUI9 = new javax.swing.JLabel();
         CapcomPanel = new javax.swing.JPanel();
         BG4 = new javax.swing.JPanel();
         SidePanel4 = new javax.swing.JPanel();
@@ -1538,6 +1540,14 @@ public class Main extends javax.swing.JFrame {
         DeadLineDays.setForeground(new java.awt.Color(255, 255, 255));
         DeadLineDays.setText("X");
 
+        narrativeMAXqtyGUI8.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
+        narrativeMAXqtyGUI8.setForeground(new java.awt.Color(255, 255, 255));
+        narrativeMAXqtyGUI8.setText("K");
+
+        narrativeMAXqtyGUI9.setFont(new java.awt.Font("Alien Encounters", 1, 18)); // NOI18N
+        narrativeMAXqtyGUI9.setForeground(new java.awt.Color(255, 255, 255));
+        narrativeMAXqtyGUI9.setText("Milisegundos");
+
         javax.swing.GroupLayout panelDerecho3Layout = new javax.swing.GroupLayout(panelDerecho3);
         panelDerecho3.setLayout(panelDerecho3Layout);
         panelDerecho3Layout.setHorizontalGroup(
@@ -1561,23 +1571,33 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(lessDeadLine, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelDerecho3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel102)
-                                .addGap(53, 53, 53))
-                            .addGroup(panelDerecho3Layout.createSequentialGroup()
                                 .addComponent(jLabel31)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DayDur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(configdayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(configdayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelDerecho3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(narrativeMAXqtyGUI9)
+                                    .addGroup(panelDerecho3Layout.createSequentialGroup()
+                                        .addComponent(jLabel102)
+                                        .addGap(53, 53, 53)))))
                         .addGap(17, 17, 17))))
+            .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDerecho3Layout.createSequentialGroup()
+                    .addGap(193, 193, 193)
+                    .addComponent(narrativeMAXqtyGUI8)
+                    .addContainerGap(194, Short.MAX_VALUE)))
         );
         panelDerecho3Layout.setVerticalGroup(
             panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDerecho3Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel102, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addGap(29, 29, 29)
+                .addComponent(narrativeMAXqtyGUI9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(configdayDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1597,6 +1617,11 @@ public class Main extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(271, Short.MAX_VALUE))
+            .addGroup(panelDerecho3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelDerecho3Layout.createSequentialGroup()
+                    .addGap(286, 286, 286)
+                    .addComponent(narrativeMAXqtyGUI8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(287, Short.MAX_VALUE)))
         );
 
         BG3.add(panelDerecho3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 120, 400, 600));
@@ -4333,6 +4358,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel narrativeMAXqtyGUI5;
     private javax.swing.JLabel narrativeMAXqtyGUI6;
     private javax.swing.JLabel narrativeMAXqtyGUI7;
+    private javax.swing.JLabel narrativeMAXqtyGUI8;
+    private javax.swing.JLabel narrativeMAXqtyGUI9;
     private javax.swing.JLabel narrativeqtyGUI;
     private javax.swing.JLabel narrativeqtyGUI1;
     private javax.swing.JPanel panelCentro;
