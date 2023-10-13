@@ -11,6 +11,9 @@ import MainClasses.Drive;
 import MainClasses.Integrator;
 import MainClasses.LinkList;
 import MainClasses.ProjectManager;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.Semaphore;
 import javax.swing.JLabel;
 import java.io.PrintWriter;
@@ -21,6 +24,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JSpinner;
+import javax.swing.Timer;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 /**
  *
  * @author andre y sebaa 
@@ -31,6 +46,10 @@ public class Main extends javax.swing.JFrame {
         Company squareEnix = new Company(10, "SquareEnix");
         
         int dayDuration;
+        
+            // PARA EL GRAFICO
+
+
         
     /**
      * Creates new form Main
@@ -85,10 +104,60 @@ public class Main extends javax.swing.JFrame {
         squareMan.start();
         squareDir.start();
         squareWatch.start();
-        
-        
-        
+      
+    // PARA EL GRAFICO
+        JFreeChart barras = ChartFactory.createBarChart("Utilidad Vs Tiempo", "Utilidad", "Empresas", CrearDataset(), PlotOrientation.HORIZONTAL, true, true , false);
+        ChartPanel chartpanel = new ChartPanel(barras);
+        chartpanel.setPreferredSize(new java.awt.Dimension(1084, 616));  // Puedes ajustar estas dimensiones según lo que necesites
+
+        GraphPanel.setLayout(new BorderLayout());
+        GraphPanel.add(chartpanel, BorderLayout.CENTER);
+        GraphPanel.validate();
+        int delay = 1000; // tiempo en milisegundos (1 segundo)
+        new Timer(delay, new ActionListener() {
+            int prevCapcomDays = capcom.getCompanyDrive().getDayspassed();
+            int prevSquareDays = squareEnix.getCompanyDrive().getDayspassed();
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                if (capcom.getCompanyDrive().getDayspassed() != prevCapcomDays || squareEnix.getCompanyDrive().getDayspassed() != prevSquareDays) {
+                    prevCapcomDays = capcom.getCompanyDrive().getDayspassed();
+                    prevSquareDays = squareEnix.getCompanyDrive().getDayspassed();
+                    updateGraph();
+                }
+            }
+        }).start();
+
     }
+    
+    private CategoryDataset CrearDataset() {
+        final String escala1 = "capcom";
+        final String escala2 = "SquareEnix";
+        final String dolares = "dolares";
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.addValue(this.squareEnix.getUtilities(), escala1, dolares);
+        dataset.addValue(this.capcom.getUtilities(), escala2, dolares);
+        return dataset;
+    }
+    public void updateGraph() {
+    CategoryDataset dataset = CrearDataset();
+    JFreeChart barras = ChartFactory.createBarChart("Utilidad Vs Tiempo", "Utilidad", "Empresas", dataset, PlotOrientation.HORIZONTAL, true, true , false);
+    ChartPanel chartpanel = new ChartPanel(barras);
+    chartpanel.setPreferredSize(new java.awt.Dimension(1084, 616)); // ajusta estas dimensiones si es necesario
+
+    GraphPanel.removeAll(); // quita el gráfico anterior
+    GraphPanel.setLayout(new BorderLayout());
+    GraphPanel.add(chartpanel, BorderLayout.CENTER);
+    GraphPanel.validate();
+    GraphPanel.repaint(); // asegúrate de que el panel se repinte
+}
+
+    
+
+    
+
+
+
     
     public void readConfig(){
         String savedDevs = "";
@@ -288,8 +357,6 @@ public class Main extends javax.swing.JFrame {
         btn_Configuration = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel110 = new javax.swing.JLabel();
-        jLabel111 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         barrasuperior = new javax.swing.JPanel();
         exit = new javax.swing.JLabel();
@@ -547,6 +614,14 @@ public class Main extends javax.swing.JFrame {
         jLabel105 = new javax.swing.JLabel();
         utilityGUI2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        GraphPanel = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel106 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -565,7 +640,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Square Enix stats ");
+        jLabel13.setText("Sebastian Castillo ");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
@@ -579,7 +654,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(btn_SquareEnix3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel13)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         btn_SquareEnix3Layout.setVerticalGroup(
             btn_SquareEnix3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,7 +684,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Alien Encounters", 0, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Capcom STATS");
+        jLabel14.setText("Andre Scarcia");
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -672,16 +747,6 @@ public class Main extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\Nuevo Logo Unimet Blanco.png")); // NOI18N
         SidePanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-
-        jLabel110.setFont(new java.awt.Font("Alien Encounters", 1, 20)); // NOI18N
-        jLabel110.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel110.setText("Sebastian Castillo ");
-        SidePanel3.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, 33));
-
-        jLabel111.setFont(new java.awt.Font("Alien Encounters", 1, 20)); // NOI18N
-        jLabel111.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel111.setText("Andre Scarcia");
-        SidePanel3.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 520, -1, 30));
 
         BG3.add(SidePanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 720));
 
@@ -2445,7 +2510,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(btn_configurationLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(jLabel71)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         btn_configurationLayout.setVerticalGroup(
             btn_configurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3207,6 +3272,94 @@ public class Main extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Square Enix Dasboard", SquareEnixPanel);
 
+        jPanel1.setBackground(new java.awt.Color(102, 0, 51));
+
+        GraphPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout GraphPanelLayout = new javax.swing.GroupLayout(GraphPanel);
+        GraphPanel.setLayout(GraphPanelLayout);
+        GraphPanelLayout.setHorizontalGroup(
+            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1084, Short.MAX_VALUE)
+        );
+        GraphPanelLayout.setVerticalGroup(
+            GraphPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 616, Short.MAX_VALUE)
+        );
+
+        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\SF.gif")); // NOI18N
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\Capcom_logo_color.png")); // NOI18N
+
+        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\SquareEnix_Logo_Color.png")); // NOI18N
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\andre\\Desktop\\Proyecto1SO\\src\\main\\java\\round.gif")); // NOI18N
+
+        jLabel106.setFont(new java.awt.Font("Alien Encounters", 1, 20)); // NOI18N
+        jLabel106.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel106.setText("employee management");
+
+        jLabel107.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel107.setFont(new java.awt.Font("Alien Encounters", 3, 48)); // NOI18N
+        jLabel107.setForeground(new java.awt.Color(255, 204, 0));
+        jLabel107.setText("VS");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(GraphPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel107, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel9))
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(646, 646, 646)
+                    .addComponent(jLabel106)
+                    .addContainerGap(646, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(GraphPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel107, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(348, 348, 348)
+                    .addComponent(jLabel106, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(348, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Grafico", jPanel1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -3782,6 +3935,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel DevQty1;
     private javax.swing.JLabel DevQty2;
     private javax.swing.JLabel DevQty3;
+    private javax.swing.JPanel GraphPanel;
     private javax.swing.JLabel IntegratorQty;
     private javax.swing.JLabel IntegratorQty1;
     private javax.swing.JLabel IntegratorQty2;
@@ -3838,14 +3992,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel incomeGUI;
     private javax.swing.JLabel incomeGUI1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
     private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
-    private javax.swing.JLabel jLabel110;
-    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -3928,6 +4085,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel jLabel91;
     private javax.swing.JLabel jLabel92;
@@ -3938,6 +4096,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;

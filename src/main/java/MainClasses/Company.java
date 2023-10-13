@@ -43,7 +43,7 @@ public class Company {
     
     public Company(int maxDevs, String company){
         this.mutex = new Semaphore(1);
-        this.companyDrive = new Drive(company);
+        this.companyDrive = new Drive(company );
         
         this.scriptDevs = new LinkList();
         this.levelDevs = new LinkList();
